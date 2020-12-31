@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="nodeProgress">
+        <!--节点默认颜色-->
+        <attr name="node_color" format="color" />
+        <!--节点进度颜色-->
+        <attr name="node_progresscolor" format="color" />
+        <!--进度条默认颜色-->
+        <attr name="node_bar" format="color" />
+        <!--进度条默认颜色-->
+        <attr name="node_progress_bar" format="color" />
+        <!--文字提示颜色-->
+        <attr name="node_tip" format="color" />
+        <!--进度提示颜色-->
+        <attr name="node_progress_tip" format="color" />
+        <!-- 几点个数-->
+        <attr name="node_num" format="integer" />
+        <!-- 当前进度-->
+        <attr name="node_current" format="integer" />
+        <!--节点半径-->
+        <attr name="node_radio" format="dimension" />
+
+        <!-- 节点背景图-->
+        <attr name="node_bg" format="reference" />
+        <attr name="node_progress_bg" format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="WarpLinearLayout">
+        <attr name="grivate" format="enum"><!--对齐方式 !-->
+            <enum name="right" value="0"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="center" value="2"></enum>
+        </attr>
+        <attr name="horizontal_Space" format="dimension"></attr>
+        <attr name="vertical_Space" format="dimension"></attr>
+        <attr name="isFull" format="boolean"></attr>
+    </declare-styleable>
+    <declare-styleable name="RatingBar">
+        <!--尺寸值-->
+        <attr name="starImageSize" format="dimension" />
+        <!--星星间距-->
+        <attr name="starPadding" format="dimension" />
+        <!--星星总数-->
+        <attr name="starCount" format="integer" />
+        <!--空白的星星资源文件值-->
+        <attr name="starEmpty" format="reference" />
+        <!--满星资源文件值-->
+        <attr name="starFill" format="reference" />
+        <!--半星资源文件值-->
+        <attr name="starHalf" format="reference" />
+        <!--是否可点击boolean值-->
+        <attr name="clickable" format="boolean" />
+        <!--当前进度float值-->
+        <attr name="starStep" format="float" />
+        <!--每次进度方式的值，整星还是半星-->
+        <attr name="stepSize">
+            <enum name="Half" value="0" />
+            <enum name="Full" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PagerSliding">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="SaleProgressView">
+        <attr name="sideColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="sideWidth" format="dimension" />
+        <attr name="overText" format="string" />
+        <attr name="nearOverText" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="isNeedAnim" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapedImageView">
+        <attr name="shape_mode" format="enum">
+            <enum name="round_rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+        <attr name="round_radius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="type" format="enum">
+            <enum name="circle" value="1"/>
+            <enum name="round" value="2"/>
+        </attr>
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="iBadgeView">
+        <attr name="iconSrc" format="reference" />
+        <attr name="iconWidth" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
+        <!--若是icon是正方形的,可直接设置这个参数-->
+        <attr name="iconSize" format="dimension" />
+
+        <attr name="bgtext" format="string" />
+        <attr name="bgtextSize" format="dimension" />
+        <attr name="bgtextColor" format="color" />
+
+        <attr name="badgeNum" format="integer" />
+        <!--是否显示数字, 为false时只显示小红点; 没有数字时,小红点的大小通过badgeSize设置-->
+        <attr name="showNum" format="boolean" />
+        <attr name="badgeBackgroundColor" format="color" />
+        <!--限制设置小红点的大小不能超过数字显示模式(代码中也做了限制); 显示在文字模式大小的左下角;-->
+        <!-- 不显示数字时, 小红点的大小, 不包括边线-->
+        <attr name="badgeRedSize" format="dimension" />
+        <attr name="badgeNumSize" format="dimension" />
+        <attr name="badgeNumColor" format="color" />
+        <!--若小红点有边缘线,加上边缘线-->
+        <attr name="badgeBorderColor" format="color" />
+        <attr name="badgeBorderWidth" format="dimension" />
+        <!--badge相对于主体右上角的相对位置, 重叠的部分的大小; 可以设置负值-->
+        <!--默认是( badgeHeight/2 ), 正好覆盖一个角-->
+        <attr name="badgeBottom" format="dimension" />
+        <attr name="badgeLeft" format="dimension" />
+        <!-- 有些设计要求未读前面加"+", (至少我们设计师这么设计) 显示成 +1/+34/+99-->
+        <attr name="badgeNumPre" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="rpb_textColor" format="color" />
+        <attr name="rpb_textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="backColor" format="color" />
+        <attr name="startAngle" format="integer"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PileLayout">
+        <attr name="PileLayout_vertivalSpace" format="dimension"/>
+        <attr name="PileLayout_pileWidth" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="Custom_Round_Image_View">
+        <attr name="radiuss" format="dimension"/>
+        <attr name="left_top_radius" format="dimension"/>
+        <attr name="right_top_radius" format="dimension"/>
+        <attr name="right_bottom_radius" format="dimension"/>
+        <attr name="left_bottom_radius" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="ClassicsFooter"><attr name="srlClassicsSpinnerStyle"/><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr name="srlFinishDuration"/><attr name="srlTextSizeTitle"/><attr name="srlDrawableArrow"/><attr name="srlDrawableProgress"/><attr name="srlDrawableMarginRight"/><attr name="srlDrawableSize"/><attr name="srlDrawableArrowSize"/><attr name="srlDrawableProgressSize"/></declare-styleable>
+    <declare-styleable name="ClassicsHeader"><attr name="srlClassicsSpinnerStyle"/><attr name="srlPrimaryColor"/><attr name="srlAccentColor"/><attr name="srlFinishDuration"/><attr name="srlDrawableArrow"/><attr name="srlDrawableProgress"/><attr name="srlDrawableMarginRight"/><attr name="srlDrawableSize"/><attr name="srlDrawableArrowSize"/><attr name="srlDrawableProgressSize"/><attr name="srlTextSizeTitle"/><attr name="srlTextSizeTime"/><attr format="dimension" name="srlTextTimeMarginTop"/><attr format="boolean" name="srlEnableLastTime"/></declare-styleable>
+    <declare-styleable name="TagFlowLayout">
+        <attr name="max_select" format="integer"></attr>
+        <attr name="tag_gravity">
+            <enum name="left" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="BrokenLineTrendView">
+        <attr name="trend_view_color_dotted_line" format="color"/>
+        <attr name="trend_view_color_text" format="color"/>
+        <attr name="trend_view_text_size" format="dimension"/>
+    </declare-styleable>
+
+    <!--弧形的界面属性-->
+    <declare-styleable name="ArcView">
+        <attr name="arcHeight" format="dimension"/>
+        <attr name="lgColor"   format="color"/>
+        <attr name="bgColor" format="color"/>
+    </declare-styleable>
+</resources>

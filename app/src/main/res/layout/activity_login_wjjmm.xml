@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_titlebar_common" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/dimen_80dp"
+            android:layout_height="@dimen/dimen_80dp"
+            android:src="@drawable/ic_icon_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_icon"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text=""
+            android:textColor="@color/color_999999" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_60dp"
+        android:background="@drawable/shape_eee_line_5"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_sjh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_head"
+            android:gravity="center"
+            android:hint="请输入手机号"
+            android:padding="@dimen/dimen_15dp"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/dimen_12dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@color/color_666666" />
+
+        <TextView
+            android:id="@+id/get_code"
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="获取验证码"
+            android:textColor="@color/red40"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@drawable/shape_eee_line_5"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_yzm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableStart="@drawable/ic_anquan"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="请输入验证码"
+            android:padding="@dimen/dimen_15dp"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/dimen_12dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@color/color_666666"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="获取验证码"
+            android:textColor="@color/red40"
+            android:textSize="@dimen/sp_14"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@drawable/shape_eee_line_5"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_mm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableStart="@drawable/ic_pos"
+            android:gravity="center"
+            android:inputType="number"
+            android:hint="请输入新密码"
+            android:padding="@dimen/dimen_15dp"
+            android:textColor="@color/color_666666"
+            android:textSize="@dimen/sp_14" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/dimen_12dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@color/color_666666"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="获取验证码"
+            android:textColor="@color/red40"
+            android:textSize="@dimen/sp_14"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="@dimen/dimen_180dp"
+        android:layout_height="@dimen/dimen_60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/dimen_25dp"
+        android:layout_marginTop="@dimen/dimen_60dp"
+        android:background="@drawable/btn_shape_theme"
+        android:gravity="center"
+        android:text="确  定"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/dimen_16dp" />
+
+</LinearLayout>

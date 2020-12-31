@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">飞寻停车</string>
+    <string name="no_data">没有找到符合条件的房源</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="permission_ask_now">您需要打开%1$s权限</string>
+    <!--    已连续签到12天，共签到15天-->
+
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
+</resources>

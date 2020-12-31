@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_booking_pay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:src="@mipmap/back_b" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="预约支付"
+                android:textColor="@color/color_ffffff" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_5dp"
+        android:layout_marginTop="@dimen/dimen_60dp"
+        android:background="@drawable/ic_booking_bj_b"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:gravity="center"
+            android:text="停车场名称-停车场"
+            android:textColor="@color/color_333333"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_dw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:drawableStart="@drawable/ic_dw_x_"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:lineSpacingExtra="2dp"
+            android:text="宁波市鄞州区钱湖南路666号学府壹号C区"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20dp"
+            android:layout_marginTop="@dimen/dimen_45dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="订单详情"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="进场时间"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_jcsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="2020-08-23 12:30-14:00"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="预约车牌"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_yycp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="浙B·5K123"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="所在车位"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_szcw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="D36"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="预计停车时间"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_tcjs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="1小时30分钟"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="缴费时间"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_jfsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="2020-08-23 12:30"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_40"
+                android:gravity="center"
+                android:text="费用详情"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="预约费"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_yyf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="+ ¥ 3.00"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="可用优惠"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_yhq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@mipmap/ic_jiantou_y"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="无可用优惠"
+                    android:textColor="@color/color_999999"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="合计"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_zfy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_15dp"
+                    android:text="¥ 23.00"
+                    android:textColor="#F91C1C"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_qbzf"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="钱包支付"
+                    android:textColor="@color/color_333333"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@mipmap/ic_jiantou_y" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_10">
+
+
+        <Button
+            android:id="@+id/bnt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_aaa"
+            android:text="取消预约"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/bnt_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_15dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_theme"
+            android:text="支付(剩余04:34)"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

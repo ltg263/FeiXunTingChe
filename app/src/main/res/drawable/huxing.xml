@@ -1,0 +1,29 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    左右负边距，就是一条直线，
+            然后高度高出布局的一半，
+            左右负责yuan弧度大小
+            top控制举例控件底部举例-->
+    <item
+        android:left="-10dp"
+        android:right="-10dp"
+        android:bottom="-70dp"
+        android:gravity="bottom">
+
+        <shape
+            android:shape="oval">
+
+            <gradient
+                android:angle="270"
+                android:startColor="@color/color_ffffff"
+                android:endColor="@color/color_ffffff" />
+
+            <!--可以控制图形边缘到控件边缘的距离
+                高度控制垂直方向-->
+            <size
+                android:width="350dp"
+                android:height="130dp"/>
+        </shape>
+    </item>
+
+</layer-list>

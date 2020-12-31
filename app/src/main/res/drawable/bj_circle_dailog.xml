@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:shape="oval">
+    <solid android:color="@color/color_ffffff" />
+    <size
+        android:width="@dimen/dimen_25dp"
+        android:height="@dimen/dimen_25dp" />
+</shape><!--
+
+    不透明度　　值
+    100% 　  FF    不透明
+    95%　　 F2
+    90%　　 E6
+    85% 　   D9
+    80% 　　CC
+    75% 　　BF
+    70% 　　B3
+    65% 　　A6
+    60% 　　99
+    55% 　　8C
+    50% 　　80    半透明
+    45% 　　73
+    40% 　　66
+    35% 　　59
+    30% 　　4D
+    25% 　　40
+    20% 　　33
+    15% 　　26
+    10% 　　1A
+    5% 　　 0D
+    0% 　　 00    全透明-->

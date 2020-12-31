@@ -1,0 +1,264 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.jxkj.fxtc"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        renderscriptTargetApi 29
+//        renderscriptSupportModeEnabled true
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        multiDexEnabled true
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.jxkj.fxtc",
+                JPUSH_APPKEY : "fbbd2292fb086035d31f4c10", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可
+        ]
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    signingConfigs {
+//        debug {
+//            keyAlias 'rentalmall'            // 签名别名
+//            keyPassword 'android'       // 别名对应的密码
+//            storeFile file('F:/feixuntingche.jks')  // 正式签名文件位置
+//            storePassword 'android'     // 签名密码
+//        }
+//        config {                       // 签名配置的名字，可以随意起，比如myconfig等
+//            keyAlias 'rentalmall'            // 签名别名
+//            keyPassword 'android'       // 别名对应的密码
+////            storeFile file('F:/rentalmall.jks')  // 正式签名文件位置
+//            storeFile file('D:/qzj_workspace/RentalMall/jks/rentalmall.jks')  // 正式签名文件位置
+//            storePassword 'android'     // 签名密码
+//        }
+    }
+//    MD5:  85:8B:F3:C9:00:25:C6:AC:27:E1:CC:A9:DB:52:E8:E1
+//    SHA1: D5:79:9A:6F:F3:0C:3A:28:18:CD:11:39:CF:83:E3:F5:52:7C:38:16
+//    SHA256: 37:10:0E:A3:7C:74:36:EA:93:5C:9B:1E:5F:2B:FE:84:06:BE:52:99:C3:DD:3F:E9:DD:71:A2:34:36:65:1F:09
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            //signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.config
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName = "中科研-V${defaultConfig.versionName}.apk"
+            outputFileName = fileName
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/DEPENDENCIES'
+        pickFirst 'META-INF/*'
+        pickFirst 'lib/armeabi-v7a/libRSSupport.so'
+        pickFirst 'lib/arm64-v8a/libRSSupport.so'
+        pickFirst 'lib/x86_64/libRSSupport.so'
+        pickFirst 'lib/x86/libRSSupport.so'
+        pickFirst 'lib/arm64-v8a/librsjni.so'
+        pickFirst 'lib/x86/librsjni.so'
+        pickFirst 'lib/x86_64/librsjni.so'
+        pickFirst 'lib/armeabi-v7a/librsjni.so'
+        pickFirst 'lib/x86_64/librsjni_androidx.so'
+        pickFirst 'lib/armeabi-v7a/librsjni_androidx.so'
+        pickFirst 'lib/x86/librsjni_androidx.so'
+        pickFirst 'lib/arm64-v8a/librsjni_androidx.so'
+    }
+    productFlavors {//
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    //最新版本
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation 'me.drakeet.multitype:multitype:3.4.4'
+
+    //网络请求
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //rxjava自动解绑
+    implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.0.0-RC2'
+    implementation 'com.blankj:utilcode:1.23.7'
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
+    //图片选择
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //底部导航
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+
+    //滚动文字
+    implementation 'com.xiaosu:VerticalRollingTextView:2.0.9'
+
+    //相册选择图片 拍照上传图片 压缩图片
+    implementation 'com.contrarywind:Android-PickerView:4.1.7'
+    implementation 'com.jph.takephoto:takephoto_library:4.0.2'
+
+    //    implementation 'com.zhihu.android:matisse:0.4.3'
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'
+    implementation 'top.zibin:Luban:1.1.3'
+
+    //okgo网络请求
+    implementation 'com.lzy.net:okgo:3.0.4'
+//    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+
+    //下拉刷新上拉加载
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+
+    //搜索
+    implementation 'com.wenwenwen888:searchbox:1.0.1'
+
+    //底部导航栏
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+    implementation 'com.github.forvv231:EasyNavigation:1.0.3'
+
+    //侧滑返回
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
+
+    //下拉选择框
+    implementation 'com.github.arcadefire:nice-spinner:1.4.3'
+    implementation 'com.github.JuHonggang:ShadowDrawable:0.1'
+
+    //    implementation files('libs/ormlite-core-5.1.jar')
+
+    //    implementation files('libs/ormlite-android-5.1.jar')
+    implementation 'com.koushikdutta.async:androidasync:2.+'
+
+    //沉浸式
+
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    // fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+    implementation 'com.github.razerdp:BasePopup:2.2.1'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+
+    //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    //圆角图片
+    implementation 'com.github.SheHuan:NiceImageView:1.0.5'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.makeramen:roundedimageview:2.2.1'
+
+    //地图sdk
+//    implementation 'com.amap.api:3dmap:5.1.0'
+//    implementation 'com.amap.api:location:3.3.0'
+//    implementation 'com.amap.api:search:5.1.0'
+
+    //城市选择
+    implementation 'com.zaaach:citypicker:2.0.2'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
+    implementation 'com.lxj:xpopup:1.8.6'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar'
+    implementation 'com.xiaosu:VerticalRollingTextView:2.0.9'
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+    implementation 'cn.youngkaaa:yviewpager:0.4'
+    implementation 'com.github.iwgang:countdownview:2.1.6'
+    implementation 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    implementation 'liji.library.dev:multilinechooselib:2.0.3'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    //极光推送
+    implementation 'cn.jiguang.sdk:jpush:3.3.9'
+    implementation 'cn.jiguang.sdk:jcore:2.1.6'
+
+    //    implementation 'q.rorbin:badgeview:1.1.3'
+    implementation 'com.allenliu.badgeview:library:1.1.1'
+    implementation files('libs/fastjson-1.2.62.jar')
+    implementation files('libs/windvane-min-8.0.3.2.3.jar')
+    implementation(name: 'rpsdk-3.3.0.1', ext: 'aar')
+    implementation(name: 'oss-android-sdk-2.9.2', ext: 'aar')
+    implementation(name: 'SecurityBodySDK-external-release-5.4.109-preInstall', ext: 'aar')
+    implementation(name: 'SecurityGuardSDK-external-release-5.4.187-preInstall', ext: 'aar')
+    implementation files('libs/SocialSDK_WeiXin_Full.jar')
+    implementation(name: 'alipaySdk-15.7.6-20200521195109', ext: 'aar')
+    implementation(name: 'Zsnavi_release_1.3.1', ext: 'aar')
+    implementation files('libs/umeng_shareboard_widget.jar')
+    implementation files('libs/umeng_social_api.jar')
+    implementation files('libs/umeng_social_net.jar')
+    implementation files('libs/umeng_social_shareboard.jar')
+    implementation files('libs/umeng_social_tool.jar')
+    implementation files('libs/AMap3DMap_7.7.0_AMapNavi_7.7.0_AMapSearch_7.7.0_AMapLocation_5.2.0_20201102.jar')
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+    implementation 'jp.wasabeef:blurry:3.0.0'
+    implementation 'com.github.addappcn:android-pickers:1.0.3'
+    implementation 'com.kaopiz:kprogresshud:1.0.5'
+    implementation 'org.jsoup:jsoup:1.10.2'
+    implementation 'com.zkk.view:ZkkRulerView:1.0.0'
+
+    /*检查权限*/
+    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation "com.google.zxing:core:3.3.1"
+
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation project(':wheelview')
+
+    implementation 'com.github.1993hzw:Androids:1.3'
+    implementation 'com.android.support:design:25.3.1'
+
+
+//    implementation 'com.google.code.gson:gson:2.2.4' //该库在Zsnavi中远程引用，必须在主项目中重新加一遍
+//    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5' //该库在Zsnavi中远程引用，必须在主项目中重新加一遍
+}

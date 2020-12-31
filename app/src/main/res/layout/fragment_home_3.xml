@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_home_f3" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_50dp"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/rv_mine_grzl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_5dp">
+
+                <com.jxkj.fxtc.conpoment.view.RoundImageView
+                    android:id="@+id/iv_mine_tx"
+                    android:layout_width="@dimen/dimen_70dp"
+                    android:layout_height="@dimen/dimen_70dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ic_head"
+                    app:type="circle" />
+
+                <TextView
+                    android:id="@+id/tv_mine_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_12dp"
+                    android:layout_toRightOf="@id/iv_mine_tx"
+                    android:text="用户名"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_mine_sjh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_mine_name"
+                    android:layout_marginLeft="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toRightOf="@id/iv_mine_tx"
+                    android:text="找车库，就用停车app~"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/iv_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dimen_5dp"
+                    android:layout_toStartOf="@id/iv_msg"
+                    android:padding="@dimen/dp_10"
+                    android:src="@drawable/ic_mine_set" />
+
+                <ImageView
+                    android:id="@+id/iv_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/dp_10"
+                    android:src="@drawable/ic_mine_message" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15dp"
+                android:background="@drawable/shape_fff_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_mine_zz"
+                    android:drawablePadding="@dimen/dimen_5dp"
+                    android:padding="@dimen/dimen_15dp"
+                    android:text="我的账户"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_qb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_15dp"
+                    android:background="@drawable/shape_all_10_f8"
+                    android:gravity="bottom">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/ic_mine_qb"
+                        android:drawablePadding="@dimen/dimen_5dp"
+                        android:gravity="bottom"
+                        android:padding="@dimen/dimen_15dp"
+                        android:text="钱包余额"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_5dp"
+                        android:text="¥"
+                        android:textColor="@color/color_333333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_qb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dimen_15dp"
+                        android:text="160"
+                        android:textColor="@color/color_333333"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_15dp"
+                    android:layout_marginTop="@dimen/dimen_12dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_wdzd"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_mine_wdzd" />
+
+                        <TextView
+                            android:id="@+id/tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="@dimen/dimen_16dp"
+                            android:text="我的账单"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/sp_14" />
+
+                        <TextView
+                            android:id="@+id/tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="费用记录都在这里"
+                            android:textColor="#AAAAAA"
+                            android:textSize="10sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_clgl"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_mine_clgl" />
+
+                        <TextView
+                            android:id="@+id/tv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="@dimen/dimen_16dp"
+                            android:text="车辆管理"
+                            android:textColor="@color/color_333333"
+                            android:textSize="@dimen/sp_14" />
+
+                        <TextView
+                            android:id="@+id/tv22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv2"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="1辆绑定"
+                            android:textColor="#AAAAAA"
+                            android:textSize="10sp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_mine_fw"
+                        android:drawablePadding="@dimen/dimen_5dp"
+                        android:padding="@dimen/dimen_15dp"
+                        android:text="我的服务"
+                        android:textColor="@color/color_333333"
+                        android:textSize="16sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_mine_dcq"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_tcq"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="停车券"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_mine_fpzs"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_fpzs"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="发票助手"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_mine_yjfk"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_yjfk"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="意见反馈"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <TextView
+                                android:id="@+id/tv_mine_sybz"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_sybz"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="使用帮助"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:id="@+id/tv_mine_gywd"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_gywm"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="关于我们"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/ic_mine_yjfk"
+                                android:drawablePadding="@dimen/dp_10"
+                                android:gravity="center"
+                                android:padding="@dimen/dp_10"
+                                android:text="意见反馈"
+                                android:textColor="@color/color_333333"
+                                android:textSize="@dimen/sp_14"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

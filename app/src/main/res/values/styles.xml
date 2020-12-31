@@ -1,0 +1,87 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="WarpLinearLayoutDefault">
+        <item name="grivate">left</item>
+        <item name="horizontal_Space">20dp</item>
+        <item name="vertical_Space">20dp</item>
+        <item name="isFull">false</item>
+    </style>
+
+    <declare-styleable name="searchmlist">
+        <attr name="search_hint" format="string|reference"/><!--EditText hint-->
+        <attr name="search_baground" format="reference"/><!--EditText  background-->
+    </declare-styleable>
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/menu_in</item>
+        <item name="android:windowExitAnimation">@anim/menu_out</item>
+    </style>
+
+
+    <!-- 普通弹出style -->
+    <style name="simpleDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.3</item>
+    </style>
+    <!-- dialog 动画style -->
+    <style name="PopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/popshow_anim</item>
+        <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
+    </style>
+
+    <declare-styleable name="RulerView">
+        <attr name="rvTextColor" format="color" />
+        <attr name="rvTextSize" format="dimension" />
+        <attr name="rvLineColor" format="color" />
+        <attr name="lineSpaceWidth" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="lineMaxHeight" format="dimension" />
+        <attr name="lineMidHeight" format="dimension" />
+        <attr name="lineMinHeight" format="dimension" />
+        <attr name="lineMax" format="dimension" />
+        <attr name="textMarginTop" format="dimension" />
+        <attr name="alphaEnable" format="boolean" />
+        <attr name="minValue" format="float"/>
+        <attr name="maxValue" format="float"/>
+        <attr name="selectorValue" format="float"/>
+        <attr name="perValue" format="float"/>
+    </declare-styleable>
+    <style name="selectorDialog" parent="@android:style/Theme.Dialog"> <!--name是我们在使用时要用到的资源的标志，parent是指当前的样式所继承的父类样式,自定义dialog-->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--隐藏标题栏-->
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--这儿也很重要啊，我这儿用了一张透明的.9.png的图，当然用#00000000也是可以的，否则的话这儿出来后有一个黑色的背景-->
+    </style>
+
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--自定义的滑块-->
+    <declare-styleable name="ScrollBlockView">
+        <!--背景颜色-->
+        <attr name="bgColor1" format="color|reference" />
+        <attr name="blockColor" format="color|reference" />
+    </declare-styleable>
+
+</resources>

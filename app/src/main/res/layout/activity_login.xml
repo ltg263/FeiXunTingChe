@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_120dp"
+        android:text="欢迎登陆停车APP"
+        android:textColor="@color/color_333333"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginTop="7dp"
+        android:text="手机验证码登录，无需注册"
+        android:textColor="@color/color_999999"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_80dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/icon_jiantou_xia_00"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:text="+86"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_input_sjh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:padding="@dimen/dp_10"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_below="@id/ll"
+        android:layout_marginHorizontal="@dimen/common_margin_26"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/line_color" />
+
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_20dp">
+
+        <EditText
+            android:id="@+id/et_input_yzm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:padding="@dimen/dp_10"
+            android:textColor="@color/color_333333"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_go_yzm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="获取验证码"
+            android:textColor="@color/color_text_theme"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_below="@id/ll2"
+        android:layout_marginHorizontal="@dimen/common_margin_26"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@color/line_color" />
+
+
+    <Button
+        android:id="@+id/bnt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view2"
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dimen_30dp"
+        android:background="@mipmap/ic_bnt_ok"
+        android:text="立即登录"
+        android:textColor="@color/color_ffffff"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bnt_login"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dimen_20dp"
+        android:gravity="center"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录即表示同意"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 《使用协议》 "
+            android:textColor="@color/color_text_theme"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 《隐私政策》"
+            android:textColor="@color/color_text_theme"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

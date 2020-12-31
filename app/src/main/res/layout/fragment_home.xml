@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_80dp"
+        android:background="@mipmap/ic_tab_bj">
+
+    </RelativeLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-50dp"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_20dp"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:id="@+id/set_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_yy_ff_all_25"
+                    android:padding="@dimen/dp_10">
+
+                    <ImageView
+                        android:id="@+id/iv_head"
+                        android:layout_width="@dimen/dimen_50dp"
+                        android:layout_height="@dimen/dimen_50dp"
+                        android:layout_alignStart="@id/tv_user"
+                        android:layout_alignEnd="@id/tv_user"
+                        android:layout_marginHorizontal="@dimen/dimen_15dp"
+                        android:layout_marginTop="@dimen/dimen_15dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/icon_close" />
+
+                    <TextView
+                        android:id="@+id/tv_user"
+                        android:layout_width="@dimen/dimen_100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_head"
+                        android:layout_marginStart="@dimen/dimen_15dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/dimen_15dp"
+                        android:text=""
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dimen_30dp"
+                        android:layout_toEndOf="@id/tv_user"
+                        android:drawableStart="@drawable/ic_user_1"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text=""
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dimen_30dp"
+                        android:layout_marginEnd="@dimen/dimen_30dp"
+                        android:drawableStart="@drawable/ic_user_2"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text=""
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_1"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_toEndOf="@id/tv_user"
+                        android:drawableStart="@drawable/ic_user_3"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text=""
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:id="@+id/tv_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_2"
+                        android:layout_alignStart="@id/tv_2"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:drawableStart="@drawable/ic_user_4"
+                        android:drawablePadding="@dimen/dp_10"
+                        android:text=""
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/shape_yy_ff_all_25"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:background="@drawable/main_home_3_top">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/dp_10"
+                            android:text="智能手套"
+                            android:textColor="@color/color_ffffff"
+                            android:textSize="@dimen/dimen_16dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/dimen_15dp"
+                            android:background="@drawable/shape_fff_25">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dimen_2dp"
+                                android:background="@drawable/shape_all_10_f8"
+                                android:paddingHorizontal="@dimen/dimen_5dp"
+                                android:paddingVertical="@dimen/common_margin_3"
+                                android:text="设置"
+                                android:textColor="@color/color_ffffff"
+                                android:textSize="@dimen/sp_14"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="@dimen/dimen_2dp"
+                                android:layout_marginStart="-15dp"
+                                android:layout_marginEnd="@dimen/dimen_3dp"
+                                android:background="@drawable/shape_all_10_f8"
+                                android:paddingHorizontal="@dimen/dimen_5dp"
+                                android:paddingVertical="@dimen/common_margin_3"
+                                android:text="默认"
+                                android:textColor="@color/color_ffffff"
+                                android:textSize="@dimen/sp_14" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_120dp"
+                        android:layout_height="80dp"
+                        android:layout_below="@id/ll"
+                        android:layout_marginStart="@dimen/dimen_15dp"
+                        android:layout_marginBottom="@dimen/dimen_20dp"
+                        android:background="@color/red40" />
+
+                    <TextView
+                        android:id="@+id/tv_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ll"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:layout_marginEnd="@dimen/dimen_30dp"
+                        android:text="弯曲角度"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_5"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dimen_30dp"
+                        android:text="弯曲角度"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/sp_14" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginHorizontal="@dimen/dimen_20dp"
+                android:layout_marginTop="@dimen/dp_10" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
