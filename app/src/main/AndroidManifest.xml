@@ -80,6 +80,7 @@
         <activity android:name=".view.activity.MineClglActivity" />
         <activity android:name=".view.activity.AddCarActivity" />
         <activity android:name=".view.activity.MineYhqActivity" />
+        <activity android:name=".view.activity.MineWdqbActivity" />
         <activity android:name=".view.activity.SeekCarActivity" />
         <activity android:name=".view.activity.BookingSpaceActivity" />
         <activity android:name=".view.activity.BookingSpaceOkActivity" />
