@@ -205,7 +205,7 @@ dependencies {
     implementation 'com.zaaach:citypicker:2.0.2'
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.4'
     implementation 'com.lxj:xpopup:1.8.6'
-    implementation 'com.nineoldandroids:library:2.4.0'
+//    implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar'
     implementation 'com.xiaosu:VerticalRollingTextView:2.0.9'
@@ -257,7 +257,7 @@ dependencies {
 
     implementation 'com.github.1993hzw:Androids:1.3'
     implementation 'com.android.support:design:25.3.1'
-
+//    implementation project(':drawerlibrary')
 
 //    implementation 'com.google.code.gson:gson:2.2.4' //该库在Zsnavi中远程引用，必须在主项目中重新加一遍
 //    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5' //该库在Zsnavi中远程引用，必须在主项目中重新加一遍
