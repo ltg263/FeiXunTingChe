@@ -22,13 +22,22 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_10"
                 android:src="@mipmap/back_b" />
-
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:padding="@dimen/dimen_15dp"
+                android:textSize="@dimen/dimen_20dp"
+                android:gravity="center"
                 android:text="预约支付"
-                android:textColor="@color/color_ffffff" />
+                android:textColor="@color/color_ffffff"
+                android:fontFamily="@font/notosanshans_bold"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_30dp"/>
+
         </RelativeLayout>
 
     </RelativeLayout>

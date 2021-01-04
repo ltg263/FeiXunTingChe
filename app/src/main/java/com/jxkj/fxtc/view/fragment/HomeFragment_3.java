@@ -7,6 +7,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseFragment;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.view.RoundImageView;
+import com.jxkj.fxtc.view.activity.MineBillActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.MineFqzsActivity;
 import com.jxkj.fxtc.view.activity.MineMessageActivity;
@@ -71,6 +72,7 @@ public class HomeFragment_3 extends BaseFragment {
             case R.id.ll_qb:
                 break;
             case R.id.rl_wdzd:
+                IntentUtils.getInstence().intent(getActivity(), MineBillActivity.class);
                 break;
             case R.id.rl_clgl:
                 IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class);

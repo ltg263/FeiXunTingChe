@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_15dp"
+    android:background="@drawable/shape_fff_10"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_15dp">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bill_c" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_toEndOf="@id/iv"
+        android:text="停车费-浙B·5K123"
+        android:textColor="@color/color_333333"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name"
+        android:layout_alignStart="@id/tv_name"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_toEndOf="@id/iv"
+        android:text="停车费-浙B·5K123"
+        android:textColor="@color/color_999999"
+        android:textSize="13sp" />
+
+
+    <TextView
+        android:id="@+id/tv_jg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="¥ 20.00"
+        android:textColor="@color/color_333333"
+        android:textSize="18sp" />
+
+</RelativeLayout>

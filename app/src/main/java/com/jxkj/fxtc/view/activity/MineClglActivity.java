@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
-import com.jxkj.fxtc.view.adapter.MineMessageAdapter;
+import com.jxkj.fxtc.view.adapter.MineClglAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class MineClglActivity extends BaseActivity {
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.lv_not)
     LinearLayout mLvNot;
-    private MineMessageAdapter mMineMessageAdapter;
+    private MineClglAdapter mMineClglAdapter;
 
     @Override
     protected int getContentView() {
@@ -59,8 +59,8 @@ public class MineClglActivity extends BaseActivity {
         mRvList.setHasFixedSize(true);
         mLvNot.setVisibility(View.GONE);
         mRvList.setVisibility(View.VISIBLE);
-        mMineMessageAdapter = new MineMessageAdapter(list);
-        mRvList.setAdapter(mMineMessageAdapter);
+        mMineClglAdapter = new MineClglAdapter(list);
+        mRvList.setAdapter(mMineClglAdapter);
         mLvNot.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
     }

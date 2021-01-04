@@ -2,6 +2,7 @@ package com.jxkj.fxtc.view.activity;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
@@ -10,46 +11,35 @@ import com.jxkj.fxtc.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class BookingSpaceOkActivity extends BaseActivity {
-
-    @BindView(R.id.iv_back)
-    ImageView mIvBack;
+public class MineFqsqActivity extends BaseActivity {
+    @BindView(R.id.ll_back)
+    LinearLayout mLlBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.tv_zt)
-    TextView mTvZt;
-    @BindView(R.id.tv_sm)
-    TextView mTvSm;
-    @BindView(R.id.tv_dz)
-    TextView mTvDz;
-    @BindView(R.id.tv_cw)
-    TextView mTvCw;
-    @BindView(R.id.tv_c)
-    TextView mTvC;
-    @BindView(R.id.tv_fy)
-    TextView mTvFy;
+    @BindView(R.id.iv_back)
+    ImageView mIvBack;
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_booking_space_ok;
+        return R.layout.activity_mine_fqsq;
     }
 
     @Override
     protected void initViews() {
-        mTvTitle.setText("预约成功");
+
+        mTvTitle.setText("申请发票");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
     }
 
-    @OnClick({R.id.ll_back, R.id.bnt, R.id.bnt_1})
+    @OnClick({R.id.ll_back, R.id.bnt_go})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_back:
                 finish();
                 break;
-            case R.id.bnt:
-                break;
-            case R.id.bnt_1:
+            case R.id.bnt_go:
                 break;
         }
     }
+
 }

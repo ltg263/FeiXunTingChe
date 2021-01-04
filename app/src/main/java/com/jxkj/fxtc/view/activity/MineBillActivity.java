@@ -3,24 +3,26 @@ package com.jxkj.fxtc.view.activity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
-import com.jxkj.fxtc.view.adapter.MineFqzsAdapter;
+import com.jxkj.fxtc.view.adapter.MineClglAdapter;
+import com.jxkj.fxtc.view.adapter.MineBillAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MineFqzsActivity extends BaseActivity {
+public class MineBillActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.ll_back)
@@ -33,7 +35,7 @@ public class MineFqzsActivity extends BaseActivity {
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.lv_not)
     LinearLayout mLvNot;
-    private MineFqzsAdapter mMineFqzsAdapter;
+    private MineBillAdapter mMineBillAdapter;
 
     @Override
     protected int getContentView() {
@@ -44,7 +46,7 @@ public class MineFqzsActivity extends BaseActivity {
     protected void initViews() {
         mRefreshLayout.setEnableRefresh(false);
         mRefreshLayout.setEnableLoadMore(false);
-        mTvTitle.setText("发票助手");
+        mTvTitle.setText("我的账单");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         mLlBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,17 +65,10 @@ public class MineFqzsActivity extends BaseActivity {
         mRvList.setHasFixedSize(true);
         mLvNot.setVisibility(View.GONE);
         mRvList.setVisibility(View.VISIBLE);
-        mMineFqzsAdapter = new MineFqzsAdapter(list);
-        mRvList.setAdapter(mMineFqzsAdapter);
+        mMineBillAdapter = new MineBillAdapter(list);
+        mRvList.setAdapter(mMineBillAdapter);
         mLvNot.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-
-        mMineFqzsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                IntentUtils.getInstence().intent(MineFqzsActivity.this,MineFqsqActivity.class);
-            }
-        });
     }
 
 }
