@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_ffffff"
     android:orientation="vertical">
 
-    <include layout="@layout/include_titlebar_common" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/include_titlebar_common" />
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/ll"
+        android:layout_below="@id/include"
         android:overScrollMode="never"
         android:scrollbars="none">
 
@@ -293,25 +297,43 @@
                             android:src="@drawable/selector_ming_ads_yq" />
 
                     </LinearLayout>
-
-
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_commit"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="40dp"
-                android:gravity="center"
-                android:text="立即支付"
-                android:textColor="@color/color_ffffff"
-                android:textSize="14sp" />
-
-
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:text="支付金额"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_weight="1"
+            android:text="10.00元"
+            android:textColor="@color/color_333333"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/bnt_go"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/btn_shape_aaa"
+            android:text="确认支付"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>
