@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.jxkj.fxtc.R;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -120,7 +121,7 @@ public class GlideImgLoader extends ImageLoader {
                 .into(mImageView);
     }
 
-//    public static void loadImageViewWithBlurWithE(Context mContext, int path, int errorPath, ImageView mImageView) {
+    //    public static void loadImageViewWithBlurWithE(Context mContext, int path, int errorPath, ImageView mImageView) {
 //        RequestOptions options = new RequestOptions()
 //                .centerCrop()
 //                .placeholder(errorPath)
@@ -151,7 +152,10 @@ public class GlideImgLoader extends ImageLoader {
 ////                .apply(options)
 //                .into(mImageView);
 //    }
-
+    public static void setGlideImage(Context mContext, String imgUrl, ImageView imageView) {
+        RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.ic_icon_img).centerCrop();
+        Glide.with(mContext).load(imgUrl).apply(requestOptions).into(imageView);
+    }
 
     //清理磁盘缓存
     public static void GuideClearDiskCache(Context mContext) {

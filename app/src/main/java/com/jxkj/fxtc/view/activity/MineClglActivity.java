@@ -11,8 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.entity.UserCarListBean;
+import com.jxkj.fxtc.entity.UserDetailBean;
 import com.jxkj.fxtc.view.adapter.MineClglAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -21,6 +26,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MineClglActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -49,20 +58,14 @@ public class MineClglActivity extends BaseActivity {
         mTvTitle.setText("车辆管理");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
 
-
-        List<String> list  = new ArrayList<>();
-        for(int i = 0;i<11;i++){
-            list.add("");
-        }
-
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
         mLvNot.setVisibility(View.GONE);
         mRvList.setVisibility(View.VISIBLE);
-        mMineClglAdapter = new MineClglAdapter(list);
+        mMineClglAdapter = new MineClglAdapter(null);
         mRvList.setAdapter(mMineClglAdapter);
-        mLvNot.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
+
+        getAllCar();
     }
 
     @OnClick({R.id.ll_back, R.id.rl_add_car})
@@ -75,5 +78,42 @@ public class MineClglActivity extends BaseActivity {
                 IntentUtils.getInstence().intent(this,AddCarActivity.class);
                 break;
         }
+    }
+
+
+    private void getAllCar() {
+        RetrofitUtil.getInstance().apiService()
+                .getAllCar()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<UserCarListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<UserCarListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            if(result.getData().getList()!=null && result.getData().getList().size()>0){
+                                mLvNot.setVisibility(View.GONE);
+                                mRefreshLayout.setVisibility(View.VISIBLE);
+                                mMineClglAdapter.setNewData(result.getData().getList());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 }

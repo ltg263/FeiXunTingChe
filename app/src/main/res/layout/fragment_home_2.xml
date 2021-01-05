@@ -4,7 +4,7 @@
     android:id="@+id/dial_drawer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/red"
+    android:background="@color/color_ffffff"
     drawer:DrawerLayoutContent_ID="@+id/drawerContent"
     drawer:DrawerLayoutHandler_ID="@+id/drawerHandle"
     drawer:DrawerLayout_ID="@+id/drawer2">

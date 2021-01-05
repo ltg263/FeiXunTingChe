@@ -1,6 +1,7 @@
 package com.jxkj.fxtc;
 
 
+import android.content.pm.PackageManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -8,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -70,6 +73,8 @@ public class MainActivity extends BaseActivity {
         mFragments = mHomeFragment1;
         howFragment(1,mIvMain1,mTvMain1);
         fragmentManager.beginTransaction().replace(R.id.fl_content, mFragments, "A").commitAllowingStateLoss();
+
+        openLocation();
     }
 
 
@@ -160,4 +165,16 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    private void openLocation() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
+            //开启定位权限,200是标识码
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        } else {
+            //开始定位
+//            getCurrentLocationLatLng();
+        }
+    }
+
 }

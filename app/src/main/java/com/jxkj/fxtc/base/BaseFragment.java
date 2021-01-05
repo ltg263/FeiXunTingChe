@@ -34,11 +34,13 @@ public abstract class BaseFragment extends SimpleImmersionFragment {
     protected Gson mGson;
     private LoadDialog dialog;
     protected int pageSize = 10;//
+    protected Bundle savedInstanceState;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(getContentView(), null);
+        this.savedInstanceState = savedInstanceState;
         ButterKnife.bind(this, mRootView);
         ImmersionBar.with(this).statusBarDarkFont(true).titleBar(R.id.rl_actionbar).fitsSystemWindows(true).init();
         //解决fragment点击事件穿透问题

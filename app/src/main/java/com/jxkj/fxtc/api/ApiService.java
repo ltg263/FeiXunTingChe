@@ -6,9 +6,12 @@ import com.jxkj.fxtc.base.LoginBean;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
 import com.jxkj.fxtc.entity.CouponCanListUser;
+import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
+import com.jxkj.fxtc.entity.UserCarListBean;
+import com.jxkj.fxtc.entity.UserDetailBean;
 
 import java.util.Map;
 
@@ -55,11 +58,32 @@ public interface ApiService {
     @GET("api/v1/home/getHome")
     Observable<Result<HomeBean>> getHome();
 
+
+    /**
+     * 用户个人中心
+     */
+    @GET("api/v1/user/getDetail")
+    Observable<Result<UserDetailBean>> getUserDetail();
+
+
+    /**
+     * 停车场列表
+     */
+    @GET("api/v1/lot/list")
+    Observable<Result<LotListBean>> getLotList(@Query("regionID") String regionID,@Query("parkingName") String parkingName,
+                                               @Query("lng") String lng,@Query("lat") String lat);
+
     /**
      * 用户添加车牌
      */
     @POST("api/v1/user/car/add")
     Observable<Result> addCar(@Body PostCarData.PostAddCarInfo addCarInfo);
+
+    /**
+     * 用户所有车牌
+     */
+    @GET("api/v1/user/car/list")
+    Observable<Result<UserCarListBean>> getAllCar();
 
     /**
      * 停车导航

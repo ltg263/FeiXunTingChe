@@ -58,7 +58,7 @@ public class BookingSpaceActivity extends BaseActivity {
         mRvList.setHasFixedSize(true);
         mLvNot.setVisibility(View.GONE);
         mRvList.setVisibility(View.VISIBLE);
-        mBookingSpaceAdapter = new BookingSpaceAdapter(list);
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null);
         mRvList.setAdapter(mBookingSpaceAdapter);
         mLvNot.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);

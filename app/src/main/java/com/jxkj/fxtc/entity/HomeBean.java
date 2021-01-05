@@ -6,8 +6,8 @@ public class HomeBean {
 
     /**
      * ad : [{"createTime":"2020-05-08 03:51:32","delTf":0,"id":52,"imgUrl":"https://api.nbqichen.net/fangyi/upload/744CC189B27AEE89C759D9A54CDC78DB.jpg","linkUrl":"1","queueNo":99,"status":1,"type":2}]
-     * userCar : {"creatime":"2020-12-24 10:38:45","defaultCar":0,"delTF":0,"id":1,"license":"浙·B7797","parkingSeatDTO":{"creatTime":"2020-12-16 16:53:22","delTF":0,"floor":"2","id":1,"imageUrl":"xxxx","license":"浙·B7797","lotID":1,"seatName":"D1","status":2,"useTime":0,"userID":12},"status":1,"type":0,"updateTime":"2020-12-24 10:43:58","userID":12}
-     * banners : [{"createTime":"2020-06-01 07:25:10","delTf":0,"id":54,"imgUrl":"https://api.nbqichen.net/fangyi/upload/5A4DD4C68B72789DD0FBCB6A6CC9114A.jpg","linkUrl":"","queueNo":1,"status":1,"type":1},{"createTime":"2020-03-03 14:13:47","delTf":0,"id":50,"imgUrl":"https://api.nbqichen.net/fangyi/upload/B78850C6A5C5F13CA70C28EE47B1CF2F.png","productId":12,"productName":"便携式消毒喷雾","queueNo":2,"status":1,"type":1},{"createTime":"2020-03-03 14:13:27","delTf":0,"id":49,"imgUrl":"https://api.nbqichen.net/fangyi/upload/A4AB5D9B585F817BBBA357C10295FB90.png","productId":13,"productName":"享韵护发素（测试）","queueNo":3,"status":1,"type":1}]
+     * userCar : {"creatime":"2021-01-05 14:16:31","defaultCar":0,"delTF":0,"id":8,"license":"浙.B1234","status":0,"type":1,"userID":16}
+     * banners : [{"createTime":"2020-06-01 07:25:10","delTf":0,"id":54,"imgUrl":"https://api.nbqichen.net/dangan/upload/D742209F066F4AEA2F32405B2A5C6FBD.png","linkUrl":"","queueNo":1,"status":1,"type":1},{"createTime":"2020-03-03 14:13:47","delTf":0,"id":50,"imgUrl":"https://api.nbqichen.net/fangyi/upload/B78850C6A5C5F13CA70C28EE47B1CF2F.png","productId":12,"productName":"便携式消毒喷雾","queueNo":2,"status":1,"type":1}]
      */
 
     private UserCarBean userCar;
@@ -40,16 +40,14 @@ public class HomeBean {
 
     public static class UserCarBean {
         /**
-         * creatime : 2020-12-24 10:38:45
+         * creatime : 2021-01-05 14:16:31
          * defaultCar : 0
          * delTF : 0
-         * id : 1
-         * license : 浙·B7797
-         * parkingSeatDTO : {"creatTime":"2020-12-16 16:53:22","delTF":0,"floor":"2","id":1,"imageUrl":"xxxx","license":"浙·B7797","lotID":1,"seatName":"D1","status":2,"useTime":0,"userID":12}
-         * status : 1
-         * type : 0
-         * updateTime : 2020-12-24 10:43:58
-         * userID : 12
+         * id : 8
+         * license : 浙.B1234
+         * status : 0
+         * type : 1
+         * userID : 16
          */
 
         private String creatime;
@@ -351,7 +349,7 @@ public class HomeBean {
          * createTime : 2020-06-01 07:25:10
          * delTf : 0
          * id : 54
-         * imgUrl : https://api.nbqichen.net/fangyi/upload/5A4DD4C68B72789DD0FBCB6A6CC9114A.jpg
+         * imgUrl : https://api.nbqichen.net/dangan/upload/D742209F066F4AEA2F32405B2A5C6FBD.png
          * linkUrl :
          * queueNo : 1
          * status : 1

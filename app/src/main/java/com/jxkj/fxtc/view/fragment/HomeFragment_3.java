@@ -1,23 +1,36 @@
 package com.jxkj.fxtc.view.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
+import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
+import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.view.RoundImageView;
+import com.jxkj.fxtc.conpoment.widget.CodeUtils;
+import com.jxkj.fxtc.entity.HomeBean;
+import com.jxkj.fxtc.entity.UserDetailBean;
 import com.jxkj.fxtc.view.activity.MineBillActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.MineFqzsActivity;
 import com.jxkj.fxtc.view.activity.MineMessageActivity;
 import com.jxkj.fxtc.view.activity.MineRegardsActivity;
+import com.jxkj.fxtc.view.activity.MineSetActivity;
 import com.jxkj.fxtc.view.activity.MineWdqbActivity;
 import com.jxkj.fxtc.view.activity.MineYhqActivity;
 import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 1000D 订单管理
@@ -45,7 +58,8 @@ public class HomeFragment_3 extends BaseFragment {
 
     @Override
     protected void initViews() {
-
+        Log.w("sHA1","sHA1:"+ CodeUtils.sHA1(getActivity()));
+        getUserDetail();
     }
 
     @Override
@@ -63,7 +77,8 @@ public class HomeFragment_3 extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_set:
-                IntentUtils.getInstence().intent(getActivity(), ZsnaviDemoActivity.class);
+//                IntentUtils.getInstence().intent(getActivity(), ZsnaviDemoActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), MineSetActivity.class);
                 break;
             case R.id.iv_msg:
                 IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
@@ -94,4 +109,39 @@ public class HomeFragment_3 extends BaseFragment {
                 break;
         }
     }
+    private void getUserDetail() {
+        RetrofitUtil.getInstance().apiService()
+                .getUserDetail()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<UserDetailBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<UserDetailBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            GlideImgLoader.setGlideImage(getActivity(),result.getData().getAvatar(),mIvMineTx);
+                            mTvMineName.setText(result.getData().getNickName());
+                            mTvMineSjh.setText(result.getData().getMobile());
+                            mTvQb.setText(result.getData().getIntegral());
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
 }

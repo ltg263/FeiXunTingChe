@@ -79,6 +79,7 @@ public class AddCarActivity extends BaseActivity {
         PostCarData.PostAddCarInfo addCarInfo = new PostCarData.PostAddCarInfo();
         addCarInfo.setLicense(lincense);
         addCarInfo.setType(1);
+        show();
         RetrofitUtil.getInstance().apiService()
                 .addCar(addCarInfo)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -92,7 +93,8 @@ public class AddCarActivity extends BaseActivity {
                     @Override
                     public void onNext(Result result) {
                         if (isDataInfoSucceed(result)) {
-
+                            ToastUtils.showShort("添加成功");
+                            AddCarActivity.this.finish();
                         }
 
                     }
@@ -104,7 +106,7 @@ public class AddCarActivity extends BaseActivity {
 
                     @Override
                     public void onComplete() {
-
+                        dismiss();
                     }
                 });
 

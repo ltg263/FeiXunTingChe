@@ -155,10 +155,14 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
     private void initUserCar(HomeBean.UserCarBean userCar) {
-        mTvCarName.setText(userCar.getParkingSeatDTO().getLicense());
-        mTvCarJg.setText(userCar.getParkingSeatDTO().getUseTime());
-        mTvCarCw.setText(userCar.getParkingSeatDTO().getSeatName());
-        mTvCarSj.setText(userCar.getParkingSeatDTO().getDelTF());
+        if(userCar.getStatus().equals("2")){//0未停车1已停车2已预约
+            mTvCarName.setText(userCar.getParkingSeatDTO().getLicense());
+            mTvCarJg.setText(userCar.getParkingSeatDTO().getUseTime());
+            mTvCarCw.setText(userCar.getParkingSeatDTO().getSeatName());
+            mTvCarSj.setText(userCar.getParkingSeatDTO().getDelTF());
+        }else{
+            mTvCarName.setText(userCar.getLicense());
+        }
     }
 
     private void initBanner(List<HomeBean.BannersBean> ad) {
