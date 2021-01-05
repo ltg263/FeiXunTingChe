@@ -48,6 +48,7 @@
 
 
     <TextView
+        android:id="@+id/tv_yycp"
         android:layout_width="@dimen/dimen_60dp"
         android:layout_height="@dimen/dimen_30dp"
         android:layout_alignParentEnd="true"
@@ -55,6 +56,23 @@
         android:background="@drawable/btn_shape_theme"
         android:gravity="center"
         android:text="预约"
+        android:visibility="invisible"
+        android:textColor="@color/color_ffffff"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tv_dh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingVertical="@dimen/dimen_5dp"
+        android:paddingHorizontal="@dimen/dimen_15dp"
+        android:layout_margin="@dimen/dimen_15dp"
+        android:drawableStart="@drawable/ic_daohao"
+        android:drawablePadding="@dimen/dimen_5dp"
+        android:background="@drawable/btn_shape_theme"
+        android:gravity="center"
+        android:text="导航"
         android:textColor="@color/color_ffffff"
         android:textSize="13sp" />
 

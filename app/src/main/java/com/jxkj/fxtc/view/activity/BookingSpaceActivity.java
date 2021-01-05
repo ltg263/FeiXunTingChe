@@ -9,15 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class BookingSpaceActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -48,12 +53,6 @@ public class BookingSpaceActivity extends BaseActivity {
             }
         });
 
-
-        List<String> list  = new ArrayList<>();
-        for(int i = 0;i<11;i++){
-            list.add("");
-        }
-
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
         mLvNot.setVisibility(View.GONE);
@@ -69,6 +68,40 @@ public class BookingSpaceActivity extends BaseActivity {
                 IntentUtils.getInstence().intent(BookingSpaceActivity.this,BookingSpacePayActivity.class);
             }
         });
+        String lng = SharedUtils.singleton().get("Longitude","");
+        String lat = SharedUtils.singleton().get("Latitude","");
+        getLotList(lng,lat);
+    }
+    private void getLotList(String lng,String lat) {
+        RetrofitUtil.getInstance().apiService()
+                .getLotList(null, null, lng, lat)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<LotListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<LotListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            mBookingSpaceAdapter.setNewData(result.getData().getList());
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
 }
