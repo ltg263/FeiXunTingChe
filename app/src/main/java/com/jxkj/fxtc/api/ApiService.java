@@ -1,17 +1,17 @@
 package com.jxkj.fxtc.api;
 
 
-import com.alipay.tscenter.biz.rpc.vkeydfp.result.BaseResult;
 import com.jxkj.fxtc.base.LoginBean;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
-import com.jxkj.fxtc.entity.CouponCanListUser;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
+import com.jxkj.fxtc.entity.UserBillListBean;
 import com.jxkj.fxtc.entity.UserCarListBean;
 import com.jxkj.fxtc.entity.UserDetailBean;
+import com.jxkj.fxtc.entity.UserEnvelopesBean;
 
 import java.util.Map;
 
@@ -65,6 +65,12 @@ public interface ApiService {
     @GET("api/v1/user/getDetail")
     Observable<Result<UserDetailBean>> getUserDetail();
 
+    /**
+     * 用户优惠券列表
+     */
+    @GET("api/v1/user/userEnvelopes/query")
+    Observable<Result<UserEnvelopesBean>> getUserEnvelopes(@Query("status") int status);
+
 
     /**
      * 停车场列表
@@ -84,6 +90,13 @@ public interface ApiService {
      */
     @GET("api/v1/user/car/list")
     Observable<Result<UserCarListBean>> getAllCar();
+
+    /**
+     * 用户账单列表
+     * 停车1充值2,预约3
+     */
+    @GET("api/v1/user/bill/list")
+    Observable<Result<UserBillListBean>> getBillList(@Query("billType") String billType);
 
     /**
      * 停车导航
@@ -109,12 +122,6 @@ public interface ApiService {
                                             @Query("age") String age,
                                             @Query("weight") String weight,
                                         @Query("height") String mobileCode);
-
-    /**
-     * 优惠券列表
-     */
-    @GET("user/api/v1/user/coupon/query")
-    Observable<Result<CouponCanListUser>> userCouponQuery(@Query("status") String status, @Query("limitAmount") String limitAmount);
 
     /**
      * 添加设备记录列表

@@ -13,7 +13,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
 import com.jxkj.fxtc.base.Result;
-import com.jxkj.fxtc.entity.CouponCanListUser;
+import com.jxkj.fxtc.entity.UserEnvelopesBean;
 import com.jxkj.fxtc.view.adapter.MineYhqListAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -62,68 +62,68 @@ public class MineYhqFragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 page++;
-                getData(type);
+                getUserEnvelopes(type);
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 page = 1;
-                getData(type);
+                getUserEnvelopes(type);
             }
         });
     }
 
     @Override
     public void initImmersionBar() {
-        getData(type);
+        getUserEnvelopes(type);
     }
 
     private void initOrder() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mYhqListAdapter = new MineYhqListAdapter(null, type);
+        mYhqListAdapter = new MineYhqListAdapter(null);
         mRecyclerView.setAdapter(mYhqListAdapter);
         mYhqListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                getActivity().finish();
+//                getActivity().finish();
             }
         });
     }
 
-    private void getData(int type) {
+
+    private void getUserEnvelopes(int status) {
         RetrofitUtil.getInstance().apiService()
-                .userCouponQuery(String.valueOf(type),null)
+                .getUserEnvelopes(status)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<CouponCanListUser>>() {
+                .subscribe(new Observer<Result<UserEnvelopesBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result<CouponCanListUser> result) {
+                    public void onNext(Result<UserEnvelopesBean> result) {
                         if (isDataInfoSucceed(result)) {
                             mLvNot.setVisibility(View.VISIBLE);
                             mRefreshLayout.setVisibility(View.GONE);
-                            if (result.getData() != null && result.getData().getList()!=null &&result.getData().getList().size()>0) {
-                                mYhqListAdapter.setNewData(result.getData().getList());
+                            if(result.getData().getList()!=null &&result.getData().getList().size()>0){
                                 mLvNot.setVisibility(View.GONE);
                                 mRefreshLayout.setVisibility(View.VISIBLE);
+                                mYhqListAdapter.setNewData(result.getData().getList());
                             }
-
                         }
 
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        dismiss();
+
                     }
 
                     @Override
                     public void onComplete() {
-                        dismiss();
+
                     }
                 });
 

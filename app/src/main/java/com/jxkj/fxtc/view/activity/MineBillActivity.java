@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.entity.UserBillListBean;
+import com.jxkj.fxtc.entity.UserCarListBean;
 import com.jxkj.fxtc.view.adapter.MineClglAdapter;
 import com.jxkj.fxtc.view.adapter.MineBillAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -21,6 +25,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MineBillActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -55,20 +63,48 @@ public class MineBillActivity extends BaseActivity {
             }
         });
 
-
-        List<String> list  = new ArrayList<>();
-        for(int i = 0;i<11;i++){
-            list.add("");
-        }
-
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        mLvNot.setVisibility(View.GONE);
-        mRvList.setVisibility(View.VISIBLE);
-        mMineBillAdapter = new MineBillAdapter(list);
+        mMineBillAdapter = new MineBillAdapter(null);
         mRvList.setAdapter(mMineBillAdapter);
-        mLvNot.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
+        getBillList();
+    }
+
+
+    private void getBillList() {
+        RetrofitUtil.getInstance().apiService()
+                .getBillList("1")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<UserBillListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<UserBillListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            if(result.getData().getList()!=null && result.getData().getList().size()>0){
+                                mLvNot.setVisibility(View.GONE);
+                                mRefreshLayout.setVisibility(View.VISIBLE);
+                                mMineBillAdapter.setNewData(result.getData().getList());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
 }

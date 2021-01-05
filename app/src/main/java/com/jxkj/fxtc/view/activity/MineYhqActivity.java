@@ -14,7 +14,12 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
+import com.jxkj.fxtc.entity.UserDetailBean;
+import com.jxkj.fxtc.entity.UserEnvelopesBean;
 import com.jxkj.fxtc.view.fragment.MineYhqFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,6 +29,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MineYhqActivity extends BaseActivity {
     String[] tabListBlq = {"已使用", "未使用", "已过期"};
@@ -92,20 +101,19 @@ public class MineYhqActivity extends BaseActivity {
     }
     List<MineYhqFragment> fragments = new ArrayList<>();
     private List<MineYhqFragment> getFragments() {
-
         for (int i = 0; i < tabListBlq.length; i++) {
             MineYhqFragment fragment = new MineYhqFragment();
             Bundle bundle = new Bundle();
-            int type = 0;
+            int type = 0;//：1，未使用,；2，已使用；3,过期
             switch (i){
                 case 0:
                     type= 2;
                     break;
                 case 1:
-                    type= 3;
+                    type= 1;
                     break;
                 case 2:
-                    type= 4;
+                    type= 3;
                     break;
                     default:
             }
