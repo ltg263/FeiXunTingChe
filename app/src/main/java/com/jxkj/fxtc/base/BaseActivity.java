@@ -44,12 +44,14 @@ public abstract class BaseActivity extends AppCompatActivity{
     protected Stack<Fragment> mFragStack;
     protected int statusBarHeight;
     private LoadDialog dialog;
+    protected  Bundle savedInstanceState;
     //protected SwipeBackLayout mSwipeBackLayout;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
         //setTheme(R.style.base_blue_style);//修改主题
         setContentView(getContentView());
         ButterKnife.bind(this);

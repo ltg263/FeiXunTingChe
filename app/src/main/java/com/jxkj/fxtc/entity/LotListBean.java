@@ -1,5 +1,6 @@
 package com.jxkj.fxtc.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class LotListBean {
@@ -28,7 +29,7 @@ public class LotListBean {
         this.list = list;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable {
         /**
          * address : 宁波海曙
          * appoStringPrice : 3

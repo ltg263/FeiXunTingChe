@@ -79,6 +79,7 @@ public interface ApiService {
     Observable<Result<LotListBean>> getLotList(@Query("regionID") String regionID,@Query("parkingName") String parkingName,
                                                @Query("lng") String lng,@Query("lat") String lat);
 
+
     /**
      * 用户添加车牌
      */

@@ -1,5 +1,6 @@
 package com.jxkj.fxtc.view.fragment;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolylineOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
@@ -33,6 +35,7 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.drawerView.DrawerLayout;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
 import com.jxkj.fxtc.entity.LotListBean;
+import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 
 import java.text.SimpleDateFormat;
@@ -84,6 +87,16 @@ public class HomeFragment_2 extends BaseFragment implements LocationSource{
         mRvList.setVisibility(View.VISIBLE);
         mBookingSpaceAdapter = new BookingSpaceAdapter(null);
         mRvList.setAdapter(mBookingSpaceAdapter);
+
+        mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
+                Intent mIntent = new Intent(getActivity(), ShotCarDeActivity.class);
+                mIntent.putExtra("data",data);
+                startActivity(mIntent);
+            }
+        });
 
 
         mDialDrawer.setInitialState(DrawerLayout.State.Close); //set drawer initial state: open or close
