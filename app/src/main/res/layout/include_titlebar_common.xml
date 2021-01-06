@@ -53,6 +53,7 @@
         android:text=""
         android:includeFontPadding="false"/>
     <TextView
+        android:id="@+id/tv_righttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/dimen_16dp"

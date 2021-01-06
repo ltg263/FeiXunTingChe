@@ -6,11 +6,13 @@ import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
+import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.base.BaseFragment;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.view.RoundImageView;
 import com.jxkj.fxtc.conpoment.widget.CodeUtils;
 import com.jxkj.fxtc.entity.HomeBean;
@@ -18,6 +20,7 @@ import com.jxkj.fxtc.entity.UserDetailBean;
 import com.jxkj.fxtc.view.activity.MineBillActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.MineFqzsActivity;
+import com.jxkj.fxtc.view.activity.MineGrzxRecordActivity;
 import com.jxkj.fxtc.view.activity.MineMessageActivity;
 import com.jxkj.fxtc.view.activity.MineRegardsActivity;
 import com.jxkj.fxtc.view.activity.MineSetActivity;
@@ -84,6 +87,7 @@ public class HomeFragment_3 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
                 break;
             case R.id.rv_mine_grzl:
+                IntentUtils.getInstence().intent(getActivity(), MineGrzxRecordActivity.class);
                 break;
             case R.id.ll_qb:
                 IntentUtils.getInstence().intent(getActivity(), MineWdqbActivity.class);
@@ -127,6 +131,10 @@ public class HomeFragment_3 extends BaseFragment {
                             mTvMineName.setText(result.getData().getNickName());
                             mTvMineSjh.setText(result.getData().getMobile());
                             mTvQb.setText(result.getData().getIntegral());
+                            SharedUtils.singleton().put(ConstValues.AVATAR,result.getData().getAvatar());
+                            SharedUtils.singleton().put(ConstValues.USER_NAME,result.getData().getNickName());
+                            SharedUtils.singleton().put(ConstValues.GENDER,result.getData().getSex());
+                            SharedUtils.singleton().put(ConstValues.BIRTHDAY,result.getData().getBalance());
                         }
 
                     }

@@ -20,11 +20,13 @@ public class ConstValues {
     public static final String ISLOGIN = "islogin";
     public static final String USERID = "user_id";
     public static final String TOKEN = "token";
+    public static final String GENDER = "gender";
     public static final String BALANCE = "balance";
     public static final String USER_PHONE = "user_phone";
     public static final String USER_NAME = "user_name";
     public static final String USER_CREATETIME = "user_createtime";
     public static final String USER_PORTRAIT = "user_portrait";
+    public static final String BIRTHDAY = "birthDay";
     public static final String PHONE = "phone";
     public static final String LAT = "lat";
     public static final String LON = "lon";

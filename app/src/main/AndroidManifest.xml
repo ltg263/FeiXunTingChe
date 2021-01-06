@@ -88,6 +88,7 @@
         <activity android:name=".view.activity.MineBillActivity" />
         <activity android:name=".view.activity.MineFqsqActivity" />
         <activity android:name=".view.deme.ZsnaviDemoActivity" />
+        <activity android:name=".view.activity.MineGrzxRecordActivity"/>
         <activity android:name=".MainActivity"
             android:launchMode="singleTask" />
         <activity

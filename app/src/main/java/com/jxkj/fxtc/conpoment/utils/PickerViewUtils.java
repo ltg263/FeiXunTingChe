@@ -50,23 +50,50 @@ public class PickerViewUtils {
         pvOptions.show();
     }
 
+    public static void selectorCustom(Context mContext, final List<String> list, String title, ConditionInterfacd interfacd){
+        OptionsPickerView pvOptions = new OptionsPickerBuilder(mContext, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3 , View v) {
+                interfacd.setIndex(options1);
+            }
+        }) .setOptionsSelectChangeListener(new OnOptionsSelectChangeListener() {
+            @Override
+            public void onOptionsSelectChanged(int options1, int options2, int options3) {
+
+            }
+        })
+        .setTitleText(title)
+                .setDividerColor(Color.BLACK)
+                .setSubmitColor(Color.BLACK)
+                .setCancelColor(Color.BLACK)
+                .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
+                .setContentTextSize(16)
+                .build();
+
+        pvOptions.setPicker(list);//添加数据源
+        pvOptions.show();
+    }
+
 
 
     public interface ConditionInterfacd{
         void setIndex(int pos);
     }
 
+    public static void selectorDate(Context mContext, boolean[] timeType,GetTimeInterface timeInterface){
+        selectorDate(2000,2100,mContext,timeType,timeInterface);
+    }
     /**
      * 时间选择器
      * @param mContext
      */
-    public static void selectorDate(Context mContext, boolean[] timeType,GetTimeInterface timeInterface) {
+    public static void selectorDate(int startDateyy,int endDateyy,Context mContext, boolean[] timeType,GetTimeInterface timeInterface) {
         Calendar startDate = Calendar.getInstance();
         Calendar endDate = Calendar.getInstance();
 
         //正确设置方式 原因：注意事项有说明
-        startDate.set(2000, 0, 1);
-        endDate.set(2100, 11, 31);
+        startDate.set(startDateyy, 0, 1);
+        endDate.set(endDateyy, 11, 31);
         //时间选择器
         TimePickerView pvTime = new TimePickerBuilder(mContext, new OnTimeSelectListener() {
             @Override

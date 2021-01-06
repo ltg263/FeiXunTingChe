@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.entity.InvoiceListBean;
+import com.jxkj.fxtc.entity.UserEnvelopesBean;
 import com.jxkj.fxtc.view.adapter.MineFqzsAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -19,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MineFqzsActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -53,27 +61,55 @@ public class MineFqzsActivity extends BaseActivity {
             }
         });
 
-
-        List<String> list  = new ArrayList<>();
-        for(int i = 0;i<11;i++){
-            list.add("");
-        }
-
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        mLvNot.setVisibility(View.GONE);
-        mRvList.setVisibility(View.VISIBLE);
-        mMineFqzsAdapter = new MineFqzsAdapter(list);
+        mMineFqzsAdapter = new MineFqzsAdapter(null);
         mRvList.setAdapter(mMineFqzsAdapter);
-        mLvNot.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
-
         mMineFqzsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 IntentUtils.getInstence().intent(MineFqzsActivity.this,MineFqsqActivity.class);
             }
         });
+        getUserEnvelopes();
     }
 
+
+    private void getUserEnvelopes() {
+        RetrofitUtil.getInstance().apiService()
+                .getInvoiceList(null,null,null)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<InvoiceListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<InvoiceListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            mLvNot.setVisibility(View.VISIBLE);
+                            mRefreshLayout.setVisibility(View.GONE);
+//                            if(result.getData().getList()!=null &&result.getData().getList().size()>0){
+//                                mLvNot.setVisibility(View.GONE);
+//                                mRefreshLayout.setVisibility(View.VISIBLE);
+//                                mMineFqzsAdapter.setNewData(result.getData().getList());
+//                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
 }

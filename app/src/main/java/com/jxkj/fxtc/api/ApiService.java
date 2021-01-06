@@ -4,6 +4,7 @@ package com.jxkj.fxtc.api;
 import com.jxkj.fxtc.base.LoginBean;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
+import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 import com.jxkj.fxtc.entity.HomeBean;
@@ -58,6 +59,13 @@ public interface ApiService {
     @GET("api/v1/home/getHome")
     Observable<Result<HomeBean>> getHome();
 
+    /**
+     * 修改用户个人信息
+     * @return
+     */
+    @POST("api/v1/user/update")
+    Observable<Result> getUserUpdate(@Query("avatar") String avatar,@Query("birthday") String birthday,
+                                         @Query("sex") String sex,@Query("nickName") String nickName);
 
     /**
      * 用户个人中心
@@ -70,6 +78,12 @@ public interface ApiService {
      */
     @GET("api/v1/user/userEnvelopes/query")
     Observable<Result<UserEnvelopesBean>> getUserEnvelopes(@Query("status") int status);
+
+    /**
+     * 用户发票列表
+     */
+    @GET("api/v1/user/invoice/list")
+    Observable<Result<InvoiceListBean>> getInvoiceList(@Query("status") String status, @Query("examine") String examine, @Query("type") String type);
 
 
     /**
@@ -152,6 +166,6 @@ public interface ApiService {
      */
     @Multipart
     @POST("api/v1/files")
-    Observable<Result> submitFiles(@Part MultipartBody.Part[] file, @PartMap Map<String, RequestBody> map);
+    Observable<Result> submitFiles(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
 
 }

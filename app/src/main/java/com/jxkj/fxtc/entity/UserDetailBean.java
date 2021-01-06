@@ -25,6 +25,7 @@ public class UserDetailBean {
     private String createTime;
     private String envelopesSum;
     private String id;
+    private String sex;
     private String Stringegral;
     private String inviteCode;
     private String mobile;
@@ -33,6 +34,14 @@ public class UserDetailBean {
     private String shopCartCount;
     private String teamCount;
     private String vipLevel;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public String getAvatar() {
         return avatar;

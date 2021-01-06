@@ -27,9 +27,9 @@ public class HttpRequestUtils {
         RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         // MultipartBody.Part  和后端约定好Key，这里的name是用file
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-        MultipartBody.Part[] ba =  {MultipartBody.Part.createFormData("files", file.getName(), requestFile)};
+//        MultipartBody.Part[] ba =  {MultipartBody.Part.createFormData("files", file.getName(), requestFile)};
         RetrofitUtil.getInstance().apiService()
-                .submitFiles(ba, map)
+                .submitFiles(body, map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {
