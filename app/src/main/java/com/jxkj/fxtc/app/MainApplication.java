@@ -8,6 +8,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.conpoment.utils.ActivityManager;
 import com.jxkj.fxtc.conpoment.utils.SpUtil;
 import com.jxkj.fxtc.conpoment.utils.ToastUtil;
+import com.jxkj.fxtc.view.deme.CrashHandler;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -42,11 +43,13 @@ public class MainApplication extends Application {
 
         toastUtil = ToastUtil.getInstance(mContext);
         ActivityManager.init(this);
+
         initUMShare();
     }
     private void initUMShare() {
         UMShareAPI.get(this);
         PlatformConfig.setWeixin(ConstValues.WX_APP_ID,"c706d670856a9afc92ee1805f71bd2c8");
+        CrashHandler.getInstance().init(getApplicationContext());
     }
 
     /**

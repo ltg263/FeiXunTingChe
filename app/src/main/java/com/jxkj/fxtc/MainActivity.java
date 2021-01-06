@@ -90,7 +90,7 @@ public class MainActivity extends BaseActivity {
 
         openLocation();
 
-        setDw();
+//        setDw();
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3})

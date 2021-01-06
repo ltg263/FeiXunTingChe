@@ -77,8 +77,8 @@ public class HomeFragment_3 extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_set:
-//                IntentUtils.getInstence().intent(getActivity(), ZsnaviDemoActivity.class);
-                IntentUtils.getInstence().intent(getActivity(), MineSetActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), ZsnaviDemoActivity.class);
+//                IntentUtils.getInstence().intent(getActivity(), MineSetActivity.class);
                 break;
             case R.id.iv_msg:
                 IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
