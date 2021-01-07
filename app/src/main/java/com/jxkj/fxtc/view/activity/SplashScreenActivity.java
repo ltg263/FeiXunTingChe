@@ -29,11 +29,12 @@ public class SplashScreenActivity extends Activity {
 
     private void startUi() {
         MainApplication.addActivity(this);
-        if(SharedUtils.singleton().get(ConstValues.ISLOGIN,false)){
-            startActivity(new Intent(this, MainActivity.class));
-        }else{
-            LoginActivity.startActivityIntent(this);
-        }
+        startActivity(new Intent(this, MainActivity.class));
+//        if(SharedUtils.singleton().get(ConstValues.ISLOGIN,false)){
+//            startActivity(new Intent(this, MainActivity.class));
+//        }else{
+//            LoginActivity.startActivityIntent(this);
+//        }
         finish();
     }
 

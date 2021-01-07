@@ -117,6 +117,9 @@ public class LoginActivity extends BaseActivity {
                             ToastUtils.showShort("登录成功");
                             Log.w("App-Token:","App-Token:"+ SharedUtils.getToken());
                             SharedUtils.singleton().put(ConstValues.TOKEN,result.getData().getTokenId());
+                            SharedUtils.singleton().put(ConstValues.USER_PHONE,result.getData().getMobile());
+                            SharedUtils.singleton().put(ConstValues.TOKEN,result.getData().getTokenId());
+                            SharedUtils.singleton().put(ConstValues.TOKEN,result.getData().getTokenId());
                             SharedUtils.singleton().put(ConstValues.ISLOGIN,true);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }

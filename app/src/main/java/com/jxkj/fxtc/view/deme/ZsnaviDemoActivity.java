@@ -212,9 +212,9 @@ public class ZsnaviDemoActivity extends BaseActivity {
      */
     private void openMap() {
         ZsnaviManager.getInstance(this).init(new OptionBean(mEdtCode.getText().toString(), mRbTest.isChecked()));//初始化地图
-        ZsnaviManager.getInstance(this).setOnMapCallback(mapCallback);//注册地图回调
-
-        ZsnaviManager.getInstance(this).showMap();//显示地图
+//        ZsnaviManager.getInstance(this).setOnMapCallback(mapCallback);//注册地图回调
+//
+//        ZsnaviManager.getInstance(this).showMap();//显示地图
     }
 
     /**

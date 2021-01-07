@@ -17,6 +17,7 @@ import com.jxkj.fxtc.conpoment.view.RoundImageView;
 import com.jxkj.fxtc.conpoment.widget.CodeUtils;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.UserDetailBean;
+import com.jxkj.fxtc.view.activity.LoginActivity;
 import com.jxkj.fxtc.view.activity.MineBillActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.MineFqzsActivity;
@@ -85,7 +86,8 @@ public class HomeFragment_3 extends BaseFragment {
 //                IntentUtils.getInstence().intent(getActivity(), MineSetActivity.class);
                 break;
             case R.id.iv_msg:
-                IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
+//                IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), LoginActivity.class);
                 break;
             case R.id.rv_mine_grzl:
                 IntentUtils.getInstence().intent(getActivity(), MineGrzxRecordActivity.class);
@@ -137,6 +139,7 @@ public class HomeFragment_3 extends BaseFragment {
                             SharedUtils.singleton().put(ConstValues.USER_NAME,result.getData().getNickName());
                             SharedUtils.singleton().put(ConstValues.GENDER,result.getData().getSex());
                             SharedUtils.singleton().put(ConstValues.BIRTHDAY,result.getData().getBalance());
+                            SharedUtils.singleton().put(ConstValues.USER_PHONE,result.getData().getMobile());
                         }
 
                     }

@@ -34,6 +34,7 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.PickerViewUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
+import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
@@ -234,7 +235,6 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                         time -> mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)));
                 break;
             case R.id.bnt_go:
-                BookingSpacePayActivity.startActivityIntent(this,"");
                 postAppointment();
                 break;
         }
@@ -255,21 +255,22 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
         appointmentInfo.setAppointmentTime("2021-"+staTime+":00");
         appointmentInfo.setAppointmentEndTime("2021-"+endTime+":00");
         appointmentInfo.setOrderType("1");
-        appointmentInfo.setSeatID(data.getId());
+        appointmentInfo.setLotId(data.getId());
         show();
         RetrofitUtil.getInstance().apiService()
                 .postAppointment(appointmentInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result>() {
+                .subscribe(new Observer<Result<AppointmentBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result result) {
+                    public void onNext(Result<AppointmentBean> result) {
                         if (isDataInfoSucceed(result)) {
+                            BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity.this,result.getData().getLotID());
                         }
 
                     }

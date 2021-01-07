@@ -4,6 +4,7 @@ package com.jxkj.fxtc.api;
 import com.jxkj.fxtc.base.LoginBean;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
+import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
@@ -120,7 +121,7 @@ public interface ApiService {
      * 用户添加车牌
      */
     @POST("api/v1/seat/appointment")
-    Observable<Result> postAppointment(@Body PostCarData.AppointmentInfo addCarInfo);
+    Observable<Result<AppointmentBean>> postAppointment(@Body PostCarData.AppointmentInfo addCarInfo);
 
     /**
      * 用户所有车牌
@@ -172,12 +173,6 @@ public interface ApiService {
     @POST("api/v1/user/device/addChangeList")
     Observable<Result> addChangeList(@Body AddChangeList addOrderData);
 
-    /**
-     *
-     * 用户详情
-     */
-    @GET("api/v1/user/getDetail")
-    Observable<Result<LoginBean>> getDetail();
 
     /**
      *

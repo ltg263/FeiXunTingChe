@@ -50,7 +50,7 @@ public class PostCarData {
         private String appointmentTime;
         private String appointmentEndTime;
         private String license;
-        private String seatID;
+        private String lotId;
 
         public String getMobile() {
             return mobile;
@@ -92,12 +92,12 @@ public class PostCarData {
             this.license = license;
         }
 
-        public String getSeatID() {
-            return seatID;
+        public String getLotId() {
+            return lotId;
         }
 
-        public void setSeatID(String seatID) {
-            this.seatID = seatID;
+        public void setLotId(String lotId) {
+            this.lotId = lotId;
         }
     }
 }
