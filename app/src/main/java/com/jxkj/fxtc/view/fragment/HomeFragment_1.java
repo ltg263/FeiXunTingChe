@@ -14,6 +14,7 @@ import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
+import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -63,8 +64,14 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
     @Override
-    public void initImmersionBar() {
+    public void onResume() {
+        super.onResume();
+        getHome();
+    }
 
+    @Override
+    public void initImmersionBar() {
+        getHome();
     }
 
     public static HomeFragment_1 newInstance() {
@@ -73,7 +80,7 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
 
-    @OnClick({R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car})
+    @OnClick({R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car,R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
@@ -89,6 +96,9 @@ public class HomeFragment_1 extends BaseFragment {
                 break;
             case R.id.rl_add_car:
                 IntentUtils.getInstence().intent(getActivity(), AddCarActivity.class);
+                break;
+            case R.id.tv_car_name:
+                IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class,"type","0");
                 break;
         }
     }

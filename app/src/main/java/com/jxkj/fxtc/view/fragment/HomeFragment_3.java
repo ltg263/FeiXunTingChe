@@ -96,7 +96,7 @@ public class HomeFragment_3 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), MineBillActivity.class);
                 break;
             case R.id.rl_clgl:
-                IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class,"type","1");
                 break;
             case R.id.tv_mine_dcq:
                 IntentUtils.getInstence().intent(getActivity(), MineYhqActivity.class);

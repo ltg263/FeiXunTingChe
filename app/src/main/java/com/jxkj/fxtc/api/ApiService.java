@@ -46,6 +46,14 @@ public interface ApiService {
 
 
     /**
+     *  修改默认车辆
+     * @return type:类型0注册1修改密码2登录
+     */
+    @POST("api/v1/user/car/defaultCar")
+    Observable<Result> postDefaultCar(@Query("id") String id);
+
+
+    /**
      * 手机登录
      */
     @POST("api/v1/user/verify/login")

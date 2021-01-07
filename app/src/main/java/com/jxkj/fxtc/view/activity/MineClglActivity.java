@@ -1,6 +1,5 @@
 package com.jxkj.fxtc.view.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,19 +9,15 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
-import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.UserCarListBean;
-import com.jxkj.fxtc.entity.UserDetailBean;
 import com.jxkj.fxtc.view.adapter.MineClglAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -64,7 +59,21 @@ public class MineClglActivity extends BaseActivity {
         mRvList.setVisibility(View.VISIBLE);
         mMineClglAdapter = new MineClglAdapter(null);
         mRvList.setAdapter(mMineClglAdapter);
+        mMineClglAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if(getIntent().getStringExtra("type").equals("0")){
+                    postDefaultCar(mMineClglAdapter.getData().get(position).getId());
+                }
+            }
+        });
 
+        getAllCar();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getAllCar();
     }
 
@@ -78,6 +87,39 @@ public class MineClglActivity extends BaseActivity {
                 IntentUtils.getInstence().intent(this,AddCarActivity.class);
                 break;
         }
+    }
+
+
+    private void postDefaultCar(String id) {
+        RetrofitUtil.getInstance().apiService()
+                .postDefaultCar(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+                            MineClglActivity.this.finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
 
