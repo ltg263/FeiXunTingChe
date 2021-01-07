@@ -109,6 +109,7 @@
                 android:focusableInTouchMode="true" />
 
             <LinearLayout
+                android:id="@+id/ll_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_10"
@@ -130,7 +131,7 @@
                         android:padding="@dimen/dimen_5dp"
                         android:src="@drawable/ic_search" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_10"

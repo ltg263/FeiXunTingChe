@@ -88,7 +88,8 @@
         <activity android:name=".view.activity.MineBillActivity" />
         <activity android:name=".view.activity.MineFqsqActivity" />
         <activity android:name=".view.activity.BookingSpaceDeActivity" />
-        <activity android:name=".view.deme.ZsnaviDemoActivity" />
+        <activity android:name=".view.search.SearchGoodsActivity"/>
+        <activity android:name=".view.search.SearchResultTopicActivity" />
         <activity android:name=".view.activity.MineGrzxRecordActivity"/>
         <activity android:name=".view.activity.ShopCarLogActivity"/>
         <activity android:name=".view.activity.MineSybzActivity"/>

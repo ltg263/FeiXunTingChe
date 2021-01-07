@@ -17,6 +17,7 @@ import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
+import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -81,7 +82,7 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
 
-    @OnClick({R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car,R.id.tv_car_name})
+    @OnClick({R.id.ll_search,R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car,R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
@@ -101,6 +102,9 @@ public class HomeFragment_1 extends BaseFragment {
                 break;
             case R.id.tv_car_name:
                 IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class,"type","0");
+                break;
+            case R.id.ll_search:
+                IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class,"searchType",2);
                 break;
         }
     }
