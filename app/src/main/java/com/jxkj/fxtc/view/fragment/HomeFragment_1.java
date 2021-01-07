@@ -1,6 +1,7 @@
 package com.jxkj.fxtc.view.fragment;
 
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jxkj.fxtc.MainActivity;
@@ -11,6 +12,7 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.HomeBean;
+import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.youth.banner.Banner;
@@ -45,6 +47,10 @@ public class HomeFragment_1 extends BaseFragment {
     TextView mTvCarCw;
     @BindView(R.id.tv_car_sj)
     TextView mTvCarSj;
+    @BindView(R.id.rl_add_car)
+    RelativeLayout rl_add_car;
+    @BindView(R.id.rl_car)
+    RelativeLayout rl_car;
 
     @Override
     protected int getContentView() {
@@ -67,7 +73,7 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
 
-    @OnClick({R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4})
+    @OnClick({R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
@@ -80,6 +86,9 @@ public class HomeFragment_1 extends BaseFragment {
                 ((MainActivity) getActivity()).homeBack(2);
                 break;
             case R.id.btn_home_4:
+                break;
+            case R.id.rl_add_car:
+                IntentUtils.getInstence().intent(getActivity(), AddCarActivity.class);
                 break;
         }
     }
@@ -102,6 +111,8 @@ public class HomeFragment_1 extends BaseFragment {
                                 initBanner(result.getData().getBanners());
                             }
                             if (result.getData().getUserCar() != null) {
+                                rl_add_car.setVisibility(View.GONE);
+                                rl_car.setVisibility(View.VISIBLE);
                                 initUserCar(result.getData().getUserCar());
                             }
                             if (result.getData().getAd() != null) {

@@ -21,6 +21,11 @@ public class MineClglAdapter extends BaseQuickAdapter<UserCarListBean.ListBean, 
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, UserCarListBean.ListBean item) {
-        helper.setText(R.id.tv_name,item.getLicense());
+        helper.setText(R.id.tv_name,item.getLicense()).setText(R.id.tv,"新能源");
+        helper.setImageDrawable(R.id.iv,mContext.getResources().getDrawable(R.drawable.ic_clgl_bj2));
+        if(item.getType().equals("1")){
+            helper.setText(R.id.tv,"汽油车");
+            helper.setImageDrawable(R.id.iv,mContext.getResources().getDrawable(R.drawable.ic_clgl_bj1));
+        }
     }
 }

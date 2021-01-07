@@ -33,7 +33,7 @@ public class AddCarActivity extends BaseActivity {
     TextView mBtn2;
     @BindView(R.id.et_license)
     EditText mEtLincense;
-
+    int type = 0;//汽油车
     @Override
     protected int getContentView() {
         return R.layout.activity_add_car;
@@ -52,12 +52,14 @@ public class AddCarActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_1:
+                type = 0;
                 mBtn1.setBackground(getResources().getDrawable(R.drawable.bnt_car_x));
                 mBtn2.setBackground(null);
                 mBtn1.setTextColor(getResources().getColor(R.color.color_ffffff));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_text_theme));
                 break;
             case R.id.btn_2:
+                type = 1;
                 mBtn1.setBackground(null);
                 mBtn2.setBackground(getResources().getDrawable(R.drawable.bnt_car_x));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_ffffff));
@@ -78,7 +80,7 @@ public class AddCarActivity extends BaseActivity {
         }
         PostCarData.PostAddCarInfo addCarInfo = new PostCarData.PostAddCarInfo();
         addCarInfo.setLicense(lincense);
-        addCarInfo.setType(1);
+        addCarInfo.setType(type);
         show();
         RetrofitUtil.getInstance().apiService()
                 .addCar(addCarInfo)
