@@ -77,6 +77,15 @@ public class LotListBean {
         private String updateTime;
         private String isRecommend;
         private String lotAddressId;
+        private String appointPrice;
+
+        public String getAppointPrice() {
+            return appointPrice;
+        }
+
+        public void setAppointPrice(String appointPrice) {
+            this.appointPrice = appointPrice;
+        }
 
         public String getAddress() {
             return address;

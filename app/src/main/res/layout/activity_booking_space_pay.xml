@@ -22,21 +22,22 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_10"
                 android:src="@mipmap/back_b" />
+
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:padding="@dimen/dimen_15dp"
-                android:textSize="@dimen/dimen_20dp"
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginRight="@dimen/dimen_30dp"
+                android:fontFamily="@font/notosanshans_bold"
                 android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="@dimen/dimen_15dp"
+                android:singleLine="true"
                 android:text="预约支付"
                 android:textColor="@color/color_ffffff"
-                android:fontFamily="@font/notosanshans_bold"
-                android:includeFontPadding="false"
-                android:singleLine="true"
-                android:layout_marginLeft="@dimen/dimen_30dp"
-                android:layout_marginRight="@dimen/dimen_30dp"/>
+                android:textSize="@dimen/dimen_20dp" />
 
         </RelativeLayout>
 
@@ -227,6 +228,34 @@
                 android:textSize="16sp" />
 
             <LinearLayout
+                android:id="@+id/ll_tcf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@color/color_ffffff"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="停车费"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_tcf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_5dp"
+                    android:text="¥ 0.00"
+                    android:textColor="@color/color_333333"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_5dp"
@@ -247,7 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dimen_5dp"
-                    android:text="+ ¥ 3.00"
+                    android:text="¥ 0.00"
                     android:textColor="@color/color_333333"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -307,10 +336,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_not_pay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_5dp"
                 android:layout_marginEnd="@dimen/dimen_20dp"
+                android:visibility="gone"
                 android:background="@color/color_ffffff">
 
                 <TextView
@@ -335,10 +366,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/dp_10">
+        android:layout_marginBottom="@dimen/dp_10"
+        android:visibility="gone">
 
 
         <Button
@@ -360,6 +393,27 @@
             android:layout_weight="1"
             android:background="@drawable/btn_shape_theme"
             android:text="支付(剩余04:34)"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#AAAAAA"
+        android:gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:text="申请发票"
             android:textColor="@color/color_ffffff"
             android:textSize="16sp" />
 

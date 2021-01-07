@@ -7,6 +7,7 @@ import com.jxkj.fxtc.entity.AddChangeList;
 import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
+import com.jxkj.fxtc.entity.OrdersDetailBean;
 import com.jxkj.fxtc.entity.PostCarData;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
@@ -81,6 +82,12 @@ public interface ApiService {
      */
     @GET("api/v1/user/getDetail")
     Observable<Result<UserDetailBean>> getUserDetail();
+
+    /**
+     * 订单详情
+     */
+    @GET("api/v1/user/orders/detail")
+    Observable<Result<OrdersDetailBean>> getOrdersDetail(@Query("id") String id);
 
     /**
      * 用户优惠券列表

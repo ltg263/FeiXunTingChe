@@ -31,6 +31,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.PickerViewUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.entity.LotListBean;
@@ -62,6 +63,8 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     TextView mTv1;
     @BindView(R.id.tv_dw)
     TextView mTvDw;
+    @BindView(R.id.tv_fy)
+    TextView tv_fy;
     @BindView(R.id.start_time)
     TextView mStartTime;
     @BindView(R.id.end_time)
@@ -84,6 +87,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
             String str = "<font color=\"#0199FC\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
             mTvJg.setText(Html.fromHtml(str));
             mTvDw.setText(data.getAddress());
+            tv_fy.setText("¥"+data.getAppointPrice()+" · 立即支付");
         }
         initMap();
     }
@@ -230,6 +234,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                         time -> mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)));
                 break;
             case R.id.bnt_go:
+                BookingSpacePayActivity.startActivityIntent(this,"");
                 postAppointment();
                 break;
         }
@@ -265,7 +270,6 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                     @Override
                     public void onNext(Result result) {
                         if (isDataInfoSucceed(result)) {
-                            ToastUtils.showShort("添加成功");
                         }
 
                     }

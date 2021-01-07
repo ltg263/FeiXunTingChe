@@ -49,6 +49,7 @@ public class BookingSpaceOkActivity extends BaseActivity {
             case R.id.bnt:
                 break;
             case R.id.bnt_1:
+                BookingSpacePayActivity.startActivityIntent(this,"");
                 break;
         }
     }

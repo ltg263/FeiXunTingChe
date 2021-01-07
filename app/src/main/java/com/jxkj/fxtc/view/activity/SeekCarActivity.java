@@ -1,6 +1,5 @@
 package com.jxkj.fxtc.view.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -82,13 +80,6 @@ public class SeekCarActivity extends BaseActivity {
                     }
                 });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @OnClick({R.id.ll_back, R.id.bnt})
