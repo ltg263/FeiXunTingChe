@@ -105,7 +105,7 @@
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="#00000000">
 
-        <com.jxkj.fit_5a.conpoment.view.ClassicsHeader
+        <com.jxkj.fxtc.conpoment.widget.ClassicsHeader
 
             android:layout_width="match_parent"
             android:layout_height="35dp" />
@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.jxkj.fit_5a.conpoment.view.ClassicsFooter
+        <com.jxkj.fxtc.conpoment.widget.ClassicsFooter
 
             android:layout_width="match_parent"
             android:layout_height="30dp" />

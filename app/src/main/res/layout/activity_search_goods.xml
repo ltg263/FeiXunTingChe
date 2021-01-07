@@ -99,7 +99,7 @@
             android:textColor="#ff6b6b6b"
             android:textSize="14sp" />
 
-        <com.jxkj.fit_5a.view.search.ShoppingFlowLayout
+        <com.jxkj.fxtc.view.search.ShoppingFlowLayout
             android:id="@+id/flowlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:textColor="#ff6b6b6b"
             android:textSize="14sp" />
 
-        <com.jxkj.fit_5a.view.search.ShoppingFlowLayout
+        <com.jxkj.fxtc.view.search.ShoppingFlowLayout
             android:id="@+id/flowlayout_rm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

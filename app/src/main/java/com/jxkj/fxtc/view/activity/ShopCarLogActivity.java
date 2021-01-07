@@ -52,14 +52,9 @@ public class ShopCarLogActivity extends BaseActivity {
 
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        List<CarRecordListBean.ListBean> list = new ArrayList<>();
-        list.add(null);
-        list.add(null);
-        list.add(null);
-        list.add(null);
         mLvNot.setVisibility(View.GONE);
         mRvList.setVisibility(View.VISIBLE);
-        mShopCarlLogAdapter = new ShopCarlLogAdapter(list);
+        mShopCarlLogAdapter = new ShopCarlLogAdapter(null);
         mRvList.setAdapter(mShopCarlLogAdapter);
         mShopCarlLogAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -104,7 +99,7 @@ public class ShopCarLogActivity extends BaseActivity {
                             if(result.getData().getList()!=null && result.getData().getList().size()>0){
                                 mLvNot.setVisibility(View.GONE);
                                 mRefreshLayout.setVisibility(View.VISIBLE);
-//                                mShopCarlLogAdapter.setNewData(result.getData().getList());
+                                mShopCarlLogAdapter.setNewData(result.getData().getList());
                             }
                         }
 
