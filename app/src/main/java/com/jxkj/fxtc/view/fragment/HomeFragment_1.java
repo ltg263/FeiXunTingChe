@@ -16,6 +16,7 @@ import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
 import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
+import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -93,6 +94,7 @@ public class HomeFragment_1 extends BaseFragment {
                 ((MainActivity) getActivity()).homeBack(2);
                 break;
             case R.id.btn_home_4:
+                IntentUtils.getInstence().intent(getActivity(), ShopCarLogActivity.class);
                 break;
             case R.id.rl_add_car:
                 IntentUtils.getInstence().intent(getActivity(), AddCarActivity.class);

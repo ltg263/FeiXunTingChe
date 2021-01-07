@@ -4,6 +4,7 @@ package com.jxkj.fxtc.api;
 import com.jxkj.fxtc.base.LoginBean;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
+import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
@@ -126,6 +127,12 @@ public interface ApiService {
      */
     @GET("api/v1/user/bill/list")
     Observable<Result<UserBillListBean>> getBillList(@Query("billType") String billType);
+
+    /**
+     * 用户停车记录表
+     */
+    @GET("api/v1/user/carRecord/list")
+    Observable<Result<CarRecordListBean>> getCarRecordList(@Query("lotID") String lotID);
 
     /**
      * 停车导航

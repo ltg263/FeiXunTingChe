@@ -90,6 +90,7 @@
         <activity android:name=".view.activity.BookingSpaceDeActivity" />
         <activity android:name=".view.deme.ZsnaviDemoActivity" />
         <activity android:name=".view.activity.MineGrzxRecordActivity"/>
+        <activity android:name=".view.activity.ShopCarLogActivity"/>
         <activity android:name=".MainActivity"
             android:launchMode="singleTask" />
         <activity
