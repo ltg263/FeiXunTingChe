@@ -24,6 +24,7 @@ import com.jxkj.fxtc.view.activity.MineGrzxRecordActivity;
 import com.jxkj.fxtc.view.activity.MineMessageActivity;
 import com.jxkj.fxtc.view.activity.MineRegardsActivity;
 import com.jxkj.fxtc.view.activity.MineSetActivity;
+import com.jxkj.fxtc.view.activity.MineSybzActivity;
 import com.jxkj.fxtc.view.activity.MineWdqbActivity;
 import com.jxkj.fxtc.view.activity.MineYhqActivity;
 import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
@@ -107,6 +108,7 @@ public class HomeFragment_3 extends BaseFragment {
             case R.id.tv_mine_yjfk:
                 break;
             case R.id.tv_mine_sybz:
+                IntentUtils.getInstence().intent(getActivity(), MineSybzActivity.class);
                 break;
             case R.id.tv_mine_gywd:
                 IntentUtils.getInstence().intent(getActivity(), MineRegardsActivity.class);
