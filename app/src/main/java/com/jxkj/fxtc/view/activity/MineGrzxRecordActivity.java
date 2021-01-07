@@ -23,6 +23,7 @@ import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.conpoment.utils.TextUtil;
 import com.jxkj.fxtc.conpoment.widget.MatisseUtils;
+import com.jxkj.fxtc.entity.PostCarData;
 import com.zhihu.matisse.Matisse;
 
 import java.text.SimpleDateFormat;

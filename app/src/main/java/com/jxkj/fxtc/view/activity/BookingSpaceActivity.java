@@ -1,5 +1,6 @@
 package com.jxkj.fxtc.view.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,7 +13,6 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
-import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
@@ -65,7 +65,10 @@ public class BookingSpaceActivity extends BaseActivity {
         mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                IntentUtils.getInstence().intent(BookingSpaceActivity.this,BookingSpacePayActivity.class);
+                LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
+                Intent mIntent = new Intent(BookingSpaceActivity.this, BookingSpaceDeActivity.class);
+                mIntent.putExtra("data",data);
+                startActivity(mIntent);
             }
         });
         String lng = SharedUtils.singleton().get("Longitude","");

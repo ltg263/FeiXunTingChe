@@ -33,4 +33,71 @@ public class PostCarData {
             this.type = type;
         }
     }
+
+    public static class AppointmentInfo{
+
+        /**
+         * mobile : 13486697492
+         * orderType : 1
+         * appointmentTime : 2020-12-25 16:51:32
+         * appointmentEndTime : 2020-12-26 16:51:32
+         * license : 浙·C7797
+         * seatID : 1
+         */
+
+        private String mobile;
+        private String orderType;
+        private String appointmentTime;
+        private String appointmentEndTime;
+        private String license;
+        private String seatID;
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
+        }
+
+        public String getOrderType() {
+            return orderType;
+        }
+
+        public void setOrderType(String orderType) {
+            this.orderType = orderType;
+        }
+
+        public String getAppointmentTime() {
+            return appointmentTime;
+        }
+
+        public void setAppointmentTime(String appointmentTime) {
+            this.appointmentTime = appointmentTime;
+        }
+
+        public String getAppointmentEndTime() {
+            return appointmentEndTime;
+        }
+
+        public void setAppointmentEndTime(String appointmentEndTime) {
+            this.appointmentEndTime = appointmentEndTime;
+        }
+
+        public String getLicense() {
+            return license;
+        }
+
+        public void setLicense(String license) {
+            this.license = license;
+        }
+
+        public String getSeatID() {
+            return seatID;
+        }
+
+        public void setSeatID(String seatID) {
+            this.seatID = seatID;
+        }
+    }
 }

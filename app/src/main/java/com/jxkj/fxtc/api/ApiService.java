@@ -101,6 +101,12 @@ public interface ApiService {
     Observable<Result> addCar(@Body PostCarData.PostAddCarInfo addCarInfo);
 
     /**
+     * 用户添加车牌
+     */
+    @POST("api/v1/seat/appointment")
+    Observable<Result> postAppointment(@Body PostCarData.AppointmentInfo addCarInfo);
+
+    /**
      * 用户所有车牌
      */
     @GET("api/v1/user/car/list")
