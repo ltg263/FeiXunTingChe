@@ -346,6 +346,18 @@ public class StringUtil {
         public void etNo() {
         }
     }
+    public static String formatDuring(long mss) {
+        long days = mss / (1000 * 60 * 60 * 24);
+        long hours = (mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+        long minutes = (mss % (1000 * 60 * 60)) / (1000 * 60);
+        if(days==0 && hours==0){
+            return minutes + " 分 " ;
+        }
+        if(days==0){
+            return hours + "小时" + minutes + "分" ;
+        }
+        return days + "天" + hours + "小时" + minutes + "分" ;
+    }
 
     /**
      * 将html文本内容中包含img标签的图片，宽度变为屏幕宽度，高度根据宽度比例自适应

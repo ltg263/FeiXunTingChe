@@ -64,6 +64,7 @@
             android:textSize="12sp" />
 
         <LinearLayout
+            android:id="@+id/ll_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv2"
@@ -89,6 +90,36 @@
                 android:textColor="@color/color_ffffff"
                 android:textSize="13sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/tv2"
+            android:layout_marginTop="@dimen/dp_10"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_fy1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="实付：¥ 20.00"
+                android:textColor="@color/color_999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="@dimen/dimen_60dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:background="@drawable/btn_shape_e8500c"
+                android:gravity="center"
+                android:text="支付"
+                android:textColor="@color/color_ffffff"
+                android:textSize="13sp"
+                android:visibility="gone" />
         </LinearLayout>
 
 
