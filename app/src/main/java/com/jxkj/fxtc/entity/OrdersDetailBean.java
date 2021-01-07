@@ -21,6 +21,7 @@ public class OrdersDetailBean {
      * userId : 12
      */
 
+    private String parkingName;
     private String address;
     private String creatTime;
     private String delTF;
@@ -37,6 +38,14 @@ public class OrdersDetailBean {
     private String status;
     private String useTime;
     private String userId;
+
+    public String getParkingName() {
+        return parkingName;
+    }
+
+    public void setParkingName(String parkingName) {
+        this.parkingName = parkingName;
+    }
 
     public String getAddress() {
         return address;

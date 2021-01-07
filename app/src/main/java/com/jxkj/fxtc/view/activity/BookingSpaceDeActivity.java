@@ -270,7 +270,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                     @Override
                     public void onNext(Result<AppointmentBean> result) {
                         if (isDataInfoSucceed(result)) {
-                            BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity.this,result.getData().getLotID());
+                            BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity.this,result.getData());
                         }
 
                     }

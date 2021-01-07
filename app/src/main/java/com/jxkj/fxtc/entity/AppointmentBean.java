@@ -1,6 +1,9 @@
 package com.jxkj.fxtc.entity;
 
-public class AppointmentBean {
+
+import java.io.Serializable;
+
+public class AppointmentBean implements Serializable {
 
     /**
      * appoStringmentEndTime : 2020-12-26 16:51:32
@@ -22,9 +25,9 @@ public class AppointmentBean {
      * userId : 12
      */
 
-    private String appoStringmentEndTime;
-    private String appoStringmentPrice;
-    private String appoStringmentTime;
+    private String appointmentEndTime;
+    private String appointmentPrice;
+    private String appointmentTime;
     private String creatTime;
     private String delTF;
     private String expressTime;
@@ -38,30 +41,48 @@ public class AppointmentBean {
     private String seatID;
     private String status;
     private String useTime;
+    private String address;
+    private String parkingName;
     private String userId;
 
-    public String getAppoStringmentEndTime() {
-        return appoStringmentEndTime;
+    public String getParkingName() {
+        return parkingName;
     }
 
-    public void setAppoStringmentEndTime(String appoStringmentEndTime) {
-        this.appoStringmentEndTime = appoStringmentEndTime;
+    public String getAddress() {
+        return address;
     }
 
-    public String getAppoStringmentPrice() {
-        return appoStringmentPrice;
+    public void setParkingName(String parkingName) {
+        this.parkingName = parkingName;
     }
 
-    public void setAppoStringmentPrice(String appoStringmentPrice) {
-        this.appoStringmentPrice = appoStringmentPrice;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getAppoStringmentTime() {
-        return appoStringmentTime;
+    public String getAppointmentEndTime() {
+        return appointmentEndTime;
     }
 
-    public void setAppoStringmentTime(String appoStringmentTime) {
-        this.appoStringmentTime = appoStringmentTime;
+    public void setAppointmentEndTime(String appointmentEndTime) {
+        this.appointmentEndTime = appointmentEndTime;
+    }
+
+    public String getAppointmentPrice() {
+        return appointmentPrice;
+    }
+
+    public void setAppointmentPrice(String appointmentPrice) {
+        this.appointmentPrice = appointmentPrice;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     public String getCreatTime() {
