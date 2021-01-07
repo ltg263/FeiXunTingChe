@@ -221,9 +221,9 @@ public class ZsnaviDemoActivity extends BaseActivity {
      * 打开导航
      */
     private void openNavi(NaviWay way) {
-        ZsnaviManager.getInstance(this).init(new OptionBean(mEdtCode.getText().toString(), mRbTest.isChecked()));//初始化地图
-        ZsnaviManager.getInstance(this).setOnMapCallback(mapCallback);//注册地图回调
-        ZsnaviManager.getInstance(this).setOnNavigationCallback(navigationCallback);//注册导航回调
+//        ZsnaviManager.getInstance(this).init(new OptionBean(mEdtCode.getText().toString(), mRbTest.isChecked()));//初始化地图
+//        ZsnaviManager.getInstance(this).setOnMapCallback(mapCallback);//注册地图回调
+//        ZsnaviManager.getInstance(this).setOnNavigationCallback(navigationCallback);//注册导航回调
 
         ZsnaviManager.getInstance(this).startNavi(way, new CoordinateBean(Double.valueOf(mEdtLat.getText().toString()), Double.valueOf(mEdtLon.getText().toString())), mRbCast.isChecked());//开启导航
     }

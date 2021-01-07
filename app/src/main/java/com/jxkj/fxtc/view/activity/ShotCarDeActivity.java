@@ -4,8 +4,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,6 +25,10 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.deepexp.zsnavi.bean.CoordinateBean;
+import com.deepexp.zsnavi.bean.OptionBean;
+import com.deepexp.zsnavi.core.ZsnaviManager;
+import com.deepexp.zsnavi.enums.NaviWay;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
@@ -66,6 +72,8 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
     TextView mTv3;
     @BindView(R.id.tv_4)
     TextView mTv4;
+    @BindView(R.id.bnt_go)
+    LinearLayout bnt_go;
 
     @Override
     protected int getContentView() {
@@ -85,8 +93,20 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
             mTv4.setText("共 "+data.getParkingPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
         }
         initMap();
+        bnt_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNavi(NaviWay.Drive);
+            }
+        });
     }
 
+    /**
+     * 打开导航
+     */
+    private void openNavi(NaviWay way) {
+        ZsnaviManager.getInstance(this).startNavi(way, new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
+    }
 
     private void initMap() {
         //这个功能是去掉地图的logo和放大缩小图标
