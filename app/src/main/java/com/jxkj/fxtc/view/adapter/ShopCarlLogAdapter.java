@@ -9,8 +9,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.entity.CarRecordListBean;
-import com.jxkj.fxtc.entity.UserBillListBean;
-import com.jxkj.fxtc.entity.UserCarListBean;
 
 import java.util.List;
 
@@ -28,9 +26,8 @@ public class ShopCarlLogAdapter extends BaseQuickAdapter<CarRecordListBean.ListB
 
 //        ¥20/小时
         String str = "实付：<font color=\"#0199FC\">¥<big><big>" + 20 + "</big></big></font>";
-//        helper.setText(R.id.tv_time,item.getCreateTime())
-//                .setText(R.id.tv_fy, Html.fromHtml(str))
-//        .setText(R.id.tv,item.getLicense())
-//        .setText();
+        helper.setText(R.id.tv_time,item.getCreatTime())
+                .setText(R.id.tv_fy, Html.fromHtml(str))
+        .setText(R.id.tv,item.getLicense());
     }
 }

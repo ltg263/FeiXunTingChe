@@ -63,7 +63,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="-80dp"
-        android:visibility="gone"
         app:srlAccentColor="#00000000"
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="#00000000">
@@ -77,6 +76,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
+            android:background="#F8F8F8"
+            android:layout_marginHorizontal="@dimen/dimen_15dp"
             android:layout_height="match_parent" />
 
         <com.jxkj.fxtc.conpoment.widget.ClassicsFooter
