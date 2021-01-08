@@ -77,7 +77,7 @@
                         android:drawablePadding="@dimen/dimen_5dp"
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
-                        android:text="2020-12-25 16:51:32"
+                        android:text="00-00 00:00"
                         android:textColor="@color/color_333333"
                         android:textSize="14sp" />
 
@@ -102,11 +102,12 @@
                             android:background="@drawable/shape_circle_dian" />
 
                         <TextView
+                            android:id="@+id/tv_tcsc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@id/view"
                             android:layout_centerHorizontal="true"
-                            android:text="一小时30分钟" />
+                            android:text="0" />
 
                         <View
                             android:id="@+id/view"
@@ -126,7 +127,7 @@
                         android:drawablePadding="@dimen/dimen_5dp"
                         android:gravity="center"
                         android:paddingHorizontal="20dp"
-                        android:text="2020-12-25 16:51:32"
+                        android:text="00-00 00:00"
                         android:textColor="@color/color_333333"
                         android:textSize="14sp" />
 

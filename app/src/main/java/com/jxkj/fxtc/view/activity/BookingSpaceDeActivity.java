@@ -70,6 +70,8 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     TextView mStartTime;
     @BindView(R.id.end_time)
     TextView mEndTime;
+    @BindView(R.id.tv_tcsc)
+    TextView tv_tcsc;
     @BindView(R.id.et_cph)
     EditText mEtCph;
     @BindView(R.id.et_sjh)
@@ -227,12 +229,24 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
             case R.id.start_time:
                 PickerViewUtils.selectorDate(2021, 2021, this,
                         new boolean[]{false, true, true, true, true, false},
-                        time -> mStartTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)));
+                        time -> {
+                            mStartTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
+                            long start = StringUtil.getMsToTime("2021-"+mStartTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            long end = StringUtil.getMsToTime("2021-"+mEndTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            Log.e("start:","end"+end);
+                            tv_tcsc.setText(StringUtil.formatDuring(end - start));
+                        });
                 break;
             case R.id.end_time:
                 PickerViewUtils.selectorDate(2021, 2021, this,
                         new boolean[]{false, true, true, true, true, false},
-                        time -> mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)));
+                        time -> {
+                            mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
+                            long start = StringUtil.getMsToTime("2021-"+mStartTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            long end = StringUtil.getMsToTime("2021-"+mEndTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            Log.e("start:","start"+start);
+                            tv_tcsc.setText(StringUtil.formatDuring(end - start));
+                        });
                 break;
             case R.id.bnt_go:
                 postAppointment();
