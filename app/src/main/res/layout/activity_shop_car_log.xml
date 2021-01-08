@@ -50,7 +50,7 @@
             android:includeFontPadding="false"
             android:padding="@dimen/dimen_15dp"
             android:singleLine="true"
-            android:text="停车记录"
+            android:text="缴费记录"
             android:textColor="@color/color_ffffff"
             android:textSize="@dimen/dimen_20dp" />
 
