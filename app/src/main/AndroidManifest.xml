@@ -85,6 +85,7 @@
         <activity android:name=".view.activity.BookingSpaceOkActivity" />
         <activity android:name=".view.activity.ShotCarDeActivity" />
         <activity android:name=".view.activity.BookingSpacePayActivity" />
+        <activity android:name=".view.activity.BookingSpacePayDeActivity" />
         <activity android:name=".view.activity.MineBillActivity" />
         <activity android:name=".view.activity.MineFqsqActivity" />
         <activity android:name=".view.activity.BookingSpaceDeActivity"

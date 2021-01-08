@@ -21,6 +21,7 @@ public class OrdersDetailBean {
      * userId : 12
      */
 
+    private String appointmentPrice;
     private String parkingName;
     private String address;
     private String creatTime;
@@ -38,6 +39,14 @@ public class OrdersDetailBean {
     private String status;
     private String useTime;
     private String userId;
+
+    public String getAppointmentPrice() {
+        return appointmentPrice;
+    }
+
+    public void setAppointmentPrice(String appointmentPrice) {
+        this.appointmentPrice = appointmentPrice;
+    }
 
     public String getParkingName() {
         return parkingName;

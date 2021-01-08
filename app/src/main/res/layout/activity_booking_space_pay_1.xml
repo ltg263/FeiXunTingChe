@@ -213,7 +213,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dimen_5dp"
-                    android:text="2020-08-23 12:30"
+                    android:text="--"
                     android:textColor="@color/color_333333"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -330,7 +330,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dimen_15dp"
-                    android:text="¥ 23.00"
+                    android:text="¥ 00.00"
                     android:textColor="#F91C1C"
                     android:textSize="24sp" />
             </LinearLayout>
