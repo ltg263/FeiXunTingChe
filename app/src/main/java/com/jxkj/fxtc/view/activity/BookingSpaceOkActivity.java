@@ -7,9 +7,10 @@ import android.widget.TextView;
 import com.deepexp.zsnavi.bean.CoordinateBean;
 import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.deepexp.zsnavi.enums.NaviWay;
+import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
-import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.AppointmentBean;
 
 import butterknife.BindView;
@@ -33,6 +34,8 @@ public class BookingSpaceOkActivity extends BaseActivity {
     TextView mTvC;
     @BindView(R.id.tv_fy)
     TextView mTvFy;
+    @BindView(R.id.tv_z)
+    TextView tv_z;
     private AppointmentBean data;
 
     @Override
@@ -45,6 +48,14 @@ public class BookingSpaceOkActivity extends BaseActivity {
         mTvTitle.setText("预约成功");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         data = (AppointmentBean) getIntent().getSerializableExtra("data");
+        if(data!=null){
+            mTvDz.setText(data.getAddress());
+            mTvCw.setText("车位："+data.getSeatName());
+            mTvC.setText("车牌："+data.getLicense());
+            mTvFy.setText("￥："+data.getOrderPrice());
+            tv_z.setText("预留至:"+data.getExpressTime());
+
+        }
     }
 
     @OnClick({R.id.ll_back, R.id.bnt, R.id.bnt_1})
@@ -54,13 +65,12 @@ public class BookingSpaceOkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-                String lng = SharedUtils.singleton().get("Longitude","");
-                String lat = SharedUtils.singleton().get("Latitude","");
                 ZsnaviManager.getInstance(this).startNavi(NaviWay.Drive,
-                        new CoordinateBean(Double.valueOf(lat), Double.valueOf(lng)), true);//开启导航
+                        new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
                 break;
             case R.id.bnt_1:
-                BookingSpacePayActivity.startActivityIntent(this,"");
+                IntentUtils.getInstence().intent(BookingSpaceOkActivity.this, MainActivity.class);
+                finish();
                 break;
         }
     }

@@ -1,21 +1,20 @@
 package com.jxkj.fxtc.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
-import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
-import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
-import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.conpoment.utils.ToastUtil;
 import com.jxkj.fxtc.entity.AppointmentBean;
-import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.PostCarData;
-import com.jxkj.fxtc.entity.UserDetailBean;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,7 +41,7 @@ public class BookingSpacePayActivity extends BaseActivity {
     TextView tv_yyf;
     @BindView(R.id.tv_zfy)
     TextView tv_zfy;
-    AppointmentBean data;
+    AppointmentBean dataYY;
     @Override
     protected int getContentView() {
         return R.layout.activity_booking_space_pay;
@@ -50,16 +49,16 @@ public class BookingSpacePayActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        data = (AppointmentBean) getIntent().getSerializableExtra("data");
-        if(data!=null){
-            tv1.setText(data.getParkingName() + "-停车场");
-            tv_dw.setText(data.getAddress());
-            tv_jcsj.setText(data.getAppointmentTime());
-            tv_yycp.setText(data.getLicense());
-            tv_szcw.setText(data.getSeatID());
-            tv_tcjs.setText(data.getUseTime());
-            tv_yyf.setText("¥ "+data.getAppointmentPrice());
-            tv_zfy.setText("¥ "+data.getOrderPrice());
+        dataYY = (AppointmentBean) getIntent().getSerializableExtra("dataYY");
+        if(dataYY!=null){
+            tv1.setText(dataYY.getParkingName() + "-停车场");
+            tv_dw.setText(dataYY.getAddress());
+            tv_jcsj.setText(dataYY.getAppointmentTime());
+            tv_yycp.setText(dataYY.getLicense());
+            tv_szcw.setText(dataYY.getSeatName());
+            tv_tcjs.setText(dataYY.getUseTime()+"小时");
+            tv_yyf.setText("¥ "+dataYY.getAppointmentPrice());
+            tv_zfy.setText("¥ "+dataYY.getOrderPrice());
         }
     }
 
@@ -71,17 +70,53 @@ public class BookingSpacePayActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-
+                postAppointment();
                 break;
             case R.id.bnt_1:
                 goPay();
                 break;
         }
     }
+    private void postAppointment(){
+
+        RetrofitUtil.getInstance().apiService()
+                .postCancelAppointment()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<AppointmentBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<AppointmentBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            ToastUtils.showShort("取消预约成功");
+                            IntentUtils.getInstence().intent(BookingSpacePayActivity.this, MainActivity.class);
+                            finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismiss();
+                    }
+                });
+
+    }
+
+
 
     private void goPay() {
         PostCarData.PayOrdersBaen dataOrders = new PostCarData.PayOrdersBaen();
-        dataOrders.setOrderNo(data.getOrderNo());
+        dataOrders.setOrderNo(dataYY.getOrderNo());
         dataOrders.setPayType("3");//1微信2支付宝3余额
         RetrofitUtil.getInstance().apiService()
                 .postPayOrders(dataOrders)
@@ -97,7 +132,7 @@ public class BookingSpacePayActivity extends BaseActivity {
                     public void onNext(Result result) {
                         if (isDataInfoSucceed(result)) {
                             IntentUtils.getInstence().intent(BookingSpacePayActivity.this,
-                                    BookingSpaceOkActivity.class,"data",data);
+                                    BookingSpaceOkActivity.class,"data",dataYY);
                         }
 
                     }
@@ -116,8 +151,9 @@ public class BookingSpacePayActivity extends BaseActivity {
     }
 
     public static void startActivityIntent(Context mContext, AppointmentBean appointmentBean) {
-        IntentUtils.getInstence().intent(mContext,
-                BookingSpacePayActivity.class, "data", appointmentBean);
+        Intent mIntent = new Intent(mContext,BookingSpacePayActivity.class);
+        mIntent.putExtra("dataYY",appointmentBean);
+        mContext.startActivity(mIntent);
     }
 
     public static void startActivityIntent(Context mContext, String id) {

@@ -125,10 +125,16 @@ public interface ApiService {
     Observable<Result> addCar(@Body PostCarData.PostAddCarInfo addCarInfo);
 
     /**
-     * 用户添加车牌
+     *  预约车位
      */
     @POST("api/v1/seat/appointment")
     Observable<Result<AppointmentBean>> postAppointment(@Body PostCarData.AppointmentInfo addCarInfo);
+
+    /**
+     *  取消预约车位
+     */
+    @POST("api/v1/seat/appointment")
+    Observable<Result<AppointmentBean>> postCancelAppointment();
 
     /**
      * 用户所有车牌

@@ -296,6 +296,11 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                     @Override
                     public void onNext(Result<AppointmentBean> result) {
                         if (isDataInfoSucceed(result)) {
+                            result.getData().setAddress(data.getAddress());
+                            result.getData().setParkingName(data.getParkingName());
+                            result.getData().setParkingName(data.getParkingName());
+                            result.getData().setLat(data.getLat());
+                            result.getData().setLng(data.getLng());
                             BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity.this,result.getData());
                         }
 

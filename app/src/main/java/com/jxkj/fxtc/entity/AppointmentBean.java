@@ -39,11 +39,38 @@ public class AppointmentBean implements Serializable {
     private String orderPrice;
     private String orderType;
     private String seatID;
+    private String seatName;
     private String status;
     private String useTime;
     private String address;
     private String parkingName;
     private String userId;
+    private String lat;
+    private String lng;
+
+    public void setSeatName(String seatName) {
+        this.seatName = seatName;
+    }
+
+    public String getSeatName() {
+        return seatName;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
 
     public String getParkingName() {
         return parkingName;

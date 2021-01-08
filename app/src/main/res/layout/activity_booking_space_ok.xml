@@ -48,10 +48,11 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_z"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="预留至2020-11-15 14:45:03"
+                android:text="预留至0"
                 android:textColor="@color/color_999999"
                 android:textSize="13sp" />
 
