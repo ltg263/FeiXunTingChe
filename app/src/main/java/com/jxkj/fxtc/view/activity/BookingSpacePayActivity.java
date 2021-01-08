@@ -15,8 +15,6 @@ import butterknife.OnClick;
 
 public class BookingSpacePayActivity extends BaseActivity {
 
-    @BindView(R.id.ll_tcf)
-    LinearLayout mLlTcf;
     @BindView(R.id.tv1)
     TextView tv1;
     @BindView(R.id.tv_szcw)

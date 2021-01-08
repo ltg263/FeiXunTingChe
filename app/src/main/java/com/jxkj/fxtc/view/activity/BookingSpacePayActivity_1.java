@@ -37,7 +37,7 @@ public class BookingSpacePayActivity_1 extends BaseActivity {
     String id;
     @Override
     protected int getContentView() {
-        return R.layout.activity_booking_space_pay;
+        return R.layout.activity_booking_space_pay_1;
     }
 
     @Override

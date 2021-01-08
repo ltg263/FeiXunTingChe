@@ -84,7 +84,7 @@ public class MineClglActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.rl_add_car:
-                IntentUtils.getInstence().intent(this,AddCarActivity.class);
+                AddCarActivity.startActivityIntent(this,"","");
                 break;
         }
     }

@@ -54,6 +54,7 @@ public class HomeFragment_1 extends BaseFragment {
     RelativeLayout rl_add_car;
     @BindView(R.id.rl_car)
     RelativeLayout rl_car;
+    String carId = "";
 
     @Override
     protected int getContentView() {
@@ -98,10 +99,10 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), ShopCarLogActivity.class);
                 break;
             case R.id.rl_add_car:
-                IntentUtils.getInstence().intent(getActivity(), AddCarActivity.class);
+                AddCarActivity.startActivityIntent(getActivity(),"","");
                 break;
             case R.id.tv_car_name:
-                IntentUtils.getInstence().intent(getActivity(), MineClglActivity.class,"type","0");
+                AddCarActivity.startActivityIntent(getActivity(),carId,mTvCarName.getText().toString().trim());
                 break;
             case R.id.ll_search:
                 IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class,"searchType",2);
@@ -182,6 +183,7 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
     private void initUserCar(HomeBean.UserCarBean userCar) {
+        carId = userCar.getId();
         if(userCar.getStatus().equals("2")){//0未停车1已停车2已预约
             mTvCarName.setText(userCar.getParkingSeatDTO().getLicense());
             mTvCarJg.setText(userCar.getParkingSeatDTO().getUseTime());

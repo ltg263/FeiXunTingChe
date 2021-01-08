@@ -1,5 +1,7 @@
 package com.jxkj.fxtc.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,6 +12,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.conpoment.utils.ToastUtil;
 import com.jxkj.fxtc.entity.HomeBean;
@@ -34,6 +37,9 @@ public class AddCarActivity extends BaseActivity {
     @BindView(R.id.et_license)
     EditText mEtLincense;
     int type = 0;//汽油车
+    private String carId;
+    private String carName;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_add_car;
@@ -43,6 +49,12 @@ public class AddCarActivity extends BaseActivity {
     protected void initViews() {
         mTvTitle.setText("添加车辆");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
+        carId = getIntent().getStringExtra("carId");
+        carName = getIntent().getStringExtra("carName");
+        if(StringUtil.isNotBlank(carId)){
+            mEtLincense.setText(carName);
+            mTvTitle.setText("修改车辆");
+        }
     }
 
     @OnClick({R.id.ll_back, R.id.btn_1, R.id.btn_2, R.id.bnt_go})
@@ -112,5 +124,13 @@ public class AddCarActivity extends BaseActivity {
                     }
                 });
 
+    }
+
+
+    public static void startActivityIntent(Context mContext, String carId,String carName) {
+        Intent mIntent = new Intent(mContext,AddCarActivity.class);
+        mIntent.putExtra("carId",carId);
+        mIntent.putExtra("carName",carName);
+        mContext.startActivity(mIntent);
     }
 }
