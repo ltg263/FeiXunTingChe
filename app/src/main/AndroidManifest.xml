@@ -87,7 +87,8 @@
         <activity android:name=".view.activity.BookingSpacePayActivity" />
         <activity android:name=".view.activity.MineBillActivity" />
         <activity android:name=".view.activity.MineFqsqActivity" />
-        <activity android:name=".view.activity.BookingSpaceDeActivity" />
+        <activity android:name=".view.activity.BookingSpaceDeActivity"
+            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden"/>
         <activity android:name=".view.search.SearchGoodsActivity"/>
         <activity android:name=".view.search.SearchResultTopicActivity" />
         <activity android:name=".view.activity.MineGrzxRecordActivity"/>

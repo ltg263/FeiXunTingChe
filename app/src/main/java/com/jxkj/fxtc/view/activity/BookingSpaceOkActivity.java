@@ -10,6 +10,7 @@ import com.deepexp.zsnavi.enums.NaviWay;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.entity.AppointmentBean;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,6 +33,7 @@ public class BookingSpaceOkActivity extends BaseActivity {
     TextView mTvC;
     @BindView(R.id.tv_fy)
     TextView mTvFy;
+    private AppointmentBean data;
 
     @Override
     protected int getContentView() {
@@ -42,6 +44,7 @@ public class BookingSpaceOkActivity extends BaseActivity {
     protected void initViews() {
         mTvTitle.setText("预约成功");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
+        data = (AppointmentBean) getIntent().getSerializableExtra("data");
     }
 
     @OnClick({R.id.ll_back, R.id.bnt, R.id.bnt_1})

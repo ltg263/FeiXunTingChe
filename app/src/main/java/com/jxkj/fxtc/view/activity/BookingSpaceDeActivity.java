@@ -1,11 +1,15 @@
 package com.jxkj.fxtc.view.activity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -29,12 +33,15 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
+import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.PickerViewUtils;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.entity.AppointmentBean;
+import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
@@ -73,9 +80,9 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     @BindView(R.id.tv_tcsc)
     TextView tv_tcsc;
     @BindView(R.id.et_cph)
-    EditText mEtCph;
+    TextView mEtCph;
     @BindView(R.id.et_sjh)
-    EditText mEtSjh;
+    TextView mEtSjh;
 
     @Override
     protected int getContentView() {
@@ -92,6 +99,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
             mTvDw.setText(data.getAddress());
             tv_fy.setText("¥"+data.getAppointPrice()+" · 立即支付");
         }
+        mEtSjh.setText(SharedUtils.singleton().get(ConstValues.USER_PHONE,""));
         initMap();
     }
 
@@ -204,6 +212,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     @Override
     public void onResume() {
         super.onResume();
+        getUserDetail();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
         mMapView.onResume();
     }
@@ -223,7 +232,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     }
 
 
-    @OnClick({R.id.start_time, R.id.end_time, R.id.bnt_go})
+    @OnClick({R.id.start_time, R.id.end_time, R.id.bnt_go,R.id.et_cph})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.start_time:
@@ -250,6 +259,9 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                 break;
             case R.id.bnt_go:
                 postAppointment();
+                break;
+            case R.id.et_cph:
+                IntentUtils.getInstence().intent(this, MineClglActivity.class,"type","0");
                 break;
         }
     }
@@ -301,4 +313,40 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                 });
 
     }
+
+
+    private void getUserDetail() {
+        RetrofitUtil.getInstance().apiService()
+                .getDefaultCar()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<DefaultCarBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<DefaultCarBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            if(result.getData()!=null){
+                                mEtCph.setText(result.getData().getLicense());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
 }

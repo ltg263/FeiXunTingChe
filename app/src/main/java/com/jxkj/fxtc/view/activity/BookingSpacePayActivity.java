@@ -2,16 +2,27 @@ package com.jxkj.fxtc.view.activity;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
+import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.entity.AppointmentBean;
+import com.jxkj.fxtc.entity.DefaultCarBean;
+import com.jxkj.fxtc.entity.PostCarData;
+import com.jxkj.fxtc.entity.UserDetailBean;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class BookingSpacePayActivity extends BaseActivity {
 
@@ -63,9 +74,45 @@ public class BookingSpacePayActivity extends BaseActivity {
 
                 break;
             case R.id.bnt_1:
-                IntentUtils.getInstence().intent(this, BookingSpaceOkActivity.class);
+                goPay();
                 break;
         }
+    }
+
+    private void goPay() {
+        PostCarData.PayOrdersBaen dataOrders = new PostCarData.PayOrdersBaen();
+        dataOrders.setOrderNo(data.getOrderNo());
+        dataOrders.setPayType("3");//1微信2支付宝3余额
+        RetrofitUtil.getInstance().apiService()
+                .postPayOrders(dataOrders)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+                            IntentUtils.getInstence().intent(BookingSpacePayActivity.this,
+                                    BookingSpaceOkActivity.class,"data",data);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     public static void startActivityIntent(Context mContext, AppointmentBean appointmentBean) {

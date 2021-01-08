@@ -133,18 +133,19 @@
 
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cph"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_50dp"
                     android:drawablePadding="@dimen/dimen_15dp"
                     android:layout_margin="@dimen/dimen_15dp"
+                    android:hint="设置默认车辆"
                     android:background="@drawable/shape_fff_line_10"
                     android:drawableStart="@drawable/ic_yy_xqc"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/dimen_20dp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_sjh"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_50dp"

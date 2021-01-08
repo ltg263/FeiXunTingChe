@@ -3,18 +3,16 @@ package com.jxkj.fxtc.entity;
 public class SeatParkbudBean {
 
     /**
-     * creatTime : 2020-12-24 16:28:24
+     * creatTime : 2021-01-07 12:07:24
      * delTF : 0
-     * floor : 2
-     * id : 2
-     * license : 浙·T7797
-     * lotID : 1
-     * parkingLot : {"appoStringPrice":3,"creatTime":"2020-12-16 16:51:32","delTF":0,"endTime":"2020-12-16 16:51:45","freeTime":0,"id":1,"isRecommend":0,"lotAddressId":1,"parkingName":"学府一号","parkingPrice":20,"slotPrice":10,"slotTime":0,"startTime":"2020-12-16 16:51:42","status":1,"updateTime":"2020-12-16 16:51:35"}
-     * seatName : D2
-     * startTime : 2020-12-25 17:16:48
+     * floor : 1
+     * id : 7
+     * license : 气_13345
+     * lotID : 3
+     * parkingLot : {"address":"宁波海曙","appoStringPrice":3,"creatTime":"2020-12-31 10:32:30","delTF":0,"description":"每小时车费20元，不满30分钟以30分钟计，不满一小时以一小时计。","endTime":"2020-12-31T02:24:02.000Z","freeTime":1,"id":3,"lat":"29.756425","lng":"121.500975","parkingName":"银泰","parkingPrice":10,"regionID":330204,"slotPrice":10,"slotTime":3,"startTime":"2020-12-31T02:24:00.000Z","status":1,"updateTime":"2021-01-05 14:24:19"}
+     * seatName : D1
+     * startTime : 2021-01-08 17:44:01
      * status : 1
-     * updateTime : 2020-12-25 17:10:43
-     * userID : 12
      */
 
     private String creatTime;
@@ -27,8 +25,6 @@ public class SeatParkbudBean {
     private String seatName;
     private String startTime;
     private String status;
-    private String updateTime;
-    private String userID;
 
     public String getCreatTime() {
         return creatTime;
@@ -110,56 +106,54 @@ public class SeatParkbudBean {
         this.status = status;
     }
 
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
     public static class ParkingLotBean {
         /**
+         * address : 宁波海曙
          * appoStringPrice : 3
-         * creatTime : 2020-12-16 16:51:32
+         * creatTime : 2020-12-31 10:32:30
          * delTF : 0
-         * endTime : 2020-12-16 16:51:45
-         * freeTime : 0
-         * id : 1
-         * isRecommend : 0
-         * lotAddressId : 1
-         * parkingName : 学府一号
-         * parkingPrice : 20
+         * description : 每小时车费20元，不满30分钟以30分钟计，不满一小时以一小时计。
+         * endTime : 2020-12-31T02:24:02.000Z
+         * freeTime : 1
+         * id : 3
+         * lat : 29.756425
+         * lng : 121.500975
+         * parkingName : 银泰
+         * parkingPrice : 10
+         * regionID : 330204
          * slotPrice : 10
-         * slotTime : 0
-         * startTime : 2020-12-16 16:51:42
+         * slotTime : 3
+         * startTime : 2020-12-31T02:24:00.000Z
          * status : 1
-         * updateTime : 2020-12-16 16:51:35
+         * updateTime : 2021-01-05 14:24:19
          */
 
+        private String address;
         private String appoStringPrice;
         private String creatTime;
         private String delTF;
+        private String description;
         private String endTime;
         private String freeTime;
         private String id;
-        private String isRecommend;
-        private String lotAddressId;
+        private String lat;
+        private String lng;
         private String parkingName;
         private String parkingPrice;
+        private String regionID;
         private String slotPrice;
         private String slotTime;
         private String startTime;
         private String status;
         private String updateTime;
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
 
         public String getAppoStringPrice() {
             return appoStringPrice;
@@ -183,6 +177,14 @@ public class SeatParkbudBean {
 
         public void setDelTF(String delTF) {
             this.delTF = delTF;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
         }
 
         public String getEndTime() {
@@ -209,20 +211,20 @@ public class SeatParkbudBean {
             this.id = id;
         }
 
-        public String getIsRecommend() {
-            return isRecommend;
+        public String getLat() {
+            return lat;
         }
 
-        public void setIsRecommend(String isRecommend) {
-            this.isRecommend = isRecommend;
+        public void setLat(String lat) {
+            this.lat = lat;
         }
 
-        public String getLotAddressId() {
-            return lotAddressId;
+        public String getLng() {
+            return lng;
         }
 
-        public void setLotAddressId(String lotAddressId) {
-            this.lotAddressId = lotAddressId;
+        public void setLng(String lng) {
+            this.lng = lng;
         }
 
         public String getParkingName() {
@@ -239,6 +241,14 @@ public class SeatParkbudBean {
 
         public void setParkingPrice(String parkingPrice) {
             this.parkingPrice = parkingPrice;
+        }
+
+        public String getRegionID() {
+            return regionID;
+        }
+
+        public void setRegionID(String regionID) {
+            this.regionID = regionID;
         }
 
         public String getSlotPrice() {

@@ -6,6 +6,7 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.AddChangeList;
 import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.CarRecordListBean;
+import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
@@ -85,6 +86,12 @@ public interface ApiService {
     Observable<Result<UserDetailBean>> getUserDetail();
 
     /**
+     * 获取用户默认车辆
+     */
+    @GET("api/v1/user/car/getDefaultCar")
+    Observable<Result<DefaultCarBean>> getDefaultCar();
+
+    /**
      * 订单详情
      */
     @GET("api/v1/user/orders/detail")
@@ -155,7 +162,11 @@ public interface ApiService {
     Observable<Result> verifyForgetPswd(@Query("mobile") String mobile,
                                             @Query("loginPswd") String loginPswd,
                                         @Query("mobileCode") String mobileCode);
-
+    /**
+     *  支付订单
+     */
+    @POST("api/v1/user/orders/payOrders")
+    Observable<Result> postPayOrders(@Body PostCarData.PayOrdersBaen payOrdersBaen);
 
     /**
      * 忘记密码
@@ -166,6 +177,9 @@ public interface ApiService {
                                             @Query("age") String age,
                                             @Query("weight") String weight,
                                         @Query("height") String mobileCode);
+
+
+
 
     /**
      * 添加设备记录列表

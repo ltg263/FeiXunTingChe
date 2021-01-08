@@ -100,4 +100,31 @@ public class PostCarData {
             this.lotId = lotId;
         }
     }
+
+    public static class PayOrdersBaen{
+
+        /**
+         * orderNo : null20122513320146
+         * payType : 2
+         */
+
+        private String orderNo;
+        private String payType;
+
+        public String getOrderNo() {
+            return orderNo;
+        }
+
+        public void setOrderNo(String orderNo) {
+            this.orderNo = orderNo;
+        }
+
+        public String getPayType() {
+            return payType;
+        }
+
+        public void setPayType(String payType) {
+            this.payType = payType;
+        }
+    }
 }

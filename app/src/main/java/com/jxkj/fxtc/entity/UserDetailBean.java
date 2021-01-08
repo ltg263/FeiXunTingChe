@@ -26,7 +26,7 @@ public class UserDetailBean {
     private String envelopesSum;
     private String id;
     private String sex;
-    private String Stringegral;
+    private String integral;
     private String inviteCode;
     private String mobile;
     private String nickName;
@@ -92,11 +92,11 @@ public class UserDetailBean {
     }
 
     public String getIntegral() {
-        return Stringegral;
+        return integral;
     }
 
-    public void setIntegral(String Stringegral) {
-        this.Stringegral = Stringegral;
+    public void setIntegral(String integral) {
+        this.integral = integral;
     }
 
     public String getInviteCode() {

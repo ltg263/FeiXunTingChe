@@ -37,6 +37,7 @@ public class SeekCarActivity extends BaseActivity {
     TextView mTvTrsj;
     @BindView(R.id.tv_trsc)
     TextView mTvTrsc;
+    private SeatParkbudBean.ParkingLotBean parkingData;
 
     @Override
     protected int getContentView() {
@@ -65,14 +66,15 @@ public class SeekCarActivity extends BaseActivity {
                     public void onNext(Result<SeatParkbudBean> result) {
                         if (isDataInfoSucceed(result)) {
                             SeatParkbudBean data = result.getData();
+                            parkingData = data.getParkingLot();
                             mTvCqh.setText(data.getLicense());
                             mTvSzlc.setText(data.getFloor());
                             mTvSzcw.setText(data.getSeatName());
-                            mTvTrsc.setText(data.getStartTime());
+                            mTvTrsj.setText(data.getStartTime());
                             long start = StringUtil.getMsToTime(data.getStartTime(), "yyyy-MM-dd HH:mm:ss");
-                            long end = StringUtil.getMsToTime(data.getUpdateTime(), "yyyy-MM-dd HH:mm:ss");
+                            long end = System.currentTimeMillis();
                             String time = StringUtil.formatDuring(end - start);
-                            mTvTrsj.setText(time);
+                            mTvTrsc.setText(time);
                         }else{
                             SeekCarActivity.this.finish();
                         }
@@ -99,10 +101,11 @@ public class SeekCarActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-                String lng = SharedUtils.singleton().get("Longitude","");
-                String lat = SharedUtils.singleton().get("Latitude","");
-                ZsnaviManager.getInstance(SeekCarActivity.this).startNavi(NaviWay.Walk,
-                        new CoordinateBean(Double.valueOf(lat), Double.valueOf(lng)), true);//开启导航
+                if(parkingData!=null){
+                    ZsnaviManager.getInstance(SeekCarActivity.this).startNavi(NaviWay.Walk,
+                            new CoordinateBean(Double.valueOf(parkingData.getLat()),
+                                    Double.valueOf(parkingData.getLng())), true);//开启导航
+                }
                 break;
         }
     }
