@@ -4,8 +4,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.deepexp.zsnavi.bean.CoordinateBean;
+import com.deepexp.zsnavi.core.ZsnaviManager;
+import com.deepexp.zsnavi.enums.NaviWay;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,6 +51,10 @@ public class BookingSpaceOkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
+                String lng = SharedUtils.singleton().get("Longitude","");
+                String lat = SharedUtils.singleton().get("Latitude","");
+                ZsnaviManager.getInstance(this).startNavi(NaviWay.Drive,
+                        new CoordinateBean(Double.valueOf(lat), Double.valueOf(lng)), true);//开启导航
                 break;
             case R.id.bnt_1:
                 BookingSpacePayActivity.startActivityIntent(this,"");

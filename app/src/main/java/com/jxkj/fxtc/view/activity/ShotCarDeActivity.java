@@ -96,16 +96,10 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
         bnt_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNavi(NaviWay.Drive);
+                ZsnaviManager.getInstance(ShotCarDeActivity.this).startNavi(NaviWay.Drive,
+                        new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
             }
         });
-    }
-
-    /**
-     * 打开导航
-     */
-    private void openNavi(NaviWay way) {
-        ZsnaviManager.getInstance(this).startNavi(way, new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
     }
 
     private void initMap() {

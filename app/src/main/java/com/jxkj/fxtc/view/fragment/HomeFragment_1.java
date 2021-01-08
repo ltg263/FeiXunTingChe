@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
@@ -11,6 +12,7 @@ import com.jxkj.fxtc.base.BaseFragment;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
@@ -90,7 +92,11 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class);
                 break;
             case R.id.btn_home_2:
-                IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class);
+                if(StringUtil.isBlank(carId)){
+                    ToastUtils.showShort("无车辆在停车");
+                    return;
+                }
+                IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class,"carName",mTvCarName.getText().toString().trim());
                 break;
             case R.id.btn_home_3:
                 ((MainActivity) getActivity()).homeBack(2);
