@@ -14,12 +14,21 @@
 
         <TextView
             android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:text="2020-11-15 14:45:03"
             android:textColor="@color/color_999999"
             android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_orderType"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_12dp"
+            android:textColor="#E8500C"
+            android:text="停车订单"/>
     </LinearLayout>
 
     <View

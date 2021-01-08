@@ -16,6 +16,7 @@ import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.CarRecordListBean;
+import com.jxkj.fxtc.entity.OrdersListBean;
 import com.jxkj.fxtc.entity.UserBillListBean;
 import com.jxkj.fxtc.entity.UserCarListBean;
 import com.jxkj.fxtc.view.adapter.ShopCarlLogAdapter;
@@ -85,17 +86,17 @@ public class ShopCarLogActivity extends BaseActivity {
 
     private void getBillList() {
         RetrofitUtil.getInstance().apiService()
-                .getCarRecordList("1")
+                .getOrdersList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<CarRecordListBean>>() {
+                .subscribe(new Observer<Result<OrdersListBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result<CarRecordListBean> result) {
+                    public void onNext(Result<OrdersListBean> result) {
                         if (isDataInfoSucceed(result)) {
                             if(result.getData().getList()!=null && result.getData().getList().size()>0){
                                 mLvNot.setVisibility(View.GONE);
