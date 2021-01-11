@@ -127,4 +127,71 @@ public class PostCarData {
             this.payType = payType;
         }
     }
+
+    public static class InvoiceBean{
+
+        /**
+         * type : 1
+         * rise : 个人
+         * more : 电话12345678
+         * content : 内容
+         * orderId : 10
+         * email : 9999@qq.com
+         */
+
+        private String type;
+        private String rise;
+        private String more;
+        private String content;
+        private String orderId;
+        private String email;
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getRise() {
+            return rise;
+        }
+
+        public void setRise(String rise) {
+            this.rise = rise;
+        }
+
+        public String getMore() {
+            return more;
+        }
+
+        public void setMore(String more) {
+            this.more = more;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getOrderId() {
+            return orderId;
+        }
+
+        public void setOrderId(String orderId) {
+            this.orderId = orderId;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+    }
 }

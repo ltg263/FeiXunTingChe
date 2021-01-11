@@ -181,6 +181,12 @@ public interface ApiService {
     Observable<Result> postPayOrders(@Body PostCarData.PayOrdersBaen payOrdersBaen);
 
     /**
+     *  申请发票
+     */
+    @POST("api/v1/user/invoice/add")
+    Observable<Result> postInvoice(@Body PostCarData.InvoiceBean mInvoiceBean);
+
+    /**
      * 忘记密码
      */
     @POST("api/v1/user/update")

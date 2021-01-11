@@ -21,15 +21,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:background="#fff" />
-
             <LinearLayout
-
-
+                android:id="@+id/ll_search"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="#fff"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/common_margin_6">
 
                 <ImageView
                     android:id="@+id/img_top_back"
@@ -38,42 +37,52 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
+                    android:paddingTop="9dp"
                     android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
+                    android:paddingBottom="9dp"
                     android:src="@drawable/icon_back_h" />
 
-                <TextView
-
-                    android:id="@+id/tv_top_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
+                <LinearLayout
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/shape_yy_ff_all_25"
-                    android:drawableLeft="@drawable/ic_search"
-                    android:drawablePadding="5dp"
-                    android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:hint="输入商品名称"
-                    android:imeOptions="actionSearch"
-                    android:maxLength="15"
-                    android:maxLines="1"
-                    android:paddingLeft="13dp"
-                    android:singleLine="true"
-                    android:textColor="#333333"
-                    android:textColorHint="#666666"
-                    android:textSize="12sp" />
+                    android:paddingStart="@dimen/dimen_15dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dimen_5dp"
+                        android:src="@drawable/ic_search" />
+
+                    <EditText
+                        android:id="@+id/tv_top_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:hint="输入您要去的目的地"
+                        android:textColor="@color/color_333333"
+                        android:textColorHint="@color/color_999999"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
 
+                <TextView
+                    android:id="@+id/activity_search_goods_search_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:background="@drawable/btn_shape_home"
+                    android:paddingHorizontal="22dp"
+                    android:paddingVertical="@dimen/dimen_5dp"
+                    android:text="搜索"
+                    android:textColor="@color/color_ffffff"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#fff" />
         </LinearLayout>
     </RelativeLayout>
 

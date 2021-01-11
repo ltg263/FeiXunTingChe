@@ -1,9 +1,7 @@
 package com.jxkj.fxtc.view.activity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,7 +16,6 @@ import com.jxkj.fxtc.entity.OrdersDetailBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -72,7 +69,7 @@ public class BookingSpacePayDeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.iv_back, R.id.bnt, R.id.bnt_1})
+    @OnClick({R.id.iv_back, R.id.bnt, R.id.bnt_1,R.id.ll_2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -83,6 +80,9 @@ public class BookingSpacePayDeActivity extends BaseActivity {
                 break;
             case R.id.bnt_1:
                 goPay();
+                break;
+            case R.id.ll_2:
+                IntentUtils.getInstence().intent(this, MineFqsqActivity.class);
                 break;
         }
     }
@@ -151,7 +151,7 @@ public class BookingSpacePayDeActivity extends BaseActivity {
                             if(data.getStatus().equals("0")){
                                 mLl0.setVisibility(View.VISIBLE);
                             }else{
-//                                mLl2
+                                mLl2.setVisibility(View.VISIBLE);
                             }
                         }
 
