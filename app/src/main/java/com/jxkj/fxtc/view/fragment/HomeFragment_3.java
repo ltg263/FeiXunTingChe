@@ -28,6 +28,7 @@ import com.jxkj.fxtc.view.activity.MineSetActivity;
 import com.jxkj.fxtc.view.activity.MineSybzActivity;
 import com.jxkj.fxtc.view.activity.MineWdqbActivity;
 import com.jxkj.fxtc.view.activity.MineYhqActivity;
+import com.jxkj.fxtc.view.activity.MineYjfkActivity;
 import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
 
 import butterknife.BindView;
@@ -113,6 +114,7 @@ public class HomeFragment_3 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), MineFqzsActivity.class);
                 break;
             case R.id.tv_mine_yjfk:
+                IntentUtils.getInstence().intent(getActivity(), MineYjfkActivity.class);
                 break;
             case R.id.tv_mine_sybz:
                 IntentUtils.getInstence().intent(getActivity(), MineSybzActivity.class);

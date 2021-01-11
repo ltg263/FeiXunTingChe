@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/include_titlebar_common" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_15dp"
+                    android:text="问题和意见*"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/dimen_15dp"
+                    android:text="0/100"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_180dp"
+                    android:layout_below="@id/tv"
+                    android:layout_marginHorizontal="@dimen/dimen_15dp"
+                    android:background="@drawable/shape_fff_10"
+                    android:gravity="top"
+                    android:hint="留言内容...(至少10个字符）"
+                    android:padding="@dimen/dimen_12dp"
+                    android:textColor="@color/color_333333"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="@dimen/dimen_16dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_15dp">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_15dp"
+                    android:text="图片(选填，提供问题截图）"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_1"
+                    android:layout_marginHorizontal="@dimen/dimen_15dp"
+                    android:background="@drawable/shape_fff_10" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dimen_15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_15dp"
+                    android:text="联系方式"
+                    android:textColor="@color/color_999999"
+                    android:textSize="14sp" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_2"
+                    android:layout_marginHorizontal="@dimen/dimen_15dp"
+                    android:background="@drawable/shape_fff_10"
+                    android:gravity="top"
+                    android:hint="输入你的联系方式"
+                    android:inputType="phone"
+                    android:padding="@dimen/dimen_12dp"
+                    android:textColor="@color/color_333333"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="@dimen/dimen_16dp" />
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/bnt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_45dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="@dimen/dimen_45dp"
+                android:background="@drawable/btn_shape_aaa"
+                android:text="取消预约"
+                android:textColor="@color/color_ffffff"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

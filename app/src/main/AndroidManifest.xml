@@ -94,6 +94,7 @@
         <activity android:name=".view.search.SearchResultTopicActivity" />
         <activity android:name=".view.activity.MineGrzxRecordActivity"/>
         <activity android:name=".view.activity.ShopCarLogActivity"/>
+        <activity android:name=".view.activity.MineYjfkActivity"/>
         <activity android:name=".view.activity.MineSybzActivity"/>
         <activity android:name=".view.deme.ZsnaviDemoActivity"/>
         <activity android:name=".MainActivity"
