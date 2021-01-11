@@ -61,6 +61,10 @@ public class ShopCarLogActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 BookingSpacePayDeActivity.startActivityIntent(ShopCarLogActivity.this,mShopCarlLogAdapter.getData().get(position).getId());
+//                if(mShopCarlLogAdapter.getData().get(position).getStatus().equals("0")){
+//
+//                }else{
+//                }
 
             }
         });

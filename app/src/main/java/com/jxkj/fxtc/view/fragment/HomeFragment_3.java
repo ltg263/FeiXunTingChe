@@ -64,6 +64,11 @@ public class HomeFragment_3 extends BaseFragment {
     @Override
     protected void initViews() {
         Log.w("sHA1","sHA1:"+ CodeUtils.sHA1(getActivity()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         getUserDetail();
     }
 

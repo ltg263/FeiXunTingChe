@@ -70,17 +70,17 @@ public class BookingSpacePayActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-                postAppointment();
+                postAppointment(dataYY.getOrderNo());
                 break;
             case R.id.bnt_1:
                 goPay();
                 break;
         }
     }
-    private void postAppointment(){
+    private void postAppointment(String orderNo){
 
         RetrofitUtil.getInstance().apiService()
-                .postCancelAppointment()
+                .postCancelAppointment(orderNo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {
@@ -155,10 +155,4 @@ public class BookingSpacePayActivity extends BaseActivity {
         mIntent.putExtra("dataYY",appointmentBean);
         mContext.startActivity(mIntent);
     }
-
-    public static void startActivityIntent(Context mContext, String id) {
-        IntentUtils.getInstence().intent(mContext,
-                BookingSpacePayActivity.class, "id", id);
-    }
-
 }

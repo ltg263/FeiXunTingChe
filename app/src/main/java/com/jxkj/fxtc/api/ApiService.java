@@ -135,7 +135,7 @@ public interface ApiService {
      *  取消预约车位
      */
     @POST("api/v1/user/seat/overAppointment")
-    Observable<Result> postCancelAppointment();
+    Observable<Result> postCancelAppointment(@Query("orderNo") String orderNo);
 
     /**
      * 用户所有车牌

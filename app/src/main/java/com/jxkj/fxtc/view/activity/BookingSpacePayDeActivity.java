@@ -7,12 +7,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
+import com.jxkj.fxtc.entity.PostCarData;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +58,7 @@ public class BookingSpacePayDeActivity extends BaseActivity {
     TextView mTvYhq;
     @BindView(R.id.tv_zfy)
     TextView mTvZfy;
+    private OrdersDetailBean data;
 
     @Override
     protected int getContentView() {
@@ -75,10 +79,10 @@ public class BookingSpacePayDeActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-
+                postAppointment(data.getOrderNo());
                 break;
             case R.id.bnt_1:
-                IntentUtils.getInstence().intent(this, BookingSpaceOkActivity.class);
+                goPay();
                 break;
         }
     }
@@ -87,7 +91,40 @@ public class BookingSpacePayDeActivity extends BaseActivity {
         IntentUtils.getInstence().intent(mContext,
                 BookingSpacePayDeActivity.class, "id", id);
     }
+    private void postAppointment(String orderNo){
 
+        RetrofitUtil.getInstance().apiService()
+                .postCancelAppointment(orderNo)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+                            ToastUtils.showShort("取消预约成功");
+                            IntentUtils.getInstence().intent(BookingSpacePayDeActivity.this, MainActivity.class);
+                            finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismiss();
+                    }
+                });
+
+    }
     private void getOrdersDetail() {
         RetrofitUtil.getInstance().apiService()
                 .getOrdersDetail(id)
@@ -102,14 +139,20 @@ public class BookingSpacePayDeActivity extends BaseActivity {
                     @Override
                     public void onNext(Result<OrdersDetailBean> result) {
                         if (isDataInfoSucceed(result)) {
-                            tv1.setText(result.getData().getParkingName() + "-停车场");
-                            tv_dw.setText(result.getData().getAddress());
-                            mTvJcsj.setText(result.getData().getStartTime());
-                            mTvYycp.setText(result.getData().getLicense());
-                            mTvSzcw.setText(result.getData().getSeatName());
-                            mTvTcjs.setText(result.getData().getUseTime());
-                            mTvYyf.setText(result.getData().getAppointmentPrice());
-                            mTvZfy.setText("￥"+result.getData().getOrderPrice());
+                            data = result.getData();
+                            tv1.setText(data.getLotName() + "-停车场");
+                            tv_dw.setText(data.getAddress());
+                            mTvJcsj.setText(data.getStartTime());
+                            mTvYycp.setText(data.getLicense());
+                            mTvSzcw.setText(data.getSeatName());
+                            mTvTcjs.setText(data.getUseTime());
+                            mTvYyf.setText(data.getAppointmentPrice());
+                            mTvZfy.setText("￥"+data.getOrderPrice());
+                            if(data.getStatus().equals("0")){
+                                mLl0.setVisibility(View.VISIBLE);
+                            }else{
+//                                mLl2
+                            }
                         }
 
 
@@ -128,10 +171,39 @@ public class BookingSpacePayDeActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    private void goPay() {
+        PostCarData.PayOrdersBaen dataOrders = new PostCarData.PayOrdersBaen();
+        dataOrders.setOrderNo(data.getOrderNo());
+        dataOrders.setPayType("3");//1微信2支付宝3余额
+        RetrofitUtil.getInstance().apiService()
+                .postPayOrders(dataOrders)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+                            IntentUtils.getInstence().intent(BookingSpacePayDeActivity.this,
+                                    BookingSpaceOkActivity.class,"dataD",data);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 }

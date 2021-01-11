@@ -12,6 +12,7 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.AppointmentBean;
+import com.jxkj.fxtc.entity.OrdersDetailBean;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,6 +38,7 @@ public class BookingSpaceOkActivity extends BaseActivity {
     @BindView(R.id.tv_z)
     TextView tv_z;
     private AppointmentBean data;
+    private OrdersDetailBean dataD;
 
     @Override
     protected int getContentView() {
@@ -48,13 +50,20 @@ public class BookingSpaceOkActivity extends BaseActivity {
         mTvTitle.setText("预约成功");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         data = (AppointmentBean) getIntent().getSerializableExtra("data");
+        dataD = (OrdersDetailBean)getIntent().getSerializableExtra("dataD");
+        if(dataD!=null){
+            mTvDz.setText(dataD.getAddress());
+            mTvCw.setText("车位："+dataD.getSeatName());
+            mTvC.setText("车牌："+dataD.getLicense());
+            mTvFy.setText("￥："+dataD.getOrderPrice());
+            tv_z.setText("预留至:"+dataD.getExpressTime());
+        }
         if(data!=null){
             mTvDz.setText(data.getAddress());
             mTvCw.setText("车位："+data.getSeatName());
             mTvC.setText("车牌："+data.getLicense());
             mTvFy.setText("￥："+data.getOrderPrice());
             tv_z.setText("预留至:"+data.getExpressTime());
-
         }
     }
 

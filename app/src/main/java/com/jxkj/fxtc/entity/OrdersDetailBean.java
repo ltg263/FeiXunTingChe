@@ -1,6 +1,8 @@
 package com.jxkj.fxtc.entity;
 
-public class OrdersDetailBean {
+import java.io.Serializable;
+
+public class OrdersDetailBean implements Serializable {
 
     /**
      * address : 宁波海曙
@@ -22,7 +24,7 @@ public class OrdersDetailBean {
      */
 
     private String appointmentPrice;
-    private String parkingName;
+    private String lotName;
     private String address;
     private String creatTime;
     private String delTF;
@@ -39,6 +41,15 @@ public class OrdersDetailBean {
     private String status;
     private String useTime;
     private String userId;
+    private String expressTime;
+
+    public String getExpressTime() {
+        return expressTime;
+    }
+
+    public void setExpressTime(String expressTime) {
+        this.expressTime = expressTime;
+    }
 
     public String getAppointmentPrice() {
         return appointmentPrice;
@@ -48,12 +59,12 @@ public class OrdersDetailBean {
         this.appointmentPrice = appointmentPrice;
     }
 
-    public String getParkingName() {
-        return parkingName;
+    public String getLotName() {
+        return lotName;
     }
 
-    public void setParkingName(String parkingName) {
-        this.parkingName = parkingName;
+    public void setLotName(String lotName) {
+        this.lotName = lotName;
     }
 
     public String getAddress() {
