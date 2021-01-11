@@ -128,14 +128,14 @@ public interface ApiService {
     /**
      *  预约车位
      */
-    @POST("api/v1/seat/appointment")
+    @POST("api/v1/user/seat/appointment")
     Observable<Result<AppointmentBean>> postAppointment(@Body PostCarData.AppointmentInfo addCarInfo);
 
     /**
      *  取消预约车位
      */
-    @POST("api/v1/seat/appointment")
-    Observable<Result<AppointmentBean>> postCancelAppointment();
+    @POST("api/v1/user/seat/overAppointment")
+    Observable<Result> postCancelAppointment();
 
     /**
      * 用户所有车牌

@@ -83,14 +83,14 @@ public class BookingSpacePayActivity extends BaseActivity {
                 .postCancelAppointment()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<AppointmentBean>>() {
+                .subscribe(new Observer<Result>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result<AppointmentBean> result) {
+                    public void onNext(Result result) {
                         if (isDataInfoSucceed(result)) {
                             ToastUtils.showShort("取消预约成功");
                             IntentUtils.getInstence().intent(BookingSpacePayActivity.this, MainActivity.class);
