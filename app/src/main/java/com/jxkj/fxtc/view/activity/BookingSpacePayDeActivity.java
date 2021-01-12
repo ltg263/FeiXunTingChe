@@ -12,6 +12,7 @@ import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
@@ -145,7 +146,7 @@ public class BookingSpacePayDeActivity extends BaseActivity {
                             mTvJcsj.setText(data.getStartTime());
                             mTvYycp.setText(data.getLicense());
                             mTvSzcw.setText(data.getSeatName());
-                            mTvTcjs.setText(data.getUseTime());
+                            mTvTcjs.setText(StringUtil.getUseTime(data.getUseTime()));
                             mTvYyf.setText(data.getAppointmentPrice());
                             mTvZfy.setText("￥"+data.getOrderPrice());
                             if(data.getStatus().equals("0")){

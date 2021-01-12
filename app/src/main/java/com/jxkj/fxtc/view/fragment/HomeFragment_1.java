@@ -192,7 +192,7 @@ public class HomeFragment_1 extends BaseFragment {
         carId = userCar.getId();
         if(userCar.getStatus().equals("2")){//0未停车1已停车2已预约
             mTvCarName.setText(userCar.getParkingSeatDTO().getLicense());
-            mTvCarJg.setText(userCar.getParkingSeatDTO().getUseTime());
+            mTvCarJg.setText(StringUtil.getUseTime(userCar.getParkingSeatDTO().getUseTime()));
             mTvCarCw.setText(userCar.getParkingSeatDTO().getSeatName());
             mTvCarSj.setText(userCar.getParkingSeatDTO().getDelTF());
         }else{

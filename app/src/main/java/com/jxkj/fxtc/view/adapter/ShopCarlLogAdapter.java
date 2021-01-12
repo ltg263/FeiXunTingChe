@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
-import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.OrdersListBean;
 
 import java.util.List;
@@ -29,9 +29,6 @@ public class ShopCarlLogAdapter extends BaseQuickAdapter<OrdersListBean.ListBean
 //        ¥20/小时
         String str = "实付：<font color=\"#0199FC\">¥<big><big>" + item.getOrderPrice() + "</big></big></font>";
 
-        long start = StringUtil.getMsToTime(item.getStartTime(), "yyyy-MM-dd HH:mm:ss");
-        long end = StringUtil.getMsToTime(item.getEndTime(), "yyyy-MM-dd HH:mm:ss");
-        String time = StringUtil.formatDuring(end - start);
         helper.setText(R.id.tv_time, item.getCreatTime())
                 .setGone(R.id.ll_1,false)
                 .setGone(R.id.ll_2,true)
@@ -39,7 +36,7 @@ public class ShopCarlLogAdapter extends BaseQuickAdapter<OrdersListBean.ListBean
                 .setText(R.id.tv_fy1, Html.fromHtml(str))
                 .setText(R.id.tv2, item.getAddress())
                 .setText(R.id.tv_orderType,"停车费")
-                .setText(R.id.tv, item.getLicense()).setText(R.id.tv1, "车位：" + item.getSeatName() + "         时间：" + time);
+                .setText(R.id.tv, item.getLicense()).setText(R.id.tv1, "车位：" + item.getSeatName() + "         时间：" + StringUtil.getUseTime(item.getUseTime()));
         if(item.getStatus().equals("1")){//订单状态0未支付1已支付
             helper.setGone(R.id.ll_1,true)
                     .setGone(R.id.ll_2,false);

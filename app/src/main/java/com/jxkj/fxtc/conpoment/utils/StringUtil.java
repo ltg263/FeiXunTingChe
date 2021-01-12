@@ -359,6 +359,9 @@ public class StringUtil {
         return days + "天" + hours + "小时" + minutes + "分" ;
     }
 
+    public static String getUseTime(String useTime) {
+        return formatDuring(Long.valueOf(useTime)*60000);
+    }
     /**
      * 将html文本内容中包含img标签的图片，宽度变为屏幕宽度，高度根据宽度比例自适应
      **/
