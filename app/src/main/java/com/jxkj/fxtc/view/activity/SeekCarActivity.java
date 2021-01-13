@@ -103,7 +103,7 @@ public class SeekCarActivity extends BaseActivity {
                 break;
             case R.id.bnt:
                 if(parkingData!=null){
-                    ZsnaviMapUtils.openNavi(this,
+                    ZsnaviMapUtils.openNavi(this,parkingData.getParkingName(),
                             NaviWay.Walk,Double.valueOf(parkingData.getLat()), Double.valueOf(parkingData.getLng()),
                             parkingData.getMapCode(),parkingData.getPoiName());
                 }

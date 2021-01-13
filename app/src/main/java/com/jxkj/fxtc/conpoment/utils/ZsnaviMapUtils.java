@@ -21,7 +21,7 @@ public class ZsnaviMapUtils {
     /**
      * 打开导航
      */
-    public static void openNavi(Activity mContext,NaviWay way,Double lat,Double lng,String mapCode,String poiName) {
+    public static void openNavi(Activity mContext,String parkingName,NaviWay way,Double lat,Double lng,String mapCode,String poiName) {
         ZsnaviManager.getInstance(mContext).init(new OptionBean("zssw",true));//初始化地图
         ZsnaviManager.getInstance(mContext).setOnMapCallback(new IMapCallback() {
             @Override
@@ -55,7 +55,7 @@ public class ZsnaviMapUtils {
 
             @Override
             public void onNaviEnd() {
-                mContext.startActivity(new Intent(mContext,ImageAcy.class));
+                IntentUtils.getInstence().intent(mContext,ImageAcy.class,"parkingName",parkingName);
                 Toast.makeText(mContext, "到达目的地", Toast.LENGTH_SHORT).show();
             }
 

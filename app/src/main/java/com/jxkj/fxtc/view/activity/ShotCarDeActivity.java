@@ -97,7 +97,7 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
         bnt_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,
+                ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,data.getParkingName(),
                         NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
                         data.getMapCode(),data.getPoiName());
             }

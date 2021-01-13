@@ -75,7 +75,7 @@ public class BookingSpaceOkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-                ZsnaviMapUtils.openNavi(this,
+                ZsnaviMapUtils.openNavi(this,data.getParkingName(),
                         NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
                         data.getMapCode(),data.getPoiName());
                 break;
