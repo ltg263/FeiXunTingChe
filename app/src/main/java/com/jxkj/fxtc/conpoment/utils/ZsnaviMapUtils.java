@@ -1,6 +1,7 @@
 package com.jxkj.fxtc.conpoment.utils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.deepexp.zsnavi.callback.IMapCallback;
 import com.deepexp.zsnavi.callback.INavigationCallback;
 import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.deepexp.zsnavi.enums.NaviWay;
+import com.jxkj.fxtc.view.activity.ImageAcy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,7 @@ public class ZsnaviMapUtils {
 
             @Override
             public void onNaviEnd() {
+                mContext.startActivity(new Intent(mContext,ImageAcy.class));
                 Toast.makeText(mContext, "到达目的地", Toast.LENGTH_SHORT).show();
             }
 

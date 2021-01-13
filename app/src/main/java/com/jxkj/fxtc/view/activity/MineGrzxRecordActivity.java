@@ -119,7 +119,7 @@ public class MineGrzxRecordActivity extends BaseActivity {
             case R.id.tv_mine_zh:
                 break;
             case R.id.tv_mine_sr:
-                PickerViewUtils.selectorDate(1900,2020,this, new boolean[]{true, true, true, false, false, false},
+                PickerViewUtils.selectorDate(this,1900,2020, new boolean[]{true, true, true, false, false, false},
                         time -> mTvMineSr.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(time)));
                 break;
             case R.id.tv_mine_xb:

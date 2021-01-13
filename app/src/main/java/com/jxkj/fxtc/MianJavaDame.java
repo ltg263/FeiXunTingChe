@@ -3,10 +3,12 @@ package com.jxkj.fxtc;
 
 public class MianJavaDame {
     public static void main(String[] args) {
+        String time = "12-34 56:78";
 
-        System.out.println(":22222"+(System.currentTimeMillis() - 0));
-            double a = 1/0.204;
-        System.out.println(":22222"+a);
+        System.out.println(time.substring(0,2));
+        System.out.println(time.substring(3,5));
+        System.out.println(time.substring(6,8));
+        System.out.println(time.substring(9,11));
 
 
     }

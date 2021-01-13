@@ -40,12 +40,14 @@ import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.PickerViewUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
+import com.jxkj.fxtc.conpoment.utils.ToastUtil;
 import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -236,25 +238,28 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.start_time:
-                PickerViewUtils.selectorDate(2021, 2021, this,
-                        new boolean[]{false, true, true, true, true, false},
-                        time -> {
+                PickerViewUtils.selectorDateSet(this,time -> {
                             mStartTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
-                            long start = StringUtil.getMsToTime("2021-"+mStartTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
-                            long end = StringUtil.getMsToTime("2021-"+mEndTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
-                            Log.e("start:","end"+end);
-                            tv_tcsc.setText(StringUtil.formatDuring(end - start));
+                            tv_tcsc.setText("0");
+                            mEndTime.setText("00-00 00:00");
                         });
                 break;
             case R.id.end_time:
-                PickerViewUtils.selectorDate(2021, 2021, this,
-                        new boolean[]{false, true, true, true, true, false},
-                        time -> {
-                            mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
+                if(mStartTime.getText().toString().equals("00-00 00:00")){
+                    ToastUtils.showShort("先选择开始时间");
+                    return;
+                }
+                PickerViewUtils.selectorDateSet(this,time -> {
                             long start = StringUtil.getMsToTime("2021-"+mStartTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
-                            long end = StringUtil.getMsToTime("2021-"+mEndTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            long end = StringUtil.getMsToTime("2021-"+new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)+":00", "yyyy-MM-dd HH:mm:ss");
                             Log.e("start:","start"+start);
+                            Log.e("start:","end"+end);
+                            if((end - start)<0){
+                                ToastUtils.showShort("结束时间不能大于开始时间");
+                                return;
+                            }
                             tv_tcsc.setText(StringUtil.formatDuring(end - start));
+                            mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
                         });
                 break;
             case R.id.bnt_go:

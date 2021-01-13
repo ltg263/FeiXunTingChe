@@ -80,14 +80,36 @@ public class PickerViewUtils {
         void setIndex(int pos);
     }
 
-    public static void selectorDate(Context mContext, boolean[] timeType,GetTimeInterface timeInterface){
-        selectorDate(2000,2100,mContext,timeType,timeInterface);
+    public static void selectorDateSet(Context mContext,GetTimeInterface timeInterface){
+        Calendar dateS = Calendar.getInstance();
+        dateS.set(dateS.get(Calendar.YEAR),dateS.get(Calendar.MONTH),dateS.get(Calendar.DATE));
+        Calendar dateE = Calendar.getInstance();
+        dateE.set(dateE.get(Calendar.YEAR),11,31);
+
+        //时间选择器
+        TimePickerView pvTime = new TimePickerBuilder(mContext, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                //Toast.makeText(MainActivity.this, getTime(date), Toast.LENGTH_SHORT).show();
+                timeInterface.getTime(date);
+            }
+        })
+                .setType(new boolean[]{false, true, true, true, true, false})// 默认全部显示 new boolean[]{true, true, true, false, false, false};
+                .setCancelText("取消")//取消按钮文字
+                .setSubmitText("确定")//确认按钮文字
+                .setTitleText("请选时间")//标题文字
+                .isCyclic(false)//是否循环滚动
+                .setDate(Calendar.getInstance())// 如果不设置的话，默认是系统时间*/
+                .setRangDate(dateS, dateE)//起始终止年月日设定
+                .setLabel("年", "月", "日", "时", "分", "秒")//默认设置为年月日时分秒
+                .build();
+        pvTime.show();
     }
     /**
      * 时间选择器
      * @param mContext
      */
-    public static void selectorDate(int startDateyy,int endDateyy,Context mContext, boolean[] timeType,GetTimeInterface timeInterface) {
+    public static void selectorDate(Context mContext,int startDateyy,int endDateyy, boolean[] timeType,GetTimeInterface timeInterface) {
         Calendar startDate = Calendar.getInstance();
         Calendar endDate = Calendar.getInstance();
 
