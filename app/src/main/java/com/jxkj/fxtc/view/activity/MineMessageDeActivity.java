@@ -1,10 +1,8 @@
 package com.jxkj.fxtc.view.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
@@ -12,10 +10,8 @@ import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.entity.MessageListBeanDe;
-import com.jxkj.fxtc.view.adapter.MineMessageAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -94,12 +90,5 @@ public class MineMessageDeActivity extends BaseActivity {
                     }
                 });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

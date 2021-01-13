@@ -16,6 +16,7 @@ import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.MessageListBean;
+import com.jxkj.fxtc.entity.MessageListBeanDe;
 import com.jxkj.fxtc.view.adapter.MineMessageAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -69,12 +70,46 @@ public class MineMessageActivity extends BaseActivity {
         mMineMessageAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                getUserDetail(mMineMessageAdapter.getData().get(position).getId());
                 IntentUtils.getInstence().intent(MineMessageActivity.this,MineMessageDeActivity.class,
                         "id",mMineMessageAdapter.getData().get(position).getId());
             }
         });
         getUserDetail();
     }
+
+    private void getUserDetail(String id) {
+        RetrofitUtil.getInstance().apiService()
+                .getMessageRead(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
 
     private void getUserDetail() {
         RetrofitUtil.getInstance().apiService()

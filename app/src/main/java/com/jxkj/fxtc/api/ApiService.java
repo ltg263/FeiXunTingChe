@@ -101,6 +101,12 @@ public interface ApiService {
     Observable<Result<MessageListBean>> getMessageList(@Query("messageType") int messageType);
 
     /**
+     * 用户消息列表
+     */
+    @GET("api/v1/user/message/read")
+    Observable<Result> getMessageRead(@Query("id") String id);
+
+    /**
      * 消息详情
      */
     @GET("api/v1/user/message/detail")
