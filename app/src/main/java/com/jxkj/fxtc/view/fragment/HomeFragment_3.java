@@ -13,6 +13,7 @@ import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.GlideImgLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.conpoment.view.RoundImageView;
 import com.jxkj.fxtc.conpoment.widget.CodeUtils;
 import com.jxkj.fxtc.entity.HomeBean;
@@ -144,7 +145,9 @@ public class HomeFragment_3 extends BaseFragment {
                             mTvQb.setText(result.getData().getIntegral());
                             SharedUtils.singleton().put(ConstValues.AVATAR,result.getData().getAvatar());
                             SharedUtils.singleton().put(ConstValues.USER_NAME,result.getData().getNickName());
-                            SharedUtils.singleton().put(ConstValues.GENDER,result.getData().getSex());
+                            if(StringUtil.isBlank(result.getData().getSex())){
+                                SharedUtils.singleton().put(ConstValues.GENDER,result.getData().getSex());
+                            }
                             SharedUtils.singleton().put(ConstValues.BIRTHDAY,result.getData().getBalance());
                             SharedUtils.singleton().put(ConstValues.USER_PHONE,result.getData().getMobile());
                         }

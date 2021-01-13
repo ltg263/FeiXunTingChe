@@ -27,7 +27,7 @@ import butterknife.BindView;
 
 
 public class SplashScreenActivity extends Activity {
-
+    private boolean isFirstIn = true;
     Banner mBanner;
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -38,13 +38,17 @@ public class SplashScreenActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splashscreen);
         mBanner = findViewById(R.id.banner);
-
-        new Handler().postDelayed(() -> startUi(), 2000);
-//        initBanner();
+        isFirstIn = SharedUtils.singleton().get("isFirstIn",true);
+        if(isFirstIn){
+            initBanner();
+        }else{
+            new Handler().postDelayed(() -> startUi(), 3000);
+        }
     }
 
 
     private void initBanner() {
+        SharedUtils.singleton().put("isFirstIn",false);
         List<Integer> bannerUrls = new ArrayList<>();
         bannerUrls.add(R.mipmap.home_splash_1);
         bannerUrls.add(R.mipmap.home_splash_2);
@@ -68,8 +72,7 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void onPageSelected(int position) {
                 if(position==2){
-                    mBanner.stopAutoPlay();
-
+                    new Handler().postDelayed(() -> startUi(), 2000);
                 }
             }
 
@@ -79,7 +82,6 @@ public class SplashScreenActivity extends Activity {
             }
         });
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
 
         //设置图片加载器
@@ -99,12 +101,15 @@ public class SplashScreenActivity extends Activity {
 
     private void startUi() {
         MainApplication.addActivity(this);
-        startActivity(new Intent(this, MainActivity.class));
-//        if(SharedUtils.singleton().get(ConstValues.ISLOGIN,false)){
-//            startActivity(new Intent(this, MainActivity.class));
-//        }else{
-//            LoginActivity.startActivityIntent(this);
-//        }
+        if(SharedUtils.singleton().get(ConstValues.ISLOGIN,false)){
+            startActivity(new Intent(this, MainActivity.class));
+        }else{
+            LoginActivity.startActivityIntent(this);
+        }
+        if(mBanner!=null){
+            mBanner.stopAutoPlay();
+            mBanner=null;
+        }
         finish();
     }
 
