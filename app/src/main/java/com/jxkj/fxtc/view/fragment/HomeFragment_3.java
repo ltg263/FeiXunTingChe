@@ -93,8 +93,7 @@ public class HomeFragment_3 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), MineSetActivity.class);
                 break;
             case R.id.iv_msg:
-//                IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
-                IntentUtils.getInstence().intent(getActivity(), LoginActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), MineMessageActivity.class);
                 break;
             case R.id.rv_mine_grzl:
                 IntentUtils.getInstence().intent(getActivity(), MineGrzxRecordActivity.class);

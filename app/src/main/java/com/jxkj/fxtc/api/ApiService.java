@@ -9,6 +9,8 @@ import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.DefaultCarBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
 import com.jxkj.fxtc.entity.LotListBean;
+import com.jxkj.fxtc.entity.MessageListBean;
+import com.jxkj.fxtc.entity.MessageListBeanDe;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
 import com.jxkj.fxtc.entity.OrdersListBean;
 import com.jxkj.fxtc.entity.PostCarData;
@@ -91,6 +93,18 @@ public interface ApiService {
      */
     @GET("api/v1/user/car/getDefaultCar")
     Observable<Result<DefaultCarBean>> getDefaultCar();
+
+    /**
+     * 用户消息列表
+     */
+    @GET("api/v1/user/message/list")
+    Observable<Result<MessageListBean>> getMessageList(@Query("messageType") int messageType);
+
+    /**
+     * 消息详情
+     */
+    @GET("api/v1/user/message/detail")
+    Observable<Result<MessageListBeanDe>> getMessageDeList(@Query("id") String id);
 
     /**
      * 订单详情

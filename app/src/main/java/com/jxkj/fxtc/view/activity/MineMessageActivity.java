@@ -8,8 +8,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.entity.DefaultCarBean;
+import com.jxkj.fxtc.entity.MessageListBean;
 import com.jxkj.fxtc.view.adapter.MineMessageAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -17,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MineMessageActivity extends BaseActivity {
     @BindView(R.id.iv_back)
@@ -52,19 +62,53 @@ public class MineMessageActivity extends BaseActivity {
         });
 
 
-        List<String> list  = new ArrayList<>();
-        for(int i = 0;i<11;i++){
-            list.add("");
-        }
-
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        mLvNot.setVisibility(View.GONE);
-        mRvList.setVisibility(View.VISIBLE);
-        mMineMessageAdapter = new MineMessageAdapter(list);
+        mMineMessageAdapter = new MineMessageAdapter(null);
         mRvList.setAdapter(mMineMessageAdapter);
-        mLvNot.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
+        mMineMessageAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                IntentUtils.getInstence().intent(MineMessageActivity.this,MineMessageDeActivity.class,
+                        "id",mMineMessageAdapter.getData().get(position).getId());
+            }
+        });
+        getUserDetail();
     }
 
+    private void getUserDetail() {
+        RetrofitUtil.getInstance().apiService()
+                .getMessageList(1)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<MessageListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<MessageListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            if(result.getData().getList().size()>0){
+                                mLvNot.setVisibility(View.GONE);
+                                mRefreshLayout.setVisibility(View.VISIBLE);
+                                mMineMessageAdapter.setNewData(result.getData().getList());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
 }

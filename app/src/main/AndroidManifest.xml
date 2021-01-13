@@ -96,6 +96,7 @@
         <activity android:name=".view.activity.ShopCarLogActivity"/>
         <activity android:name=".view.activity.MineYjfkActivity"/>
         <activity android:name=".view.activity.MineSybzActivity"/>
+        <activity android:name=".view.activity.MineMessageDeActivity"/>
         <activity android:name=".view.activity.ImageAcy"/>
         <activity android:name=".view.deme.ZsnaviDemoActivity"/>
         <activity android:name=".MainActivity"

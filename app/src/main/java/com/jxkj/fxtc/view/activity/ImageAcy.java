@@ -28,7 +28,7 @@ public class ImageAcy extends BaseActivity {
     @Override
     protected void initViews() {
         parkingName = getIntent().getStringExtra("parkingName");
-        mTvTitle.setText("我的账单");
+        mTvTitle.setText(parkingName);
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         mLlBack.setOnClickListener(new View.OnClickListener() {
             @Override
