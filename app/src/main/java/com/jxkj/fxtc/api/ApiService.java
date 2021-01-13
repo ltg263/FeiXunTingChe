@@ -83,6 +83,13 @@ public interface ApiService {
                                          @Query("sex") String sex,@Query("nickName") String nickName);
 
     /**
+     * 用户充值
+     * @return
+     */
+    @POST("api/v1/user/amount/payAmount")
+    Observable<Result> getUserPayAmount(@Body PostCarData.PayAmount payAmount);
+
+    /**
      * 用户个人中心
      */
     @GET("api/v1/user/getDetail")

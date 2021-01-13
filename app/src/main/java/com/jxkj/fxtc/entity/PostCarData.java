@@ -194,4 +194,32 @@ public class PostCarData {
             this.email = email;
         }
     }
+
+    public static class PayAmount{
+
+        /**
+         * amount : 100
+         * payType : 1
+         */
+
+        private String amount;
+        private String payType;
+
+        public String getAmount() {
+            return amount;
+        }
+
+        public void setAmount(String amount) {
+            this.amount = amount;
+        }
+
+        public String getPayType() {
+            return payType;
+        }
+
+        public void setPayType(String payType) {
+            this.payType = payType;
+        }
+    }
+
 }

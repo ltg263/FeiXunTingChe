@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="@dimen/dp_10" />
-    <solid android:color="@color/color_text_theme" />
+    <corners android:radius="10dp" />
+    <!-- 渐变色 -->
+    <gradient
+        android:endColor="#4EB6FD"
+        android:startColor="#5F97EB"
+        android:type="linear" />
 </shape>
