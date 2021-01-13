@@ -13,11 +13,11 @@
         android:background="@color/line_color" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_70dp"
-        android:src="@mipmap/ic_logo" />
+        android:src="@drawable/ic_icon_img" />
 
     <TextView
         android:layout_width="wrap_content"

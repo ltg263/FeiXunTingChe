@@ -51,7 +51,7 @@ public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, 
                         .setVisible(R.id.tv_yycp,true);
             }
         }else{
-            helper.setVisible(R.id.tv_dh,true);
+//            helper.setVisible(R.id.tv_dh,true);
         }
 
     }

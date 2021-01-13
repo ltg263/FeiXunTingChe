@@ -5,10 +5,11 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ImageView
+    <com.youth.banner.Banner
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="center"
-        android:src="@drawable/ic_icon_img" />
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
 
 </RelativeLayout>

@@ -41,14 +41,14 @@
     <com.amap.api.maps.MapView
         android:id="@+id/mMapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dimen_150dp" />
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:id="@+id/drawer2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:background="@drawable/shape_fff_20_zy">
 
 

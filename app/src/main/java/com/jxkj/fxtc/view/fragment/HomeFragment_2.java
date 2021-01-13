@@ -77,10 +77,6 @@ public class HomeFragment_2 extends BaseFragment implements LocationSource{
     @Override
     protected void initViews() {
         initMap();
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 11; i++) {
-            list.add("");
-        }
 
         mRvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvList.setHasFixedSize(true);
@@ -236,6 +232,15 @@ public class HomeFragment_2 extends BaseFragment implements LocationSource{
 
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden){
+            mMapView.setVisibility(View.INVISIBLE);
+        }else {
+            mMapView.setVisibility(View.VISIBLE);
+        }
+    }
     private void initUiD(List<LotListBean.ListBean> infos, double lng, double lat) {
         //绘制适应大小
         LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();//存放所有点的经纬度
