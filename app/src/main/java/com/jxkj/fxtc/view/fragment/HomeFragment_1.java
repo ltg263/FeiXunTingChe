@@ -129,7 +129,7 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
 
     @Override
     public void initImmersionBar() {
-        getHome();
+//        getHome();
     }
 
     public static HomeFragment_1 newInstance() {
