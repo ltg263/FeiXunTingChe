@@ -11,6 +11,7 @@ import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.ZsnaviMapUtils;
 import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
 
@@ -74,8 +75,9 @@ public class BookingSpaceOkActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.bnt:
-                ZsnaviManager.getInstance(this).startNavi(NaviWay.Drive,
-                        new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
+                ZsnaviMapUtils.openNavi(this,
+                        NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
+                        data.getMapCode(),data.getPoiName());
                 break;
             case R.id.bnt_1:
                 IntentUtils.getInstence().intent(BookingSpaceOkActivity.this, MainActivity.class);

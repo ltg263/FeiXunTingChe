@@ -13,6 +13,7 @@ import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
+import com.jxkj.fxtc.conpoment.utils.ZsnaviMapUtils;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
 
 import butterknife.BindView;
@@ -102,9 +103,9 @@ public class SeekCarActivity extends BaseActivity {
                 break;
             case R.id.bnt:
                 if(parkingData!=null){
-                    ZsnaviManager.getInstance(SeekCarActivity.this).startNavi(NaviWay.Walk,
-                            new CoordinateBean(Double.valueOf(parkingData.getLat()),
-                                    Double.valueOf(parkingData.getLng())), true);//开启导航
+                    ZsnaviMapUtils.openNavi(this,
+                            NaviWay.Walk,Double.valueOf(parkingData.getLat()), Double.valueOf(parkingData.getLng()),
+                            parkingData.getMapCode(),parkingData.getPoiName());
                 }
                 break;
         }

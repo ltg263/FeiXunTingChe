@@ -32,6 +32,7 @@ import com.deepexp.zsnavi.enums.NaviWay;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.conpoment.utils.ZsnaviMapUtils;
 import com.jxkj.fxtc.entity.LotListBean;
 
 import java.util.List;
@@ -96,8 +97,9 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
         bnt_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZsnaviManager.getInstance(ShotCarDeActivity.this).startNavi(NaviWay.Drive,
-                        new CoordinateBean(Double.valueOf(data.getLat()), Double.valueOf(data.getLng())), true);//开启导航
+                ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,
+                        NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
+                        data.getMapCode(),data.getPoiName());
             }
         });
     }

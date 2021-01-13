@@ -47,6 +47,25 @@ public class AppointmentBean implements Serializable {
     private String userId;
     private String lat;
     private String lng;
+    private String mapCode;
+    private String poiName;
+
+
+    public String getPoiName() {
+        return poiName;
+    }
+
+    public String getMapCode() {
+        return mapCode;
+    }
+
+    public void setPoiName(String poiName) {
+        this.poiName = poiName;
+    }
+
+    public void setMapCode(String mapCode) {
+        this.mapCode = mapCode;
+    }
 
     public void setSeatName(String seatName) {
         this.seatName = seatName;

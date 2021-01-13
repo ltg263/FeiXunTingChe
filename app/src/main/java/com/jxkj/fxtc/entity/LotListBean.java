@@ -55,6 +55,8 @@ public class LotListBean {
          * lotAddressId : 1
          */
 
+        private String mapCode;
+        private String poiName;
         private String address;
         private String appoStringPrice;
         private String creatTime;
@@ -78,6 +80,22 @@ public class LotListBean {
         private String isRecommend;
         private String lotAddressId;
         private String appointPrice;
+
+        public void setPoiName(String poiName) {
+            this.poiName = poiName;
+        }
+
+        public String getPoiName() {
+            return poiName;
+        }
+
+        public void setMapCode(String mapCode) {
+            this.mapCode = mapCode;
+        }
+
+        public String getMapCode() {
+            return mapCode;
+        }
 
         public String getAppointPrice() {
             return appointPrice;

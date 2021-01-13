@@ -147,6 +147,25 @@ public class SeatParkbudBean {
         private String status;
         private String updateTime;
 
+        private String mapCode;
+        private String poiName;
+
+        public void setMapCode(String mapCode) {
+            this.mapCode = mapCode;
+        }
+
+        public void setPoiName(String poiName) {
+            this.poiName = poiName;
+        }
+
+        public String getMapCode() {
+            return mapCode;
+        }
+
+        public String getPoiName() {
+            return poiName;
+        }
+
         public String getAddress() {
             return address;
         }

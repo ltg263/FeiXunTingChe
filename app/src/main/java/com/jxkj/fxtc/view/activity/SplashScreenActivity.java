@@ -38,7 +38,9 @@ public class SplashScreenActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splashscreen);
         mBanner = findViewById(R.id.banner);
-        initBanner();
+
+        new Handler().postDelayed(() -> startUi(), 2000);
+//        initBanner();
     }
 
 
@@ -66,7 +68,8 @@ public class SplashScreenActivity extends Activity {
             @Override
             public void onPageSelected(int position) {
                 if(position==2){
-                    new Handler().postDelayed(() -> startUi(), 2000);
+                    mBanner.stopAutoPlay();
+
                 }
             }
 
