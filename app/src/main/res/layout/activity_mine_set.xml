@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_15dp"
-        android:text="中科研APP"
+        android:text="飞寻停车APP"
         android:textColor="@color/color_333333"
         android:textSize="14sp" />
 

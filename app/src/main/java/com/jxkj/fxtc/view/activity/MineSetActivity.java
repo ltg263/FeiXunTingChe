@@ -1,6 +1,5 @@
 package com.jxkj.fxtc.view.activity;
 
-import android.content.Intent;
 import android.view.View;
 
 import com.jxkj.fxtc.R;
@@ -27,7 +26,7 @@ public class MineSetActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll1:
-                startActivity(new Intent(this,LoginWjmmActivity.class));
+//                startActivity(new Intent(this,LoginWjmmActivity.class));
                 break;
             case R.id.iv_back:
                 finish();

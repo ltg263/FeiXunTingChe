@@ -331,10 +331,13 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
                         if (aMapLocation != null &&aMapLocation.getErrorCode() == 0) {
                             mlocationClient.stopLocation();
                             mListener.onLocationChanged(aMapLocation);// 显示系统小蓝点
+                            SharedUtils.singleton().put("Latitude",aMapLocation.getLatitude()+"");
+                            SharedUtils.singleton().put("Longitude",aMapLocation.getLongitude()+"");
                             getLotList(aMapLocation.getLongitude(),aMapLocation.getLatitude());
                         } else {
                             String errText = "定位失败," + aMapLocation.getErrorCode()+ ": " + aMapLocation.getErrorInfo();
                             Log.e("AmapErr",errText);
+                            ToastUtils.showShort(errText);
                         }
                     }
                 }

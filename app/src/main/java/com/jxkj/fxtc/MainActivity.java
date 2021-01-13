@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -22,15 +23,21 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.blankj.utilcode.util.ShellUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.deepexp.zsnavi.bean.CoordinateBean;
+import com.deepexp.zsnavi.callback.ILocationCallback;
+import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
 import com.jxkj.fxtc.view.fragment.HomeFragment_1;
 import com.jxkj.fxtc.view.fragment.HomeFragment_2;
 import com.jxkj.fxtc.view.fragment.HomeFragment_3;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -89,8 +96,7 @@ public class MainActivity extends BaseActivity {
         fragmentManager.beginTransaction().replace(R.id.fl_content, mFragments, "A").commitAllowingStateLoss();
 
         openLocation();
-
-        setDw();
+//        setDw();
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3})
@@ -181,16 +187,49 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 开始定位（使用定位前必须请求定位权限，否则定位失败）
+     */
     private void openLocation() {
-        if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
-            //开启定位权限,200是标识码
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 200);
-        } else {
-            //开始定位
-//            getCurrentLocationLatLng();
-        }
+        ZsnaviManager.getInstance(this).setOnLocationCallback(locationCallback);//设置定位回调
+        ZsnaviManager.getInstance(this).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
     }
+
+
+    /**
+     * 定位回调，定位成功后才能计算距离
+     */
+    ILocationCallback locationCallback = new ILocationCallback() {
+        @Override
+        public void onLocationSuccess(CoordinateBean position) {
+
+            SharedUtils.singleton().put("Latitude",position.getLatitude()+"");
+            SharedUtils.singleton().put("Longitude",position.getLongitude()+"");
+            ZsnaviManager.getInstance(MainActivity.this).stopLocation();//因为是一次定位，建议每次用完后关闭
+//            calDistance(position);
+        }
+
+        @Override
+        public void onLocationFailure() {
+            Toast.makeText(MainActivity.this, "定位坐标失败", Toast.LENGTH_SHORT).show();
+            ZsnaviManager.getInstance(MainActivity.this).stopLocation();//因为是一次定位，建议每次用完后关闭
+        }
+    };
+    /**
+     * 计算距离
+     *
+     */
+//    private void calDistance(CoordinateBean position) {
+//        List<CoordinateBean> ends = new ArrayList<>();
+//
+//        ends.add(new CoordinateBean(Double.valueOf(mEdtLat.getText().toString()), Double.valueOf(mEdtLon.getText().toString())));
+//
+//        List<Float> distances = ZsnaviManager.getInstance(this).calculateDistance(position, ends);//计算距离
+//
+//        Float distance = distances != null && distances.size() > 0 ? distances.get(0) : 0f;
+//
+//        Toast.makeText(ZsnaviDemoActivity.this, "定位距离" + distance, Toast.LENGTH_SHORT).show();
+//    }
 
     private void setDw() {
         mlocationClient = new AMapLocationClient(this);
