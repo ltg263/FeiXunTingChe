@@ -122,6 +122,7 @@ public class LoginActivity extends BaseActivity {
                             SharedUtils.singleton().put(ConstValues.TOKEN,result.getData().getTokenId());
                             SharedUtils.singleton().put(ConstValues.ISLOGIN,true);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         }
 
                     }

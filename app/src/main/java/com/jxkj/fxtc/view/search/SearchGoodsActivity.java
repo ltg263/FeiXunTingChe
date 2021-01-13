@@ -68,7 +68,7 @@ public class SearchGoodsActivity extends BaseActivity {
         if(searchType==1){
             searchEt.setHint("搜索内容或圈子");
         }else if(searchType == 2){
-            searchEt.setHint("搜索话题");
+            searchEt.setHint("搜索要去的目的地");
         }
         activity = this;
         ImmersionBar.with(this).statusBarDarkFont(true).titleBar(R.id.rl_actionbar).fitsSystemWindows(true).init();

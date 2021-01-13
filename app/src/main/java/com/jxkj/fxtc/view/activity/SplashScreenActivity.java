@@ -2,28 +2,31 @@ package com.jxkj.fxtc.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
+import com.deepexp.zsnavi.bean.CoordinateBean;
+import com.deepexp.zsnavi.callback.ILocationCallback;
+import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
-import com.jxkj.fxtc.entity.HomeBean;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
-import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 
 public class SplashScreenActivity extends Activity {
@@ -112,6 +115,4 @@ public class SplashScreenActivity extends Activity {
         }
         finish();
     }
-
-
 }

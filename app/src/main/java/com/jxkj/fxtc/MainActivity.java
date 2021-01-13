@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -29,6 +30,7 @@ import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.view.activity.SplashScreenActivity;
 import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
 import com.jxkj.fxtc.view.fragment.HomeFragment_1;
 import com.jxkj.fxtc.view.fragment.HomeFragment_2;
@@ -77,6 +79,7 @@ public class MainActivity extends BaseActivity {
     public AMapLocationClient mlocationClient;
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -92,51 +95,48 @@ public class MainActivity extends BaseActivity {
         fragmentManager = getSupportFragmentManager();
 
         mFragments = mHomeFragment1;
-        howFragment(1,mIvMain1,mTvMain1);
+        howFragment(1, mIvMain1, mTvMain1);
         fragmentManager.beginTransaction().replace(R.id.fl_content, mFragments, "A").commitAllowingStateLoss();
-
-        openLocation();
-//        setDw();
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_main_1:
-                howFragment(1,mIvMain1,mTvMain1);
-                switchFragment(mHomeFragment1,"A");
+                howFragment(1, mIvMain1, mTvMain1);
+                switchFragment(mHomeFragment1, "A");
                 break;
             case R.id.ll_main_2:
-                howFragment(2,mIvMain2,mTvMain2);
-                switchFragment(mHomeFragment2,"B");
+                howFragment(2, mIvMain2, mTvMain2);
+                switchFragment(mHomeFragment2, "B");
                 break;
             case R.id.ll_main_3:
-                howFragment(3,mIvMain3,mTvMain3);
-                switchFragment(mHomeFragment3,"C");
+                howFragment(3, mIvMain3, mTvMain3);
+                switchFragment(mHomeFragment3, "C");
                 break;
         }
     }
 
-    public void homeBack(int pos){
+    public void homeBack(int pos) {
 
         switch (pos) {
             case 1:
-                howFragment(1,mIvMain1,mTvMain1);
-                switchFragment(mHomeFragment1,"A");
+                howFragment(1, mIvMain1, mTvMain1);
+                switchFragment(mHomeFragment1, "A");
                 break;
             case 2:
-                howFragment(2,mIvMain2,mTvMain2);
-                switchFragment(mHomeFragment2,"B");
+                howFragment(2, mIvMain2, mTvMain2);
+                switchFragment(mHomeFragment2, "B");
                 break;
             case 3:
-                howFragment(3,mIvMain3,mTvMain3);
-                switchFragment(mHomeFragment3,"C");
+                howFragment(3, mIvMain3, mTvMain3);
+                switchFragment(mHomeFragment3, "C");
                 break;
         }
     }
 
 
-    private void howFragment(int pos, ImageView iv,TextView tv){
+    private void howFragment(int pos, ImageView iv, TextView tv) {
         mIvMain1.setSelected(false);
         mIvMain2.setSelected(false);
         mIvMain3.setSelected(false);
@@ -151,7 +151,6 @@ public class MainActivity extends BaseActivity {
     /**
      * 切换Fragment
      * <p>(hide、show、add)860722
-     *
      */
     private void switchFragment(Fragment mCurrentFragment, String tag) {
         if (mFragments != mCurrentFragment) {
@@ -187,34 +186,23 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    /**
-     * 开始定位（使用定位前必须请求定位权限，否则定位失败）
-     */
-    private void openLocation() {
-        ZsnaviManager.getInstance(this).setOnLocationCallback(locationCallback);//设置定位回调
-        ZsnaviManager.getInstance(this).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
+    // Activity中
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // 获取到Activity下的Fragment
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments == null) {
+            return;
+        }
+        // 查找在Fragment中onRequestPermissionsResult方法并调用
+        for (Fragment fragment : fragments) {
+            if (fragment != null) {
+                // 这里就会调用我们Fragment中的onRequestPermissionsResult方法
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
     }
-
-
-    /**
-     * 定位回调，定位成功后才能计算距离
-     */
-    ILocationCallback locationCallback = new ILocationCallback() {
-        @Override
-        public void onLocationSuccess(CoordinateBean position) {
-
-            SharedUtils.singleton().put("Latitude",position.getLatitude()+"");
-            SharedUtils.singleton().put("Longitude",position.getLongitude()+"");
-            ZsnaviManager.getInstance(MainActivity.this).stopLocation();//因为是一次定位，建议每次用完后关闭
-//            calDistance(position);
-        }
-
-        @Override
-        public void onLocationFailure() {
-            Toast.makeText(MainActivity.this, "定位坐标失败", Toast.LENGTH_SHORT).show();
-            ZsnaviManager.getInstance(MainActivity.this).stopLocation();//因为是一次定位，建议每次用完后关闭
-        }
-    };
     /**
      * 计算距离
      *
@@ -230,50 +218,4 @@ public class MainActivity extends BaseActivity {
 //
 //        Toast.makeText(ZsnaviDemoActivity.this, "定位距离" + distance, Toast.LENGTH_SHORT).show();
 //    }
-
-    private void setDw() {
-        mlocationClient = new AMapLocationClient(this);
-        //初始化定位参数
-        mLocationOption = new AMapLocationClientOption();
-        //设置定位监听
-        mlocationClient.setLocationListener(new AMapLocationListener() {
-            @Override
-            public void onLocationChanged(AMapLocation aMapLocation) {
-                if (aMapLocation != null) {
-                    if (aMapLocation.getErrorCode() == 0) {
-                        Log.e("AmapError","location Error, ErrCode:"+aMapLocation.getLatitude());
-                        //定位成功回调信息，设置相关消息
-                        aMapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
-                        aMapLocation.getLatitude();//获取纬度
-                        aMapLocation.getLongitude();//获取经度
-                        aMapLocation.getAccuracy();//获取精度信息
-                        SharedUtils.singleton().put("Latitude",aMapLocation.getLatitude()+"");
-                        SharedUtils.singleton().put("Longitude",aMapLocation.getLongitude()+"");
-                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                        Date date = new Date(aMapLocation.getTime());
-                        df.format(date);//定位时间
-                    } else {
-                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                        Log.e("AmapError","location Error, ErrCode:"
-                                + aMapLocation.getErrorCode() + ", errInfo:"
-                                + aMapLocation.getErrorInfo());
-                    }
-                }
-            }
-        });
-        //设置定位模式为高精度模式，Battery_Saving为低功耗模式，Device_Sensors是仅设备模式
-        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        //设置定位间隔,单位毫秒,默认为2000ms
-        mLocationOption.setInterval(2000);
-        //设置定位参数
-        mlocationClient.setLocationOption(mLocationOption);
-        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-        // 注意设置合适的定位时间的间隔（最小间隔支持为1000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-        // 在定位结束后，在合适的生命周期调用onDestroy()方法
-        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-        //启动定位
-        mlocationClient.startLocation();
-    }
-
-
 }

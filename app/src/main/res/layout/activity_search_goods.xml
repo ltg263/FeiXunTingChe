@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_10"
                         android:background="@null"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:hint="输入您要去的目的地"
                         android:textColor="@color/color_333333"
                         android:textColorHint="@color/color_999999"

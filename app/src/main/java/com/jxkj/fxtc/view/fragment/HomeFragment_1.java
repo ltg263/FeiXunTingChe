@@ -1,31 +1,30 @@
 package com.jxkj.fxtc.view.fragment;
 
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
-import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
-import com.amap.api.maps.model.MarkerOptions;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.deepexp.zsnavi.bean.CoordinateBean;
+import com.deepexp.zsnavi.callback.ILocationCallback;
+import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
@@ -40,7 +39,6 @@ import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
-import com.jxkj.fxtc.view.activity.MineClglActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
@@ -63,7 +61,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 1000D 订单管理
  */
-public class HomeFragment_1 extends BaseFragment implements LocationSource {
+public class HomeFragment_1 extends BaseFragment {
 
 
     @BindView(R.id.banner)
@@ -88,6 +86,8 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
     MapView mMapView;
     AMap aMap;
     String carId = "";
+    @BindView(R.id.tv_search)
+    TextView mTvSearch;
     private BookingSpaceAdapter mBookingSpaceAdapter;
 
     @Override
@@ -109,20 +109,20 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
                 Intent mIntent = new Intent(getActivity(), ShotCarDeActivity.class);
-                mIntent.putExtra("data",data);
+                mIntent.putExtra("data", data);
                 startActivity(mIntent);
             }
         });
-        initMap();
+        openLocation();
         getHome();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden){
+        if (hidden) {
             mMapView.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             mMapView.setVisibility(View.VISIBLE);
         }
     }
@@ -138,18 +138,18 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
     }
 
 
-    @OnClick({R.id.ll_search,R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,R.id.rl_add_car,R.id.tv_car_name})
+    @OnClick({R.id.tv_search,R.id.iv_search, R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4, R.id.rl_add_car, R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
                 IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class);
                 break;
             case R.id.btn_home_2:
-                if(StringUtil.isBlank(carId)){
+                if (StringUtil.isBlank(carId)) {
                     ToastUtils.showShort("无车辆在停车");
                     return;
                 }
-                IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class,"carName",mTvCarName.getText().toString().trim());
+                IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class, "carName", mTvCarName.getText().toString().trim());
                 break;
             case R.id.btn_home_3:
                 ((MainActivity) getActivity()).homeBack(2);
@@ -158,16 +158,80 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
                 IntentUtils.getInstence().intent(getActivity(), ShopCarLogActivity.class);
                 break;
             case R.id.rl_add_car:
-                AddCarActivity.startActivityIntent(getActivity(),"","");
+                AddCarActivity.startActivityIntent(getActivity(), "", "");
                 break;
             case R.id.tv_car_name:
-                AddCarActivity.startActivityIntent(getActivity(),carId,mTvCarName.getText().toString().trim());
+                AddCarActivity.startActivityIntent(getActivity(), carId, mTvCarName.getText().toString().trim());
                 break;
-            case R.id.ll_search:
-                IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class,"searchType",2);
+            case R.id.iv_search:
+                if(mTvSearch.getVisibility()==View.INVISIBLE){
+                    mTvSearch.setVisibility(View.VISIBLE);
+                }else{
+                    mTvSearch.setVisibility(View.INVISIBLE);
+                }
+
+                break;
+            case R.id.tv_search:
+                IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class, "searchType", 2);
                 break;
         }
     }
+
+
+    /**
+     * 开始定位（使用定位前必须请求定位权限，否则定位失败）
+     */
+    private void openLocation() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {//未开启定位权限
+            //开启定位权限,200是标识码
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        } else {
+            Log.w("requestCode:", "requestCode-----:");
+            //开始定位
+            ZsnaviManager.getInstance(getActivity()).setOnLocationCallback(locationCallback);//设置定位回调
+            ZsnaviManager.getInstance(getActivity()).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.w("requestCode:", "requestCode:" + requestCode);
+        switch (requestCode) {
+            case 200:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    ZsnaviManager.getInstance(getActivity()).setOnLocationCallback(locationCallback);//设置定位回调
+                    ZsnaviManager.getInstance(getActivity()).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    /**
+     * 定位回调，定位成功后才能计算距离
+     */
+    ILocationCallback locationCallback = new ILocationCallback() {
+        @Override
+        public void onLocationSuccess(CoordinateBean position) {
+            initMap();
+            SharedUtils.singleton().put("Latitude", position.getLatitude() + "");
+            SharedUtils.singleton().put("Longitude", position.getLongitude() + "");
+//            Toast.makeText(getActivity(), "定位坐标" + position.getLatitude() + "----" + position.getLongitude(), Toast.LENGTH_SHORT).show();
+            getLotList(position.getLongitude() + "", position.getLatitude() + "");
+            ZsnaviManager.getInstance(getActivity()).stopLocation();//因为是一次定位，建议每次用完后关闭
+
+        }
+
+        @Override
+        public void onLocationFailure() {
+            Toast.makeText(getActivity(), "定位坐标失败", Toast.LENGTH_SHORT).show();
+            ZsnaviManager.getInstance(getActivity()).stopLocation();//因为是一次定位，建议每次用完后关闭
+        }
+    };
 
     private void initMap() {
         //这个功能是去掉地图的logo和放大缩小图标
@@ -179,7 +243,7 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
 //        mUiSettings.setAllGesturesEnabled(false);
 
         // 设置定位监听
-        aMap.setLocationSource(this);
+//        aMap.setLocationSource(this);
         // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setMyLocationEnabled(true);
         // 设置定位的类型为定位模式，有定位、跟随或地图根据面向方向旋转几种
@@ -189,11 +253,45 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
         aMap.setOnMarkerClickListener(new AMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Log.i("lgq","dianjiddd===="+marker.getPeriod());//获取markerID
+                Log.i("lgq", "dianjiddd====" + marker.getPeriod());//获取markerID
 //                getBoxReceive(marker.getPeriod()+"");
                 return true;
             }
         });
+
+    }
+
+    private void getLotList(String lng, String lat) {
+        RetrofitUtil.getInstance().apiService()
+                .getLotList(null, null, lng, lat)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<LotListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<LotListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            mBookingSpaceAdapter.setNewData(result.getData().getList());
+//                            initUiD(result.getData().getList(),lng,lat);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     private void getHome() {
@@ -270,12 +368,12 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
 
     private void initUserCar(HomeBean.UserCarBean userCar) {
         carId = userCar.getId();
-        if(userCar.getStatus().equals("2")){//0未停车1已停车2已预约
+        if (userCar.getStatus().equals("2")) {//0未停车1已停车2已预约
             mTvCarName.setText(userCar.getParkingSeatDTO().getLicense());
             mTvCarJg.setText(StringUtil.getUseTime(userCar.getParkingSeatDTO().getUseTime()));
             mTvCarCw.setText(userCar.getParkingSeatDTO().getSeatName());
             mTvCarSj.setText(userCar.getParkingSeatDTO().getDelTF());
-        }else{
+        } else {
             mTvCarName.setText(userCar.getLicense());
         }
     }
@@ -310,121 +408,6 @@ public class HomeFragment_1 extends BaseFragment implements LocationSource {
         mBanner.start();
     }
 
-    OnLocationChangedListener mListener;
-    AMapLocationClient mlocationClient;
-    AMapLocationClientOption mLocationOption;
-
-    @Override
-    public void activate(OnLocationChangedListener listener) {
-
-        mListener = listener;
-        if (mlocationClient == null) {
-            //初始化定位
-            mlocationClient = new AMapLocationClient(getActivity());
-            //初始化定位参数
-            mLocationOption = new AMapLocationClientOption();
-            //设置定位回调监听
-            mlocationClient.setLocationListener(new AMapLocationListener() {
-                @Override
-                public void onLocationChanged(AMapLocation aMapLocation) {
-                    if (mListener != null&&aMapLocation != null) {
-                        if (aMapLocation != null &&aMapLocation.getErrorCode() == 0) {
-                            mlocationClient.stopLocation();
-                            mListener.onLocationChanged(aMapLocation);// 显示系统小蓝点
-                            SharedUtils.singleton().put("Latitude",aMapLocation.getLatitude()+"");
-                            SharedUtils.singleton().put("Longitude",aMapLocation.getLongitude()+"");
-                            getLotList(aMapLocation.getLongitude(),aMapLocation.getLatitude());
-                        } else {
-                            String errText = "定位失败," + aMapLocation.getErrorCode()+ ": " + aMapLocation.getErrorInfo();
-                            Log.e("AmapErr",errText);
-                            ToastUtils.showShort(errText);
-                        }
-                    }
-                }
-            });
-            //设置为高精度定位模式
-            mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-            //设置定位参数
-            mlocationClient.setLocationOption(mLocationOption);
-            // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-            // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-            // 在定位结束后，在合适的生命周期调用onDestroy()方法
-            // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-            mlocationClient.startLocation();//启动定位
-        }
-    }
-
-    @Override
-    public void deactivate() {
-        mListener = null;
-        if (mlocationClient != null) {
-            mlocationClient.stopLocation();
-            mlocationClient.onDestroy();
-        }
-        mlocationClient = null;
-    }
-
-    private void getLotList(double lng,double lat) {
-        RetrofitUtil.getInstance().apiService()
-                .getLotList(null, null, String.valueOf(lng), String.valueOf(lat))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<LotListBean>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Result<LotListBean> result) {
-                        if (isDataInfoSucceed(result)) {
-                            mBookingSpaceAdapter.setNewData(result.getData().getList());
-//                            initUiD(result.getData().getList(),lng,lat);
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-    }
-
-    private void initUiD(List<LotListBean.ListBean> infos, double lng, double lat) {
-        //绘制适应大小
-        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();//存放所有点的经纬度
-        boundsBuilder.include(new LatLng(lat,lng));
-        for (int i = 0; i < infos.size(); i++) {
-            LotListBean.ListBean info = infos.get(i);
-            LatLng latLng = new LatLng(Double.valueOf(info.getLat()), Double.valueOf(info.getLng()));
-            MarkerOptions mMarkerOptions = new MarkerOptions().position(latLng);
-            mMarkerOptions.icon(BitmapDescriptorFactory.
-                    fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_tcc)));
-            mMarkerOptions.period(Integer.valueOf(info.getId()));
-            aMap.addMarker(mMarkerOptions);
-            boundsBuilder.include(latLng);//把所有点都include进去（LatLng类型）
-
-        }
-        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 200));//第二个参数为四周留空宽度
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
-        mMapView.onDestroy();
-        if(null != mlocationClient){
-            mlocationClient.onDestroy();
-        }
-    }
 
     @Override
     public void onResume() {

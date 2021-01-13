@@ -1,5 +1,6 @@
 package com.jxkj.fxtc.view.search;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,7 +13,9 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.entity.LotListBean;
+import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -57,7 +60,10 @@ public class SearchResultTopicActivity extends BaseActivity {
         mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
+                Intent mIntent = new Intent(SearchResultTopicActivity.this, ShotCarDeActivity.class);
+                mIntent.putExtra("data", data);
+                startActivity(mIntent);
             }
         });
         getAllTopic();
@@ -74,8 +80,10 @@ public class SearchResultTopicActivity extends BaseActivity {
     }
 
     private void getAllTopic(){
+        String lng = SharedUtils.singleton().get("Longitude", "");
+        String lat = SharedUtils.singleton().get("Latitude", "");
         RetrofitUtil.getInstance().apiService()
-                .getLotList("",search,"","")
+                .getLotList(null,search,lng,lat)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LotListBean>>() {
