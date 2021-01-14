@@ -89,7 +89,7 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
             String str = "<font color=\"#0199FC\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
             mTvJg.setText(Html.fromHtml(str));
             mTvDw.setText(data.getAddress());
-            mTvContent.setText("营业时间：" + data.getStartTime() + "-" + data.getEndTime());
+            mTvContent.setText("营业时间：" + data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
             mTv2.setText(data.getDescription());
             mTv4.setText("共 "+data.getParkingPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
         }
