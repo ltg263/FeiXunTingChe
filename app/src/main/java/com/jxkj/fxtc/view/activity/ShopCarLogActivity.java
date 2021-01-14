@@ -53,8 +53,6 @@ public class ShopCarLogActivity extends BaseActivity {
 
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        mLvNot.setVisibility(View.GONE);
-        mRvList.setVisibility(View.VISIBLE);
         mShopCarlLogAdapter = new ShopCarlLogAdapter(null);
         mRvList.setAdapter(mShopCarlLogAdapter);
         mShopCarlLogAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

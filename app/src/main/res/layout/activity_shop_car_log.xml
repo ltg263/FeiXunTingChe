@@ -64,6 +64,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="-80dp"
         app:srlAccentColor="#00000000"
+        android:visibility="gone"
         app:srlEnablePreviewInEditMode="true"
         app:srlPrimaryColor="#00000000">
 

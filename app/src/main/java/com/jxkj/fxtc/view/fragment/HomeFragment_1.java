@@ -34,6 +34,7 @@ import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
+import com.jxkj.fxtc.conpoment.utils.ToastUtil;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.LotListBean;
@@ -138,11 +139,13 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
 
-    @OnClick({R.id.tv_search,R.id.iv_search, R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4, R.id.rl_add_car, R.id.tv_car_name})
+    @OnClick({R.id.tv_search,R.id.iv_search, R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,
+            R.id.btn_home_5,R.id.btn_home_6,R.id.btn_home_7,R.id.btn_home_8,
+            R.id.rl_add_car, R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
-                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class);
+                ToastUtils.showShort("努力开发中...");
                 break;
             case R.id.btn_home_2:
                 if (StringUtil.isBlank(carId)) {
@@ -152,10 +155,22 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class, "carName", mTvCarName.getText().toString().trim());
                 break;
             case R.id.btn_home_3:
-                ((MainActivity) getActivity()).homeBack(2);
+                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class);
                 break;
             case R.id.btn_home_4:
+                ToastUtils.showShort("努力开发中...");
+                break;
+            case R.id.btn_home_5:
+                ToastUtils.showShort("努力开发中...");
+                break;
+            case R.id.btn_home_6:
                 IntentUtils.getInstence().intent(getActivity(), ShopCarLogActivity.class);
+                break;
+            case R.id.btn_home_7:
+                ToastUtils.showShort("努力开发中...");
+                break;
+            case R.id.btn_home_8:
+                ToastUtils.showShort("努力开发中...");
                 break;
             case R.id.rl_add_car:
                 AddCarActivity.startActivityIntent(getActivity(), "", "");

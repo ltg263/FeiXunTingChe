@@ -3,12 +3,9 @@ package com.jxkj.fxtc;
 
 public class MianJavaDame {
     public static void main(String[] args) {
-        String time = "12-34 56:78";
+        String time = "2020-12-16 16:51:42";
 
-        System.out.println(time.substring(0,2));
-        System.out.println(time.substring(3,5));
-        System.out.println(time.substring(6,8));
-        System.out.println(time.substring(9,11));
+        System.out.println(time.substring(11,16));
 
 
     }

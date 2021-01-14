@@ -28,7 +28,7 @@ public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, 
         String str = "<font color=\"#0199FC\">¥<big><big>" + item.getParkingPrice() + "</big></big></font>/小时";
         helper.setText(R.id.tv_time, Html.fromHtml(str));
         helper.setText(R.id.tv1, item.getParkingName() + "-停车场").setText(R.id.tv_dw, item.getAddress())
-                .setText(R.id.tv_content, "营业时间：" + item.getStartTime() + "-" + item.getEndTime())
+                .setText(R.id.tv_content, "营业时间：" + item.getStartTime().substring(11,16) + "-" + item.getEndTime().substring(11,16))
                 .setText(R.id.tv_jl, "距你" + item.getDistance() + "km")
                 .setText(R.id.tv_cw, "剩余车位" + item.getSeatCount() + "个")
                 .setVisible(R.id.tv_yycp,false)
@@ -45,10 +45,10 @@ public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, 
             }
 
             if(item.getIsRecommend().equals("1")){
-                helper.setVisible(R.id.iv1,true)
-                        .setVisible(R.id.iv2,true)
-                        .setVisible(R.id.iv3,true)
-                        .setVisible(R.id.tv_yycp,true);
+                helper.setVisible(R.id.tv_yycp,true);
+//                        .setVisible(R.id.iv1,true)
+//                        .setVisible(R.id.iv2,true)
+//                        .setVisible(R.id.iv3,true);
             }
         }else{
 //            helper.setVisible(R.id.tv_dh,true);
