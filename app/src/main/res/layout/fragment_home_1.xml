@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F8F8"
+    android:background="@color/color_ffffff"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/dimen_15dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/dimen_15dp">
 
         <LinearLayout
             android:layout_width="@dimen/dimen_0dp"
@@ -118,6 +118,7 @@
                     android:text="停车换乘" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,11 +175,30 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.amap.api.maps.MapView
-                android:id="@+id/mMapView"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginHorizontal="@dimen/dimen_15dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:background="@drawable/ic_shade_img">
+                <com.jxkj.fxtc.conpoment.widget.MyMapView
+                    android:id="@+id/mMapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_margin="5dp" />
+
+            </RelativeLayout>
+
+
+            <com.jxkj.fxtc.conpoment.widget.MyRecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginTop="-25dp"
+                android:background="@drawable/ic_shade_img"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+
 
             <com.youth.banner.Banner
                 android:id="@+id/banner_ad"
@@ -188,14 +208,6 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:visibility="gone" />
-
-            <com.jxkj.fxtc.conpoment.widget.MyRecyclerView
-                android:id="@+id/rv_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                android:scrollbars="none" />
-
 
             <TextView
                 android:layout_width="wrap_content"

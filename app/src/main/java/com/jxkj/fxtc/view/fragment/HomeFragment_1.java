@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.conpoment.utils.ToastUtil;
+import com.jxkj.fxtc.conpoment.widget.MyMapView;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
 import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.LotListBean;
@@ -84,12 +87,14 @@ public class HomeFragment_1 extends BaseFragment {
     @BindView(R.id.rv_list)
     MyRecyclerView mRvList;
     @BindView(R.id.mMapView)
-    MapView mMapView;
+    MyMapView mMapView;
     AMap aMap;
     String carId = "";
     @BindView(R.id.tv_search)
     TextView mTvSearch;
     private BookingSpaceAdapter mBookingSpaceAdapter;
+    private TranslateAnimation mShowAction;
+    private TranslateAnimation mHiddenAction;
 
     @Override
     protected int getContentView() {
@@ -116,6 +121,22 @@ public class HomeFragment_1 extends BaseFragment {
         });
         openLocation();
         getHome();
+//        ss();
+//        yy();
+    }
+    private void ss(){
+        mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                -1.0f, Animation.RELATIVE_TO_SELF, -0.0f);
+        mShowAction.setRepeatMode(Animation.REVERSE);
+        mShowAction.setDuration(500);
+    }
+    private void yy(){
+        mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                -1.0f);
+        mHiddenAction.setDuration(500);
     }
 
     @Override
@@ -180,8 +201,10 @@ public class HomeFragment_1 extends BaseFragment {
                 break;
             case R.id.iv_search:
                 if(mTvSearch.getVisibility()==View.INVISIBLE){
+//                    mTvSearch.startAnimation(mShowAction);//开始动画
                     mTvSearch.setVisibility(View.VISIBLE);
                 }else{
+//                    mTvSearch.startAnimation(mHiddenAction);//开始动画
                     mTvSearch.setVisibility(View.INVISIBLE);
                 }
 

@@ -20,13 +20,17 @@ public class MyMapView extends TextureMapView {
         super(context, attributeSet, i);
     }
 
-    public MyMapView(Context context, AMapOptions aMapOptions) {
-        super(context, aMapOptions);
-    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        getParent().requestDisallowInterceptTouchEvent(true);
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                getParent().requestDisallowInterceptTouchEvent(false);
+                break;
+        }
         return super.dispatchTouchEvent(ev);
     }
 

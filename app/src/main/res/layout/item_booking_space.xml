@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/dimen_15dp"
-    android:layout_marginTop="@dimen/dimen_15dp"
-    android:background="@drawable/shape_fff_10"
+    android:background="@drawable/ic_shade_img"
     android:orientation="vertical">
 
     <TextView
@@ -106,7 +104,7 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="0dp"
         android:layout_below="@id/tv_content"
         android:background="@color/line_color"
         android:visibility="invisible" />
@@ -115,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view"
-        android:layout_margin="12dp"
+        android:layout_margin="10dp"
         android:background="@drawable/shape_all_10_f8"
         android:orientation="horizontal">
 
@@ -125,18 +123,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="@dimen/dimen_15dp"
+            android:padding="@dimen/dp_10"
             android:text="¥20/小时"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_jl"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
-            android:padding="@dimen/dimen_15dp"
+            android:padding="@dimen/dp_10"
             android:text="距您200m"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
@@ -147,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="@dimen/dimen_15dp"
+            android:padding="@dimen/dp_10"
             android:text="剩余车位36个"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
