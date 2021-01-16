@@ -320,8 +320,6 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
     private void getLotList(String lng, String lat,String type) {
-        mBookingSpaceAdapter.getData().clear();
-        mBookingSpaceAdapter.notifyDataSetChanged();
         if(dialog!=null && !dialog.isShowing()){
             show(getActivity());
         }

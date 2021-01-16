@@ -27,7 +27,7 @@ public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, LotListBean.ListBean item) {
 //        ¥20/小时
-        String str = "<font color=\"#0199FC\">¥<big><big>" + item.getParkingPrice() + "</big></big></font>/小时";
+        String str = "<font color=\"#4ACCE0\">¥<big><big>" + item.getParkingPrice() + "</big></big></font>/小时";
         helper.setText(R.id.tv_time, Html.fromHtml(str));
         helper.setText(R.id.tv1, item.getParkingName() + "-停车场").setText(R.id.tv_dw, item.getAddress())
                 .setText(R.id.tv_content, "营业时间：" + item.getStartTime().substring(11,16) + "-" + item.getEndTime().substring(11,16))

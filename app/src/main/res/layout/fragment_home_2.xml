@@ -9,7 +9,13 @@
     drawer:DrawerLayoutHandler_ID="@+id/drawerHandle"
     drawer:DrawerLayout_ID="@+id/drawer2">
 
+    <com.amap.api.maps.MapView
+        android:id="@+id/mMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
@@ -38,10 +44,6 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <com.amap.api.maps.MapView
-        android:id="@+id/mMapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:id="@+id/drawer2"

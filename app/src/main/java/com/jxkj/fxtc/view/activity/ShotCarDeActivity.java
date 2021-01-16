@@ -95,10 +95,11 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
         data = (LotListBean.ListBean) getIntent().getSerializableExtra("data");
         if(data!=null){
             mTv1.setText(data.getParkingName() + "-停车场");
-            String str = "<font color=\"#0199FC\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
+            String str = "<font color=\"#4ACCE0\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
             mTvJg.setText(Html.fromHtml(str));
             mTvDw.setText(data.getAddress());
-            mTvContent.setText("营业时间：" + data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
+//            mTvContent.setText("营业时间：" + data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
+            mTvContent.setText("距你" + data.getDistance() + "km");
             mTv2.setText(data.getDescription());
             mTv4.setText("共 "+data.getSlotPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
             tv_sfbz1.setText(data.getDescription());

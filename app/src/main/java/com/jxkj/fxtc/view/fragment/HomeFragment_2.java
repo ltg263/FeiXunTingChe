@@ -33,10 +33,12 @@ import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.drawerView.DrawerLayout;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
+import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,6 +63,8 @@ public class HomeFragment_2 extends BaseFragment{
     LinearLayout mDrawerContent;
     @BindView(R.id.drawer2)
     RelativeLayout mDrawer2;
+    @BindView(R.id.ll)
+    LinearLayout ll;
     @BindView(R.id.dial_drawer)
     DrawerLayout mDialDrawer;
     @BindView(R.id.rv_list)
@@ -105,6 +109,12 @@ public class HomeFragment_2 extends BaseFragment{
             @Override
             public void drawerClosed() {
 
+            }
+        });
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class, "searchType", 2);
             }
         });
 

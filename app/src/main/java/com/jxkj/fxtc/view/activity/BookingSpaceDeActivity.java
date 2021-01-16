@@ -107,7 +107,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
         data = (LotListBean.ListBean) getIntent().getSerializableExtra("data");
         if (data != null) {
             mTv1.setText(data.getParkingName() + "-停车场");
-            String str = "<font color=\"#0199FC\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
+            String str = "<font color=\"#4ACCE0\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
             mTvJg.setText(Html.fromHtml(str));
             mTvDw.setText(data.getAddress());
             tvfy.setText("¥" + data.getAppointPrice());
