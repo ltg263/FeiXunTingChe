@@ -9,7 +9,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.entity.LotListBean;
-import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
 
 import java.util.List;
 

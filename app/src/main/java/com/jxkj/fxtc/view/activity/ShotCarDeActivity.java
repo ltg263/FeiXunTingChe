@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,21 +23,14 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-import com.deepexp.zsnavi.bean.CoordinateBean;
-import com.deepexp.zsnavi.bean.OptionBean;
-import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.deepexp.zsnavi.enums.NaviWay;
-import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.ZsnaviMapUtils;
 import com.jxkj.fxtc.entity.LotListBean;
 
-import java.util.List;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 1000D 订单管理

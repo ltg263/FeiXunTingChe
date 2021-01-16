@@ -43,7 +43,6 @@ import com.jxkj.fxtc.view.activity.BookingStopCarActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
-import com.jxkj.fxtc.view.activity.WebViewActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 import com.youth.banner.Banner;

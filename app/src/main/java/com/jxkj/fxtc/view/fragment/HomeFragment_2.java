@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,13 +11,8 @@ import android.widget.RelativeLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
@@ -26,12 +20,9 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.maps.model.PolylineOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxkj.fxtc.R;
-import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
-import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.drawerView.DrawerLayout;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
@@ -40,16 +31,9 @@ import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * 1000D 订单管理
