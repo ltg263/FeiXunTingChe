@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.gyf.immersionbar.ImmersionBar;
+import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.conpoment.utils.ActivityCollector;
@@ -55,7 +56,9 @@ public abstract class BaseActivity extends AppCompatActivity{
         //setTheme(R.style.base_blue_style);//修改主题
         setContentView(getContentView());
         ButterKnife.bind(this);
-        ImmersionBar.with(this).statusBarDarkFont(true).titleBar(R.id.rl_actionbar).fitsSystemWindows(true).init();
+        if(!(this instanceof MainActivity)){
+            ImmersionBar.with(this).statusBarDarkFont(true).titleBar(R.id.rl_actionbar).fitsSystemWindows(true).init();
+        }
         statusBarHeight = BarUtils.getStatusBarHeight();
         mRxPermissions = new RxPermissions(this);
         requestPermissions();

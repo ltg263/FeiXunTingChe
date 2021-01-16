@@ -5,6 +5,16 @@
     android:background="@color/color_ffffff"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/rl_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4ACCE0"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"/>
+
+
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
@@ -14,8 +24,8 @@
     <LinearLayout
         android:id="@+id/lay"
         android:layout_width="match_parent"
-        android:layout_marginBottom="@dimen/dp_10"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_10"
         android:background="@color/color_ffffff"
         android:orientation="horizontal">
 

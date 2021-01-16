@@ -1,47 +1,32 @@
 package com.jxkj.fxtc;
 
 
-import android.content.pm.PackageManager;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
-import com.blankj.utilcode.util.ShellUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.deepexp.zsnavi.bean.CoordinateBean;
-import com.deepexp.zsnavi.callback.ILocationCallback;
-import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
-import com.jxkj.fxtc.conpoment.utils.SharedUtils;
-import com.jxkj.fxtc.view.activity.SplashScreenActivity;
-import com.jxkj.fxtc.view.deme.ZsnaviDemoActivity;
 import com.jxkj.fxtc.view.fragment.HomeFragment_1;
 import com.jxkj.fxtc.view.fragment.HomeFragment_2;
 import com.jxkj.fxtc.view.fragment.HomeFragment_3;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -66,6 +51,8 @@ public class MainActivity extends BaseActivity {
     TextView mTvMain2;
     @BindView(R.id.tv_main_3)
     TextView mTvMain3;
+    @BindView(R.id.rl_actionbar)
+    LinearLayout mRlActionbar;
     private Fragment mFragments;
     private HomeFragment_1 mHomeFragment1;
     private HomeFragment_2 mHomeFragment2;
@@ -103,16 +90,20 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_main_1:
+                mRlActionbar.setVisibility(View.GONE);
                 howFragment(1, mIvMain1, mTvMain1);
                 switchFragment(mHomeFragment1, "A");
                 break;
             case R.id.ll_main_2:
                 howFragment(2, mIvMain2, mTvMain2);
                 switchFragment(mHomeFragment2, "B");
+                mRlActionbar.setVisibility(View.GONE);
                 break;
             case R.id.ll_main_3:
+                mRlActionbar.setVisibility(View.GONE);
                 howFragment(3, mIvMain3, mTvMain3);
                 switchFragment(mHomeFragment3, "C");
+                mRlActionbar.setVisibility(View.GONE);
                 break;
         }
     }
@@ -202,6 +193,13 @@ public class MainActivity extends BaseActivity {
                 fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
     /**
      * 计算距离

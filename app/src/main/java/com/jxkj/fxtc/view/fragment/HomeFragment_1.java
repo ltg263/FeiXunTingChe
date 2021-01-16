@@ -218,14 +218,14 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class, "searchType", 2);
                 break;
             case R.id.tv_ggck:
-                mTvGgck.setTextColor(getResources().getColor(R.color.color_333333));
+                mTvGgck.setTextColor(getResources().getColor(R.color.color_4ACCE0));
                 mTvDlck.setTextColor(getResources().getColor(R.color.color_666666));
                 getLotList(SharedUtils.singleton().get("Longitude", ""),
                         SharedUtils.singleton().get("Latitude", ""),"1");
                 break;
             case R.id.tv_dlck:
                 mTvGgck.setTextColor(getResources().getColor(R.color.color_666666));
-                mTvDlck.setTextColor(getResources().getColor(R.color.color_333333));
+                mTvDlck.setTextColor(getResources().getColor(R.color.color_4ACCE0));
                 getLotList(SharedUtils.singleton().get("Longitude", ""),
                         SharedUtils.singleton().get("Latitude", ""),"0");
                 break;
