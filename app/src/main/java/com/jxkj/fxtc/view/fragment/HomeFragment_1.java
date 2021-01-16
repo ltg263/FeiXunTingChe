@@ -123,8 +123,8 @@ public class HomeFragment_1 extends BaseFragment {
         });
         openLocation();
         getHome();
-//        ss();
-//        yy();
+        ss();
+        yy();
     }
 
     private void ss() {
