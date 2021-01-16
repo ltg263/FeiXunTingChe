@@ -94,6 +94,9 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
 
     String staTime = "";
     String endTime = "";
+    String time1 = "";
+    String time2 = "";
+    String time3 = "";
     @Override
     protected int getContentView() {
         return R.layout.activity_booking_space_de;
@@ -113,10 +116,15 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
         Calendar c=Calendar.getInstance();
         //当前的day_of_month加一就是明天时间
         c.add(Calendar.DAY_OF_MONTH,1);
+        time1 = "2021-"+(new SimpleDateFormat("MM-dd").format(c.getTime()));
         mTvRq1.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
+
         c.add(Calendar.DAY_OF_MONTH,1);
+        time2 = "2021-"+(new SimpleDateFormat("MM-dd").format(c.getTime()));
         mTvRq2.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
+
         c.add(Calendar.DAY_OF_MONTH,1);
+        time3 = "2021-"+(new SimpleDateFormat("MM-dd").format(c.getTime()));
         mTvRq3.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
         initMap();
     }
@@ -260,26 +268,26 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                 IntentUtils.getInstence().intent(this, MineClglActivity.class, "type", "0");
                 break;
             case R.id.iv_rq_1:
-                setUiSelectTime(mIvRq1,mTvRq1.getText().toString()+" "+tv_rq_s.getText().toString());
+                setUiSelectTime(mIvRq1,time1+" 06:00:00",time1+" 11:00:00");
                 break;
             case R.id.iv_rq_11:
-                setUiSelectTime(mIvRq11,mTvRq1.getText().toString()+" "+tv_rq_x.getText().toString());
+                setUiSelectTime(mIvRq11,time1+" 11:00:00",time1+" 16:00:00");
                 break;
             case R.id.iv_rq_2:
-                setUiSelectTime(mIvRq2,mTvRq2.getText().toString()+" "+tv_rq_s.getText().toString());
+                setUiSelectTime(mIvRq2,time2+" 06:00:00",time2+" 11:00:00");
                 break;
             case R.id.iv_rq_22:
-                setUiSelectTime(mIvRq22,mTvRq2.getText().toString()+" "+tv_rq_x.getText().toString());
+                setUiSelectTime(mIvRq22,time2+" 11:00:00",time2+" 16:00:00");
                 break;
             case R.id.iv_rq_3:
-                setUiSelectTime(mIvRq3,mTvRq3.getText().toString()+" "+tv_rq_s.getText().toString());
+                setUiSelectTime(mIvRq3,time3+" 06:00:00",time3+" 11:00:00");
                 break;
             case R.id.iv_rq_33:
-                setUiSelectTime(mIvRq33,mTvRq3.getText().toString()+" "+tv_rq_x.getText().toString());
+                setUiSelectTime(mIvRq33,time3+" 11:00:00",time3+" 16:00:00");
                 break;
         }
     }
-    private void setUiSelectTime(ImageView iv,String time){
+    private void setUiSelectTime(ImageView iv,String staTime,String endTime){
         mIvRq1.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
         mIvRq11.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
         mIvRq2.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
@@ -289,8 +297,8 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
 
         iv.setBackground(getResources().getDrawable(R.drawable.shape_there_line_5));
 
-        staTime = "2021-01-14 09:34:08";
-        endTime = "2021-01-14 09:34:08";
+        this.staTime = staTime;
+        this.endTime = endTime;
     }
 
     private void postAppointment() {
@@ -378,12 +386,5 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                     }
                 });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

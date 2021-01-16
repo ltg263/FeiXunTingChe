@@ -31,6 +31,8 @@ public class BookingSpacePayActivity extends BaseActivity {
     TextView tv_szcw;
     @BindView(R.id.tv_jcsj)
     TextView tv_jcsj;
+    @BindView(R.id.tv_jfsj)
+    TextView tv_jfsj;
     @BindView(R.id.tv_yycp)
     TextView tv_yycp;
     @BindView(R.id.tv_dw)
@@ -59,6 +61,7 @@ public class BookingSpacePayActivity extends BaseActivity {
             tv_tcjs.setText(dataYY.getUseTime()+"小时");
             tv_yyf.setText("¥ "+dataYY.getAppointmentPrice());
             tv_zfy.setText("¥ "+dataYY.getOrderPrice());
+            tv_jfsj.setText(dataYY.getExpressTime());
         }
     }
 

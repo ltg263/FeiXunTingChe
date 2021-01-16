@@ -43,6 +43,7 @@ import com.jxkj.fxtc.view.activity.BookingStopCarActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
+import com.jxkj.fxtc.view.activity.WebViewActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 import com.youth.banner.Banner;
@@ -109,7 +110,7 @@ public class HomeFragment_1 extends BaseFragment {
         mRvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvList.setHasFixedSize(true);
         mRvList.setVisibility(View.VISIBLE);
-        mBookingSpaceAdapter = new BookingSpaceAdapter(null);
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null,"0");
         mRvList.setAdapter(mBookingSpaceAdapter);
 
         mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -170,7 +171,7 @@ public class HomeFragment_1 extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
-                ToastUtils.showShort("努力开发中...");
+                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class,"type","0");
                 break;
             case R.id.btn_home_2:
                 if (StringUtil.isBlank(carId)) {

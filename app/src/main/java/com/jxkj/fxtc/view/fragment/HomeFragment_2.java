@@ -81,7 +81,7 @@ public class HomeFragment_2 extends BaseFragment{
         mRvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvList.setHasFixedSize(true);
         mRvList.setVisibility(View.VISIBLE);
-        mBookingSpaceAdapter = new BookingSpaceAdapter(null);
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null,"0");
         mRvList.setAdapter(mBookingSpaceAdapter);
 
         mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

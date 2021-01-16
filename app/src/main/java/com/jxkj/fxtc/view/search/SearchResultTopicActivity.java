@@ -52,7 +52,7 @@ public class SearchResultTopicActivity extends BaseActivity {
         mRefreshLayout.setEnableLoadMore(false);
         mRefreshLayout.setEnableRefresh(false);
 
-        mBookingSpaceAdapter = new BookingSpaceAdapter(null);
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null,"0");
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
         mRvList.setAdapter(mBookingSpaceAdapter);

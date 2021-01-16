@@ -35,7 +35,7 @@ public class BookingStopCarDeActivity extends BaseActivity {
                 });
                 break;
             case R.id.tv2:
-                IntentUtils.getInstence().intent(this, BookingSpaceActivity.class);
+                IntentUtils.getInstence().intent(this, BookingSpaceActivity.class,"type","1");
                 break;
             case R.id.tv3:
                 IntentUtils.getInstence().intent(this, ShopCarLogActivity.class);

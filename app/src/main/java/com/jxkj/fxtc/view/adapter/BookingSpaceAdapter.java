@@ -18,8 +18,10 @@ import java.util.List;
  * date   : 2020/5/2914:03
  */
 public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, BaseViewHolder> {
-    public BookingSpaceAdapter(@Nullable List<LotListBean.ListBean> data) {
+    String type;
+    public BookingSpaceAdapter(@Nullable List<LotListBean.ListBean> data,String type) {
         super(R.layout.item_booking_space, data);
+        this.type = type;
     }
 
     @Override
@@ -37,7 +39,7 @@ public class BookingSpaceAdapter extends BaseQuickAdapter<LotListBean.ListBean, 
                 .setVisible(R.id.iv3,false)
                 .setVisible(R.id.tv_dh,false);
 
-        if(mContext instanceof BookingSpaceActivity){
+        if(type.equals("1")){
             helper.setBackgroundRes(R.id.tv_yycp,R.drawable.btn_shape_theme);
             if(Integer.valueOf(item.getSeatCount())==0){
                 helper.setText(R.id.tv_time, "--/小时").setText(R.id.tv_cw, "剩余车位--个");

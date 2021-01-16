@@ -38,6 +38,7 @@ public class BookingSpaceActivity extends BaseActivity {
     LinearLayout mLvNot;
     private BookingSpaceAdapter mBookingSpaceAdapter;
 
+    String type ="0";
     @Override
     protected int getContentView() {
         return R.layout.activity_booking_space;
@@ -45,20 +46,25 @@ public class BookingSpaceActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        type = getIntent().getStringExtra("type");
         mRefreshLayout.setEnableRefresh(false);
         mRefreshLayout.setEnableLoadMore(false);
 
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setHasFixedSize(true);
-        mBookingSpaceAdapter = new BookingSpaceAdapter(null);
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null,type);
         mRvList.setAdapter(mBookingSpaceAdapter);
         mBookingSpaceAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
-                Intent mIntent = new Intent(BookingSpaceActivity.this, BookingSpaceDeActivity.class);
-                mIntent.putExtra("data", data);
-                startActivity(mIntent);
+                if(type.equals("0")){
+                    IntentUtils.getInstence().intent(BookingSpaceActivity.this, WebViewActivity.class);
+                }else {
+                    Intent mIntent = new Intent(BookingSpaceActivity.this, BookingSpaceDeActivity.class);
+                    mIntent.putExtra("data", data);
+                    startActivity(mIntent);
+                }
             }
         });
         String lng = SharedUtils.singleton().get("Longitude", "");

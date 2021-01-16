@@ -73,6 +73,12 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
     TextView mTv3;
     @BindView(R.id.tv_4)
     TextView mTv4;
+    @BindView(R.id.tv_sfbz1)
+    TextView tv_sfbz1;
+    @BindView(R.id.tv_yysj1)
+    TextView tv_yysj1;
+    @BindView(R.id.tv_cws)
+    TextView tv_cws;
     @BindView(R.id.bnt_go)
     LinearLayout bnt_go;
 
@@ -92,6 +98,9 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
             mTvContent.setText("营业时间：" + data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
             mTv2.setText(data.getDescription());
             mTv4.setText("共 "+data.getParkingPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
+            tv_sfbz1.setText(data.getDescription());
+            tv_yysj1.setText(data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
+            tv_cws.setText(data.getParkingPrice());
         }
         initMap();
         bnt_go.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +138,7 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
                 return true;
             }
         });
+
     }
 
     OnLocationChangedListener mListener;

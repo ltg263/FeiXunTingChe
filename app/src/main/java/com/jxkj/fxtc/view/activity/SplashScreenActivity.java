@@ -42,7 +42,7 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.splashscreen);
         mBanner = findViewById(R.id.banner);
         isFirstIn = SharedUtils.singleton().get("isFirstIn",true);
-        if(isFirstIn){
+        if(false){
             initBanner();
         }else{
             new Handler().postDelayed(() -> startUi(), 3000);
