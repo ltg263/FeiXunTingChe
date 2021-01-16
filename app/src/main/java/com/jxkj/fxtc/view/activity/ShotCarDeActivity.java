@@ -97,10 +97,10 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
             mTvDw.setText(data.getAddress());
             mTvContent.setText("营业时间：" + data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
             mTv2.setText(data.getDescription());
-            mTv4.setText("共 "+data.getParkingPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
+            mTv4.setText("共 "+data.getSlotPrice()+" 个车位，剩余车位 "+data.getSeatCount()+" 个。");
             tv_sfbz1.setText(data.getDescription());
             tv_yysj1.setText(data.getStartTime().substring(11,16) + "-" + data.getEndTime().substring(11,16));
-            tv_cws.setText(data.getParkingPrice());
+            tv_cws.setText(data.getSlotPrice());
         }
         initMap();
         bnt_go.setOnClickListener(new View.OnClickListener() {
