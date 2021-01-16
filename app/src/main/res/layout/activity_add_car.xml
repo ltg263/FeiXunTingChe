@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_30dp"
         android:layout_marginTop="@dimen/dimen_50dp"
-        android:background="@mipmap/ic_bnt_ok"
+        android:background="@drawable/btn_shape_home"
         android:text="确认添加"
         android:textColor="@color/color_ffffff"
         android:textSize="16sp" />
