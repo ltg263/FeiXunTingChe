@@ -5,6 +5,7 @@ import android.view.View;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.conpoment.utils.DialogUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 
 import butterknife.OnClick;
@@ -36,9 +37,14 @@ public class MineSetActivity extends BaseActivity {
             case R.id.ll3:
                 break;
             case R.id.tv_tui:
-                SharedUtils.singleton().clear();
-                MainApplication.getContext().AppExit();
-                LoginActivity.startActivityIntent(this);
+                DialogUtils.showDialogHint(this, "确定退出登录吗？", true, new DialogUtils.ErrorDialogInterface() {
+                    @Override
+                    public void btnConfirm() {
+                        SharedUtils.singleton().clear();
+                        MainApplication.getContext().AppExit();
+                        LoginActivity.startActivityIntent(MineSetActivity.this);
+                    }
+                });
                 break;
         }
     }

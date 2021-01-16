@@ -41,34 +41,38 @@ public class DialogUtils {
         return new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(content)
-                .setPositiveButton("确定",listener)
-                .setNegativeButton("取消",null)
+                .setPositiveButton("确定", listener)
+                .setNegativeButton("取消", null)
                 .create();
 
     }
+
     public static AlertDialog donelDialog(Context context, String title, String content) {
 
         return new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(content)
-                .setPositiveButton("确定",null)
+                .setPositiveButton("确定", null)
                 .create();
 
     }
+
     public interface DialogLyInterface {
         /**
          * 确定
          */
         public void btnConfirm();
     }
+
     /**
      * 链接蓝牙
+     *
      * @param context
      * @param title
      * @param state
      * @param dialogLyInterface
      */
-    public static void showDialogLyState(Activity context,String title, int state, final DialogLyInterface dialogLyInterface) {
+    public static void showDialogLyState(Activity context, String title, int state, final DialogLyInterface dialogLyInterface) {
 
         final Dialog dialog = new Dialog(context, R.style.simpleDialog);
         final View view = LayoutInflater.from(context).inflate(R.layout.dialog_lanyan_state, null);
@@ -78,25 +82,25 @@ public class DialogUtils {
 //        rl_parent.setBackground(new BitmapDrawable(context.getResources(),blurBitmap(context,bitmap,25)));
 
         TextView tv_name = view.findViewById(R.id.tv_name);
-        TextView tv_state =  view.findViewById(R.id.tv_state);
-        TextView tv_ok =  view.findViewById(R.id.tv_ok);
+        TextView tv_state = view.findViewById(R.id.tv_state);
+        TextView tv_ok = view.findViewById(R.id.tv_ok);
         ImageView iv_close = view.findViewById(R.id.iv_close);
         ImageView iv_icon = view.findViewById(R.id.iv_icon);
         tv_name.setText(title);
-        if(title.equals("智能手套")){
+        if (title.equals("智能手套")) {
             iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_dialog_1));
-        }else if(title.equals("呼吸带")){
+        } else if (title.equals("呼吸带")) {
             iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_dialog_2));
-        }else if(title.equals("压力传感器")){
+        } else if (title.equals("压力传感器")) {
             iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_dialog_3));
-        }else if(title.equals("电刺激")){
+        } else if (title.equals("电刺激")) {
             iv_icon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_dialog_4));
         }
-        if(state==1){
+        if (state == 1) {
             tv_state.setText("蓝牙连接传感器成功!");
             tv_ok.setText("确 定");
             iv_close.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             tv_state.setText("蓝牙连接传感器失败");
             tv_ok.setText("重新连接");
         }
@@ -117,14 +121,16 @@ public class DialogUtils {
         dialog.setContentView(view);
         dialog.show();
     }
+
     /**
      * Excel导出
+     *
      * @param context
      * @param title
      * @param state
      * @param dialogLyInterface
      */
-    public static void showDialogExcel(Activity context,String title, int state, final DialogLyInterface dialogLyInterface) {
+    public static void showDialogExcel(Activity context, String title, int state, final DialogLyInterface dialogLyInterface) {
 
         final Dialog dialog = new Dialog(context, R.style.simpleDialog);
         final View view = LayoutInflater.from(context).inflate(R.layout.dialog_excel_state, null);
@@ -134,15 +140,15 @@ public class DialogUtils {
 //        rl_parent.setBackground(new BitmapDrawable(context.getResources(),blurBitmap(context,bitmap,25)));
 
         TextView tv_name = view.findViewById(R.id.tv_name);
-        TextView tv_state =  view.findViewById(R.id.tv_state);
-        TextView tv_ok =  view.findViewById(R.id.tv_ok);
+        TextView tv_state = view.findViewById(R.id.tv_state);
+        TextView tv_ok = view.findViewById(R.id.tv_ok);
         ImageView iv_close = view.findViewById(R.id.iv_close);
         tv_name.setText(title);
 //        Glide.with(context).load(imgUrl).into(iv_icon);
-        if(state==0){
+        if (state == 0) {
             tv_state.setText("数据生成Excel已导出!");
             tv_ok.setText("确 定");
-        }else{
+        } else {
             tv_state.setText("数据生成Excel失败");
             tv_ok.setText("重新连接");
         }
@@ -163,11 +169,12 @@ public class DialogUtils {
         dialog.setContentView(view);
         dialog.show();
     }
+
     /**
      * 描述: 自定义ShowUnifiedDialog
      * 统一 确认取消的Dialog
      */
-    public static void showEditTextDialog(final Context context, int type,String title, String content, final EditTextDialogInterface editTextDialogInterface) {
+    public static void showEditTextDialog(final Context context, int type, String title, String content, final EditTextDialogInterface editTextDialogInterface) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_with_edittext, null);// 获得dialog布局
         final Dialog dialog = new Dialog(context, R.style.simpleDialog);
         dialog.setContentView(view);
@@ -175,13 +182,13 @@ public class DialogUtils {
         TextView tvLogPrompt = view.findViewById(R.id.tv_log_prompt);
         final EditText etLogContent = view.findViewById(R.id.et_log_content);
         etLogContent.setMaxLines(10);
-        if(StringUtil.isNotBlank(content)){
+        if (StringUtil.isNotBlank(content)) {
             etLogContent.setHint(content);
         }
-        if(type==1){
+        if (type == 1) {
             etLogContent.setInputType(InputType.TYPE_CLASS_NUMBER);
         }
-        if(type==2){
+        if (type == 2) {
             etLogContent.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
         TextView tvLogConfirm = view.findViewById(R.id.tv_log_confirm);
@@ -206,11 +213,12 @@ public class DialogUtils {
             }
         });
     }
-    public interface EditTextDialogInterface{
+
+    public interface EditTextDialogInterface {
         void btnConfirm(String string);
     }
 
-    public interface DialogEwmInterface{
+    public interface DialogEwmInterface {
         void btnConfirm(String string);
     }
 
@@ -219,7 +227,7 @@ public class DialogUtils {
      * 描述: 自定义ShowUnifiedDialog
      * 统一 确认取消的Dialog
      */
-    public static void showShopingErm(final Context context, int type,String title, String content, final DialogEwmInterface dialogInterface) {
+    public static void showShopingErm(final Context context, int type, String title, String content, final DialogEwmInterface dialogInterface) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_shopping_erm, null);// 获得dialog布局
         final Dialog dialog = new Dialog(context, R.style.simpleDialog);
         dialog.setContentView(view);
@@ -230,17 +238,18 @@ public class DialogUtils {
             @Override
             public void onClick(View arg0) {
                 dialogInterface.btnConfirm("");
-                getImgPath(context,view);
+                getImgPath(context, view);
                 dialog.dismiss();
             }
 
         });
     }
+
     /**
      * 描述: 自定义ShowUnifiedDialog
      * 统一 确认取消的Dialog
      */
-    public static void showShopingErm_tx(final Context context,String content) {
+    public static void showShopingErm_tx(final Context context, String content) {
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_erm_tx, null);// 获得dialog布局
         final Dialog dialog = new Dialog(context, R.style.simpleDialog);
         dialog.setContentView(view);
@@ -251,10 +260,11 @@ public class DialogUtils {
         iv.setImageBitmap(CodeUtils.createBarcode(content));
         tv_2.setText(content);
     }
+
     private static Handler mHandler = new Handler();
 
-    public static String getImgPath(Context context, View view){
-        if(view==null){
+    public static String getImgPath(Context context, View view) {
+        if (view == null) {
             return "";
         }
         // 获取图片某布局
@@ -272,9 +282,9 @@ public class DialogUtils {
                 Message msg = new Message();
                 msg.obj = "-";
 //                mHandler.sendMessage(msg);
-                ToastUtil.showLongStrToast(context,"保存成功");
+                ToastUtil.showLongStrToast(context, "保存成功");
             }
-        },100);
+        }, 100);
 
         return "";
     }
@@ -313,7 +323,7 @@ public class DialogUtils {
         TextView suanle = (TextView) view.findViewById(R.id.bt_suanle);
         TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
         tv_title.setText(title);
-        if(isOne){
+        if (isOne) {
             suanle.setVisibility(View.GONE);
         }
         suanle.setOnClickListener(new View.OnClickListener() {
@@ -326,7 +336,7 @@ public class DialogUtils {
         bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(dialogConfirm!=null){
+                if (dialogConfirm != null) {
                     dialogConfirm.btnConfirm();
                 }
                 dialog5.dismiss();
@@ -343,20 +353,22 @@ public class DialogUtils {
          */
         public void btnConfirm();
     }
+
     public interface DialogInterface1 {
         /**
          * 确定
          */
         public void btnConfirm(int pos);
     }
+
     public static void showDialogStartYd(Activity context, final DialogInterface1 dialogInterface) {
 
         final Dialog dialog = new Dialog(context, R.style.Dialog_Fullscreen);
         final View view = LayoutInflater.from(context).inflate(R.layout.dialog_start_sop, null);
 
         LinearLayout rl_parent = view.findViewById(R.id.rl_parent);
-        Bitmap bitmap=screenShotWithoutStatusBar(context);
-        rl_parent.setBackground(new BitmapDrawable(context.getResources(),blurBitmap(context,bitmap,10)));
+        Bitmap bitmap = screenShotWithoutStatusBar(context);
+        rl_parent.setBackground(new BitmapDrawable(context.getResources(), blurBitmap(context, bitmap, 10)));
         TextView tv_1 = view.findViewById(R.id.tv_1);
         TextView tv_2 = view.findViewById(R.id.tv_2);
         TextView tv_3 = view.findViewById(R.id.tv_3);
@@ -378,7 +390,7 @@ public class DialogUtils {
     // 图片缩放比例(即模糊度)
     private static final float BITMAP_SCALE = 0.1f;
 
-    public static Bitmap blurBitmap(Activity activity,Bitmap image, float blurRadius) {
+    public static Bitmap blurBitmap(Activity activity, Bitmap image, float blurRadius) {
         // 计算图片缩小后的长宽
         int width = Math.round(image.getWidth() * BITMAP_SCALE);
         int height = Math.round(image.getHeight() * BITMAP_SCALE);
@@ -408,6 +420,7 @@ public class DialogUtils {
         tmpOut.copyTo(outputBitmap);
         return outputBitmap;
     }
+
     public static Bitmap screenShotWithoutStatusBar(Activity activity) {
         //通过window的源码可以看出：检索顶层窗口的装饰视图，可以作为一个窗口添加到窗口管理器
         View view = activity.getWindow().getDecorView();
@@ -427,12 +440,16 @@ public class DialogUtils {
         int height = getWindowHeight(activity);
 
         Bitmap bp = null;
-        bp = Bitmap.createBitmap(bitmap, 0, 0, width, height );
+        bp = Bitmap.createBitmap(bitmap, 0, 0, width, height);
         view.destroyDrawingCache();
         return bp;
     }
-    /** 获取屏幕宽度
-     * @return */
+
+    /**
+     * 获取屏幕宽度
+     *
+     * @return
+     */
 
     public static int getWindowWidth(Activity activity) {
         WindowManager wm = (WindowManager) activity.getSystemService(
@@ -440,8 +457,12 @@ public class DialogUtils {
         int width = wm.getDefaultDisplay().getWidth();
         return width;
     }
-    /** 获取屏幕宽度
-     * @return */
+
+    /**
+     * 获取屏幕宽度
+     *
+     * @return
+     */
 
     public static int getWindowHeight(Activity activity) {
         WindowManager wm = (WindowManager) activity.getSystemService(

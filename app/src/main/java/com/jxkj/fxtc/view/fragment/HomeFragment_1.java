@@ -39,6 +39,7 @@ import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.activity.AddCarActivity;
 import com.jxkj.fxtc.view.activity.BookingSpaceActivity;
+import com.jxkj.fxtc.view.activity.BookingStopCarActivity;
 import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
@@ -179,7 +180,7 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), SeekCarActivity.class, "carName", mTvCarName.getText().toString().trim());
                 break;
             case R.id.btn_home_3:
-                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class);
+                IntentUtils.getInstence().intent(getActivity(), BookingStopCarActivity.class);
                 break;
             case R.id.btn_home_4:
                 ToastUtils.showShort("努力开发中...");
