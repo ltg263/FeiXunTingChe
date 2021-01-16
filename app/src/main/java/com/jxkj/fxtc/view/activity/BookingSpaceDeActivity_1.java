@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
@@ -29,6 +28,7 @@ import com.jxkj.fxtc.app.ConstValues;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.PickerViewUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
 import com.jxkj.fxtc.entity.AppointmentBean;
@@ -37,11 +37,9 @@ import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.PostCarData;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -51,7 +49,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * IntentUtils.getInstence().intent(BookingSpaceActivity.this,BookingSpacePayActivity.class);
  */
-public class BookingSpaceDeActivity extends BaseActivity implements LocationSource {
+public class BookingSpaceDeActivity_1 extends BaseActivity implements LocationSource {
 
     @BindView(R.id.mMapView)
     MapView mMapView;
@@ -65,38 +63,20 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     TextView mTvDw;
     @BindView(R.id.tv_fy)
     TextView tv_fy;
+    @BindView(R.id.start_time)
+    TextView mStartTime;
+    @BindView(R.id.end_time)
+    TextView mEndTime;
+    @BindView(R.id.tv_tcsc)
+    TextView tv_tcsc;
     @BindView(R.id.et_cph)
     TextView mEtCph;
-    @BindView(R.id.tvfy)
-    TextView tvfy;
-    @BindView(R.id.tv_rq_s)
-    TextView tv_rq_s;
-    @BindView(R.id.tv_rq_x)
-    TextView tv_rq_x;
-    @BindView(R.id.tv_rq_1)
-    TextView mTvRq1;
-    @BindView(R.id.iv_rq_1)
-    ImageView mIvRq1;
-    @BindView(R.id.iv_rq_11)
-    ImageView mIvRq11;
-    @BindView(R.id.tv_rq_2)
-    TextView mTvRq2;
-    @BindView(R.id.iv_rq_2)
-    ImageView mIvRq2;
-    @BindView(R.id.iv_rq_22)
-    ImageView mIvRq22;
-    @BindView(R.id.tv_rq_3)
-    TextView mTvRq3;
-    @BindView(R.id.iv_rq_3)
-    ImageView mIvRq3;
-    @BindView(R.id.iv_rq_33)
-    ImageView mIvRq33;
+    @BindView(R.id.et_sjh)
+    TextView mEtSjh;
 
-    String staTime = "";
-    String endTime = "";
     @Override
     protected int getContentView() {
-        return R.layout.activity_booking_space_de;
+        return R.layout.activity_booking_space_de_1;
     }
 
     @Override
@@ -107,17 +87,9 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
             String str = "<font color=\"#0199FC\">¥<big><big>" + data.getParkingPrice() + "</big></big></font>/小时";
             mTvJg.setText(Html.fromHtml(str));
             mTvDw.setText(data.getAddress());
-            tvfy.setText("¥" + data.getAppointPrice());
-            tv_fy.setText("¥" + data.getAppointPrice() + " · 立即支付");
+            tv_fy.setText("¥"+data.getAppointPrice()+" · 立即支付");
         }
-        Calendar c=Calendar.getInstance();
-        //当前的day_of_month加一就是明天时间
-        c.add(Calendar.DAY_OF_MONTH,1);
-        mTvRq1.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
-        c.add(Calendar.DAY_OF_MONTH,1);
-        mTvRq2.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
-        c.add(Calendar.DAY_OF_MONTH,1);
-        mTvRq3.setText(new SimpleDateFormat("MM/dd").format(c.getTime()));
+        mEtSjh.setText(SharedUtils.singleton().get(ConstValues.USER_PHONE,""));
         initMap();
     }
 
@@ -250,53 +222,48 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
     }
 
 
-    @OnClick({R.id.bnt_go, R.id.et_cph,R.id.iv_rq_1, R.id.iv_rq_11, R.id.iv_rq_2, R.id.iv_rq_22, R.id.iv_rq_3, R.id.iv_rq_33})
+    @OnClick({R.id.start_time, R.id.end_time, R.id.bnt_go,R.id.et_cph})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.start_time:
+                PickerViewUtils.selectorDateSet(this,time -> {
+                            mStartTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
+                            tv_tcsc.setText("0");
+                            mEndTime.setText("00-00 00:00");
+                        });
+                break;
+            case R.id.end_time:
+                if(mStartTime.getText().toString().equals("00-00 00:00")){
+                    ToastUtils.showShort("先选择开始时间");
+                    return;
+                }
+                PickerViewUtils.selectorDateSet(this,time -> {
+                            long start = StringUtil.getMsToTime("2021-"+mStartTime.getText().toString()+":00", "yyyy-MM-dd HH:mm:ss");
+                            long end = StringUtil.getMsToTime("2021-"+new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time)+":00", "yyyy-MM-dd HH:mm:ss");
+                            Log.e("start:","start"+start);
+                            Log.e("start:","end"+end);
+                            if((end - start)<0){
+                                ToastUtils.showShort("结束时间不能大于开始时间");
+                                return;
+                            }
+                            tv_tcsc.setText(StringUtil.formatDuring(end - start));
+                            mEndTime.setText(new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(time));
+                        });
+                break;
             case R.id.bnt_go:
                 postAppointment();
                 break;
             case R.id.et_cph:
-                IntentUtils.getInstence().intent(this, MineClglActivity.class, "type", "0");
-                break;
-            case R.id.iv_rq_1:
-                setUiSelectTime(mIvRq1,mTvRq1.getText().toString()+" "+tv_rq_s.getText().toString());
-                break;
-            case R.id.iv_rq_11:
-                setUiSelectTime(mIvRq11,mTvRq1.getText().toString()+" "+tv_rq_x.getText().toString());
-                break;
-            case R.id.iv_rq_2:
-                setUiSelectTime(mIvRq2,mTvRq2.getText().toString()+" "+tv_rq_s.getText().toString());
-                break;
-            case R.id.iv_rq_22:
-                setUiSelectTime(mIvRq22,mTvRq2.getText().toString()+" "+tv_rq_x.getText().toString());
-                break;
-            case R.id.iv_rq_3:
-                setUiSelectTime(mIvRq3,mTvRq3.getText().toString()+" "+tv_rq_s.getText().toString());
-                break;
-            case R.id.iv_rq_33:
-                setUiSelectTime(mIvRq33,mTvRq3.getText().toString()+" "+tv_rq_x.getText().toString());
+                IntentUtils.getInstence().intent(this, MineClglActivity.class,"type","0");
                 break;
         }
     }
-    private void setUiSelectTime(ImageView iv,String time){
-        mIvRq1.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-        mIvRq11.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-        mIvRq2.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-        mIvRq22.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-        mIvRq3.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-        mIvRq33.setBackground(getResources().getDrawable(R.drawable.shape_eee_line_5));
-
-        iv.setBackground(getResources().getDrawable(R.drawable.shape_there_line_5));
-
-        staTime = "2021-01-14 09:34:08";
-        endTime = "2021-01-14 09:34:08";
-    }
-
-    private void postAppointment() {
-        String sjh = SharedUtils.singleton().get(ConstValues.USER_PHONE, "");
+    private void postAppointment(){
+        String sjh = mEtSjh.getText().toString();
         String cph = mEtCph.getText().toString();
-        if (StringUtil.isBlank(sjh) || StringUtil.isBlank(cph) || StringUtil.isBlank(staTime) || StringUtil.isBlank(endTime)) {
+        String staTime = mStartTime.getText().toString();
+        String endTime = mEndTime.getText().toString();
+        if(StringUtil.isBlank(sjh) ||StringUtil.isBlank(cph) ||StringUtil.isBlank(staTime) ||StringUtil.isBlank(endTime)){
             ToastUtils.showShort("信息不完整");
             return;
         }
@@ -304,8 +271,8 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
         PostCarData.AppointmentInfo appointmentInfo = new PostCarData.AppointmentInfo();
         appointmentInfo.setMobile(sjh);
         appointmentInfo.setLicense(cph);
-        appointmentInfo.setAppointmentTime(staTime);
-        appointmentInfo.setAppointmentEndTime(endTime);
+        appointmentInfo.setAppointmentTime("2021-"+staTime+":00");
+        appointmentInfo.setAppointmentEndTime("2021-"+endTime+":00");
         appointmentInfo.setOrderType("1");
         appointmentInfo.setLotId(data.getId());
         show();
@@ -327,7 +294,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                             result.getData().setParkingName(data.getParkingName());
                             result.getData().setLat(data.getLat());
                             result.getData().setLng(data.getLng());
-                            BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity.this, result.getData());
+                            BookingSpacePayActivity.startActivityIntent(BookingSpaceDeActivity_1.this,result.getData());
                         }
 
                     }
@@ -360,7 +327,7 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
                     @Override
                     public void onNext(Result<DefaultCarBean> result) {
                         if (isDataInfoSucceed(result)) {
-                            if (result.getData() != null) {
+                            if(result.getData()!=null){
                                 mEtCph.setText(result.getData().getLicense());
                             }
                         }
@@ -380,10 +347,4 @@ public class BookingSpaceDeActivity extends BaseActivity implements LocationSour
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }
