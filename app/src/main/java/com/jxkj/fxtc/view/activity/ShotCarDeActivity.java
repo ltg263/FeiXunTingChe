@@ -32,6 +32,7 @@ import com.deepexp.zsnavi.enums.NaviWay;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.ZsnaviMapUtils;
 import com.jxkj.fxtc.entity.LotListBean;
 
@@ -80,7 +81,9 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
     @BindView(R.id.tv_cws)
     TextView tv_cws;
     @BindView(R.id.bnt_go)
-    LinearLayout bnt_go;
+    TextView bnt_go;
+    @BindView(R.id.bnt_go1)
+    TextView bnt_go1;
 
     @Override
     protected int getContentView() {
@@ -109,6 +112,12 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
                 ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,data.getParkingName(),
                         NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
                         data.getMapCode(),data.getPoiName());
+            }
+        });
+        bnt_go1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.getInstence().intent(ShotCarDeActivity.this, WebViewActivity.class,"data",data);
             }
         });
     }

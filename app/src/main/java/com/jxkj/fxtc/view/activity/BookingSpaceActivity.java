@@ -59,7 +59,9 @@ public class BookingSpaceActivity extends BaseActivity {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 LotListBean.ListBean data = mBookingSpaceAdapter.getData().get(position);
                 if(type.equals("0")){
-                    IntentUtils.getInstence().intent(BookingSpaceActivity.this, WebViewActivity.class,"data",data);
+                    Intent mIntent = new Intent(BookingSpaceActivity.this, ShotCarDeActivity.class);
+                    mIntent.putExtra("data", data);
+                    startActivity(mIntent);
                 }else {
                     Intent mIntent = new Intent(BookingSpaceActivity.this, BookingSpaceDeActivity.class);
                     mIntent.putExtra("data", data);
