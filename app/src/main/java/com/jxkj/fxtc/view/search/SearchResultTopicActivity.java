@@ -83,7 +83,7 @@ public class SearchResultTopicActivity extends BaseActivity {
         String lng = SharedUtils.singleton().get("Longitude", "");
         String lat = SharedUtils.singleton().get("Latitude", "");
         RetrofitUtil.getInstance().apiService()
-                .getLotList(null,search,lng,lat)
+                .getLotList(null,search,lng,lat,null)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LotListBean>>() {

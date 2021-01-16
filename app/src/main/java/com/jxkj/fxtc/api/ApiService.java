@@ -143,7 +143,7 @@ public interface ApiService {
      */
     @GET("api/v1/lot/list")
     Observable<Result<LotListBean>> getLotList(@Query("regionID") String regionID,@Query("parkingName") String parkingName,
-                                               @Query("lng") String lng,@Query("lat") String lat);
+                                               @Query("lng") String lng,@Query("lat") String lat,@Query("type") String type);
 
 
     /**

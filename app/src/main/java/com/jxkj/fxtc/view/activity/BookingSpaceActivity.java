@@ -68,7 +68,7 @@ public class BookingSpaceActivity extends BaseActivity {
 
     private void getLotList(String lng, String lat) {
         RetrofitUtil.getInstance().apiService()
-                .getLotList(null, null, lng, lat)
+                .getLotList(null, null, lng, lat,null)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LotListBean>>() {

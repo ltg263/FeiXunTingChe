@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.amap.api.maps.AMap;
-import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.Marker;
 import com.blankj.utilcode.util.ToastUtils;
@@ -27,7 +25,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.deepexp.zsnavi.bean.CoordinateBean;
 import com.deepexp.zsnavi.callback.ILocationCallback;
 import com.deepexp.zsnavi.core.ZsnaviManager;
-import com.jxkj.fxtc.MainActivity;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseFragment;
@@ -36,7 +33,6 @@ import com.jxkj.fxtc.conpoment.utils.GlideImageLoader;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
-import com.jxkj.fxtc.conpoment.utils.ToastUtil;
 import com.jxkj.fxtc.conpoment.widget.MyMapView;
 import com.jxkj.fxtc.conpoment.widget.MyRecyclerView;
 import com.jxkj.fxtc.entity.HomeBean;
@@ -92,6 +88,11 @@ public class HomeFragment_1 extends BaseFragment {
     String carId = "";
     @BindView(R.id.tv_search)
     TextView mTvSearch;
+    @BindView(R.id.tv_ggck)
+    TextView mTvGgck;
+    @BindView(R.id.tv_dlck)
+    TextView mTvDlck;
+    String type = "1";
     private BookingSpaceAdapter mBookingSpaceAdapter;
     private TranslateAnimation mShowAction;
     private TranslateAnimation mHiddenAction;
@@ -124,14 +125,16 @@ public class HomeFragment_1 extends BaseFragment {
 //        ss();
 //        yy();
     }
-    private void ss(){
+
+    private void ss() {
         mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 -1.0f, Animation.RELATIVE_TO_SELF, -0.0f);
         mShowAction.setRepeatMode(Animation.REVERSE);
         mShowAction.setDuration(500);
     }
-    private void yy(){
+
+    private void yy() {
         mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
                 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
@@ -160,8 +163,8 @@ public class HomeFragment_1 extends BaseFragment {
     }
 
 
-    @OnClick({R.id.tv_search,R.id.iv_search, R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,
-            R.id.btn_home_5,R.id.btn_home_6,R.id.btn_home_7,R.id.btn_home_8,
+    @OnClick({R.id.tv_search, R.id.iv_search, R.id.btn_home_1, R.id.btn_home_2, R.id.btn_home_3, R.id.btn_home_4,
+            R.id.btn_home_5, R.id.btn_home_6, R.id.btn_home_7, R.id.btn_home_8,R.id.tv_ggck,R.id.tv_dlck,
             R.id.rl_add_car, R.id.tv_car_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -200,10 +203,10 @@ public class HomeFragment_1 extends BaseFragment {
                 AddCarActivity.startActivityIntent(getActivity(), carId, mTvCarName.getText().toString().trim());
                 break;
             case R.id.iv_search:
-                if(mTvSearch.getVisibility()==View.INVISIBLE){
+                if (mTvSearch.getVisibility() == View.INVISIBLE) {
 //                    mTvSearch.startAnimation(mShowAction);//开始动画
                     mTvSearch.setVisibility(View.VISIBLE);
-                }else{
+                } else {
 //                    mTvSearch.startAnimation(mHiddenAction);//开始动画
                     mTvSearch.setVisibility(View.INVISIBLE);
                 }
@@ -211,6 +214,18 @@ public class HomeFragment_1 extends BaseFragment {
                 break;
             case R.id.tv_search:
                 IntentUtils.getInstence().intent(getActivity(), SearchGoodsActivity.class, "searchType", 2);
+                break;
+            case R.id.tv_ggck:
+                mTvGgck.setTextColor(getResources().getColor(R.color.color_333333));
+                mTvDlck.setTextColor(getResources().getColor(R.color.color_666666));
+                getLotList(SharedUtils.singleton().get("Longitude", ""),
+                        SharedUtils.singleton().get("Latitude", ""),"1");
+                break;
+            case R.id.tv_dlck:
+                mTvGgck.setTextColor(getResources().getColor(R.color.color_666666));
+                mTvDlck.setTextColor(getResources().getColor(R.color.color_333333));
+                getLotList(SharedUtils.singleton().get("Longitude", ""),
+                        SharedUtils.singleton().get("Latitude", ""),"0");
                 break;
         }
     }
@@ -226,6 +241,7 @@ public class HomeFragment_1 extends BaseFragment {
         } else {
             Log.w("requestCode:", "requestCode-----:");
             //开始定位
+            show(getActivity());
             ZsnaviManager.getInstance(getActivity()).setOnLocationCallback(locationCallback);//设置定位回调
             ZsnaviManager.getInstance(getActivity()).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
         }
@@ -239,6 +255,7 @@ public class HomeFragment_1 extends BaseFragment {
         switch (requestCode) {
             case 200:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    show(getActivity());
                     ZsnaviManager.getInstance(getActivity()).setOnLocationCallback(locationCallback);//设置定位回调
                     ZsnaviManager.getInstance(getActivity()).startLocation();//开启定位，该定位只会回调一次定位信息，建议使用完后调用停止定位接口
                 }
@@ -259,13 +276,14 @@ public class HomeFragment_1 extends BaseFragment {
             SharedUtils.singleton().put("Latitude", position.getLatitude() + "");
             SharedUtils.singleton().put("Longitude", position.getLongitude() + "");
 //            Toast.makeText(getActivity(), "定位坐标" + position.getLatitude() + "----" + position.getLongitude(), Toast.LENGTH_SHORT).show();
-            getLotList(position.getLongitude() + "", position.getLatitude() + "");
+            getLotList(position.getLongitude() + "", position.getLatitude() + "","1");
             ZsnaviManager.getInstance(getActivity()).stopLocation();//因为是一次定位，建议每次用完后关闭
 
         }
 
         @Override
         public void onLocationFailure() {
+            dismiss();
             Toast.makeText(getActivity(), "定位坐标失败", Toast.LENGTH_SHORT).show();
             ZsnaviManager.getInstance(getActivity()).stopLocation();//因为是一次定位，建议每次用完后关闭
         }
@@ -299,9 +317,14 @@ public class HomeFragment_1 extends BaseFragment {
 
     }
 
-    private void getLotList(String lng, String lat) {
+    private void getLotList(String lng, String lat,String type) {
+        mBookingSpaceAdapter.getData().clear();
+        mBookingSpaceAdapter.notifyDataSetChanged();
+        if(dialog!=null && !dialog.isShowing()){
+            show(getActivity());
+        }
         RetrofitUtil.getInstance().apiService()
-                .getLotList(null, null, lng, lat)
+                .getLotList(null, null, lng, lat,type)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LotListBean>>() {
@@ -321,12 +344,12 @@ public class HomeFragment_1 extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        dismiss();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        dismiss();
                     }
                 });
 

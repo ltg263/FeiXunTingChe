@@ -32,7 +32,7 @@ public abstract class BaseFragment extends SimpleImmersionFragment {
     protected View mRootView;
     protected RxPermissions mRxPermissions;
     protected Gson mGson;
-    private LoadDialog dialog;
+    protected LoadDialog dialog;
     protected int pageSize = 10;//
     protected Bundle savedInstanceState;
 
