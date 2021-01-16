@@ -90,6 +90,13 @@ public interface ApiService {
     Observable<Result> getUserPayAmount(@Body PostCarData.PayAmount payAmount);
 
     /**
+     * 用户反馈信息
+     * @return
+     */
+    @POST("api/v1/user/feedback/add")
+    Observable<Result> postFeedback(@Body PostCarData.Feedback payAmount);
+
+    /**
      * 用户个人中心
      */
     @GET("api/v1/user/getDetail")

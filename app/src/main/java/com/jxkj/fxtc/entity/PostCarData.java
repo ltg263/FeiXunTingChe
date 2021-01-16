@@ -221,5 +221,41 @@ public class PostCarData {
             this.payType = payType;
         }
     }
+    public static class Feedback{
+
+        /**
+         * content : 反馈信息
+         * imgUrl : 图片
+         * contact : 联系方式
+         */
+
+        private String content;
+        private String imgUrl;
+        private String contact;
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public String getImgUrl() {
+            return imgUrl;
+        }
+
+        public void setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+        }
+
+        public String getContact() {
+            return contact;
+        }
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+    }
 
 }

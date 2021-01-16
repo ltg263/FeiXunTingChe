@@ -37,11 +37,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_margin="@dimen/dimen_15dp"
-                    android:text="0/100"
+                    android:text=""
                     android:textColor="@color/color_999999"
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/et"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_180dp"
                     android:layout_below="@id/tv"
@@ -71,11 +72,13 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_1"
                     android:layout_marginHorizontal="@dimen/dimen_15dp"
-                    android:background="@drawable/shape_fff_10" />
+                    android:background="@drawable/shape_fff_10"
+                    android:padding="@dimen/dp_10" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -95,6 +98,7 @@
 
 
                 <EditText
+                    android:id="@+id/et_sjh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_2"
@@ -117,8 +121,8 @@
                 android:layout_marginHorizontal="@dimen/dimen_45dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="@dimen/dimen_45dp"
-                android:background="@drawable/btn_shape_aaa"
-                android:text="取消预约"
+                android:background="@drawable/btn_shape_theme"
+                android:text="提交"
                 android:textColor="@color/color_ffffff"
                 android:textSize="16sp" />
         </LinearLayout>

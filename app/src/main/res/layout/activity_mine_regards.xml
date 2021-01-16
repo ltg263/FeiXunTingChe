@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dimen_15dp"
-        android:text="停车APP 1.0.0"
+        android:text="飞寻停车APP 1.0.0"
         android:textColor="@color/color_333333"
         android:textSize="11sp" />
 
@@ -100,7 +100,7 @@
         android:layout_marginBottom="@dimen/common_margin_20"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/dp_10"
-        android:text="XXXXXX有限公司 版权所有\nCopyright 2020-2026 xxxxxx All Rights Reserved." />
+        android:text="浙江圣沃科技有限公司 版权所有\nCopyright 2020-2026 xxxxxx All Rights Reserved." />
 
 
 </LinearLayout>
