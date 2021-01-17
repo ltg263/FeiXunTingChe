@@ -3,8 +3,13 @@
     android:id="@+id/rl_actionbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_home_4"
     android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:paddingEnd="-90dp"
+        android:src="@drawable/ic_cwyy_bj"/>
 
 
     <ImageView
@@ -38,7 +43,7 @@
             android:layout_margin="@dimen/dp_10"
             android:layout_weight="1"
             android:background="@drawable/shape_fff_10"
-            android:drawableTop="@drawable/btn_home_1"
+            android:drawableTop="@drawable/ic_cwyy_1"
             android:drawablePadding="@dimen/dimen_25dp"
             android:gravity="center"
             android:padding="@dimen/dimen_15dp"
@@ -53,7 +58,7 @@
             android:layout_margin="@dimen/dp_10"
             android:layout_weight="1"
             android:background="@drawable/shape_fff_10"
-            android:drawableTop="@drawable/btn_home_1"
+            android:drawableTop="@drawable/ic_cwyy_2"
             android:drawablePadding="@dimen/dimen_25dp"
             android:gravity="center"
             android:padding="@dimen/dimen_15dp"
@@ -68,7 +73,7 @@
             android:layout_margin="@dimen/dp_10"
             android:layout_weight="1"
             android:background="@drawable/shape_fff_10"
-            android:drawableTop="@drawable/btn_home_1"
+            android:drawableTop="@drawable/ic_cwyy_3"
             android:drawablePadding="@dimen/dimen_25dp"
             android:gravity="center"
             android:padding="@dimen/dimen_15dp"
