@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.conpoment.utils.BaseUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -15,6 +16,8 @@ public class MineRegardsActivity extends BaseActivity {
     ImageView mIvBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
+    @BindView(R.id.tv_bbh)
+    TextView tv_bbh;
 
     @Override
     protected int getContentView() {
@@ -25,6 +28,7 @@ public class MineRegardsActivity extends BaseActivity {
     protected void initViews() {
         mTvTitle.setText("关于我们");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
+        tv_bbh.setText("飞寻停车APP V"+BaseUtils.getVersionName(this));
     }
 
     @OnClick({R.id.ll_back, R.id.ll1, R.id.ll2})
