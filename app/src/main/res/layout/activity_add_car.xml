@@ -40,9 +40,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_50dp"
         android:padding="@dimen/dimen_15dp"
-        android:text="您的车牌号"
-        android:textColor="@color/color_333333"
-        android:textSize="16sp" />
+        android:text="请输入您的车牌号"
+        android:textColor="#AAAAAA"
+        android:textSize="14sp" />
 
     <com.jxkj.fxtc.view.deme.NumberEditText
         android:id="@+id/et_license"
@@ -52,18 +52,12 @@
         android:layout_marginTop="@dimen/dp_10" />
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.8dp"
-        android:layout_marginTop="@dimen/dimen_5dp"
-        android:background="@color/line_color" />
-
     <Button
         android:id="@+id/bnt_go"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_30dp"
-        android:layout_marginTop="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_60dp"
         android:background="@drawable/btn_shape_home"
         android:text="确认添加"
         android:textColor="@color/color_ffffff"
