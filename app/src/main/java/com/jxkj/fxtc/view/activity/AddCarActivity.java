@@ -112,7 +112,7 @@ public class AddCarActivity extends BaseActivity {
 
     private void addCar() {
         String lincense = mEditText.getText().toString();
-        if(true){
+        if(StringUtil.isBlank(lincense)){
             ToastUtils.showShort("车牌号不能为空"+lincense);
             return;
         }

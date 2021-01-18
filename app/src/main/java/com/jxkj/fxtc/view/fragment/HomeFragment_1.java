@@ -164,8 +164,7 @@ public class HomeFragment_1 extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
-                IntentUtils.getInstence().intent(getActivity(), KeyboardActivity.class,"type","0");
-//                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class,"type","0");
+                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class,"type","0");
                 break;
             case R.id.btn_home_2:
                 if (StringUtil.isBlank(carId)) {
