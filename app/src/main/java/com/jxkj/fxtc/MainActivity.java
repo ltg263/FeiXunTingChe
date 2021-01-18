@@ -61,12 +61,6 @@ public class MainActivity extends BaseActivity {
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
 
-
-    //声明mlocationClient对象
-    public AMapLocationClient mlocationClient;
-    //声明mLocationOption对象
-    public AMapLocationClientOption mLocationOption = null;
-
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -193,13 +187,6 @@ public class MainActivity extends BaseActivity {
                 fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
     /**
      * 计算距离

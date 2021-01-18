@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +35,7 @@ public class SearchGoodsActivity extends BaseActivity {
     @BindView(R.id.img_top_back)
     ImageView imgTopBack;
     @BindView(R.id.tv_top_title)
-    EditText searchEt;
+    AutoCompleteTextView searchEt;
     @BindView(R.id.activity_search_goods_search_tv)
     TextView mSearchTv;
     @BindView(R.id.rl_actionbar)
@@ -64,6 +66,12 @@ public class SearchGoodsActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+//        String[] data = new String[]{
+//                "admin","administrator java","android","1234"
+//        };
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+//                R.layout.support_simple_spinner_dropdown_item,data);
+//        searchEt.setAdapter(adapter);
         searchType = getIntent().getIntExtra("searchType",0);
         if(searchType==1){
             searchEt.setHint("搜索内容或圈子");
