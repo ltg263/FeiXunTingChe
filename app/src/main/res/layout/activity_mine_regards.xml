@@ -20,6 +20,7 @@
         android:src="@drawable/ic_icon_img" />
 
     <TextView
+        android:id="@+id/tv_bbh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

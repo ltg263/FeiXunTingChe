@@ -95,7 +95,6 @@ public class HomeFragment_1 extends BaseFragment {
     TextView mTvGgck;
     @BindView(R.id.tv_dlck)
     TextView mTvDlck;
-    String type = "1";
     private BookingSpaceAdapter mBookingSpaceAdapter;
     private Animation bigAnimation,smallAnimation;
 

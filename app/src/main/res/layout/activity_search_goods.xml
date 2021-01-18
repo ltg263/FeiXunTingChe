@@ -145,6 +145,5 @@
         android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_actionbar"
-        android:layout_marginHorizontal="@dimen/dimen_15dp"
         android:background="@drawable/shape_fff_10" />
 </RelativeLayout>

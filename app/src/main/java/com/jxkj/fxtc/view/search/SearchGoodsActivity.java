@@ -28,6 +28,7 @@ import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.SharedUtils;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
+import com.jxkj.fxtc.view.adapter.SearchListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class SearchGoodsActivity extends BaseActivity {
     private String searchStr = null;
     private int searchType = 0;
     public static SearchGoodsActivity activity;
-    private BookingSpaceAdapter mBookingSpaceAdapter;
+    private SearchListAdapter mSearchListAdapter;
 
     @Override
     protected int getContentView() {
@@ -114,12 +115,12 @@ public class SearchGoodsActivity extends BaseActivity {
 
     private void initRv() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mBookingSpaceAdapter = new BookingSpaceAdapter(null,"0");
-        mRecyclerView.setAdapter(mBookingSpaceAdapter);
-        mBookingSpaceAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        mSearchListAdapter = new SearchListAdapter(null,"0");
+        mRecyclerView.setAdapter(mSearchListAdapter);
+        mSearchListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-//                getActivity().finish();
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startSearchResultActivity(mSearchListAdapter.getData().get(position).getParkingName());
             }
         });
 
@@ -138,18 +139,20 @@ public class SearchGoodsActivity extends BaseActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 Log.i("字符变换中", s + "-" + "-" + start + "-" + before + "-" + count);
-
-                String lng = SharedUtils.singleton().get("Longitude", "");
-                String lat = SharedUtils.singleton().get("Latitude", "");
-//                getLotList(lng, lat);
+                if(s.length()>0){
+                    String lng = SharedUtils.singleton().get("Longitude", "");
+                    String lat = SharedUtils.singleton().get("Latitude", "");
+                    getLotList(s.toString(),lng, lat);
+                }else{
+                    mRecyclerView.setVisibility(View.GONE);
+                }
             }
         });
     }
 
-
-    private void getLotList(String lng, String lat) {
+    private void getLotList(String search,String lng, String lat) {
         RetrofitUtil.getInstance().apiService()
-                .getLotList(null, null, lng, lat,null)
+                .getLotList(null,search,lng,lat,null)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LotListBean>>() {
@@ -163,9 +166,8 @@ public class SearchGoodsActivity extends BaseActivity {
                         if (isDataInfoSucceed(result)) {
                             mRecyclerView.setVisibility(View.GONE);
                             if (result.getData().getList() != null && result.getData().getList().size() > 0) {
-
                                 mRecyclerView.setVisibility(View.VISIBLE);
-                                mBookingSpaceAdapter.setNewData(result.getData().getList());
+                                mSearchListAdapter.setNewData(result.getData().getList());
                             }
                         }
 
