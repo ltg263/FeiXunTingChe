@@ -44,17 +44,13 @@
         android:textColor="@color/color_333333"
         android:textSize="16sp" />
 
-    <EditText
+    <com.jxkj.fxtc.view.deme.NumberEditText
         android:id="@+id/et_license"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_30dp"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="@null"
-        android:hint="请输入您的车牌号"
-        android:padding="@dimen/dp_10"
-        android:textColor="@color/color_333333"
-        android:textColorHint="@color/color_999999" />
+        android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dp_10" />
+
 
     <View
         android:layout_width="match_parent"
@@ -72,6 +68,26 @@
         android:text="确认添加"
         android:textColor="@color/color_ffffff"
         android:textSize="16sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F8F8"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/selector_key"
+        android:keyTextColor="#000"
+        android:keyTextSize="14sp"
+        android:padding="5dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="0.0"
+        android:visibility="gone" />
 
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ import com.jxkj.fxtc.view.activity.SeekCarActivity;
 import com.jxkj.fxtc.view.activity.ShopCarLogActivity;
 import com.jxkj.fxtc.view.activity.ShotCarDeActivity;
 import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
+import com.jxkj.fxtc.view.deme.KeyboardActivity;
 import com.jxkj.fxtc.view.search.SearchGoodsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -95,8 +97,7 @@ public class HomeFragment_1 extends BaseFragment {
     TextView mTvDlck;
     String type = "1";
     private BookingSpaceAdapter mBookingSpaceAdapter;
-    private TranslateAnimation mShowAction;
-    private TranslateAnimation mHiddenAction;
+    private Animation bigAnimation,smallAnimation;
 
     @Override
     protected int getContentView() {
@@ -123,24 +124,17 @@ public class HomeFragment_1 extends BaseFragment {
         });
         openLocation();
         getHome();
-        ss();
-        yy();
+        scaleAnimation();
+
     }
 
-    private void ss() {
-        mShowAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-                -1.0f, Animation.RELATIVE_TO_SELF, -0.0f);
-        mShowAction.setRepeatMode(Animation.REVERSE);
-        mShowAction.setDuration(500);
-    }
+    //缩放动画
+    private void scaleAnimation() {
+        //放大
+        bigAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_big);
+        //缩小
+        smallAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.scale_small);
 
-    private void yy() {
-        mHiddenAction = new TranslateAnimation(Animation.RELATIVE_TO_SELF,
-                0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-                -1.0f);
-        mHiddenAction.setDuration(500);
     }
 
     @Override
@@ -170,7 +164,8 @@ public class HomeFragment_1 extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_home_1:
-                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class,"type","0");
+                IntentUtils.getInstence().intent(getActivity(), KeyboardActivity.class,"type","0");
+//                IntentUtils.getInstence().intent(getActivity(), BookingSpaceActivity.class,"type","0");
                 break;
             case R.id.btn_home_2:
                 if (StringUtil.isBlank(carId)) {
@@ -205,11 +200,26 @@ public class HomeFragment_1 extends BaseFragment {
                 break;
             case R.id.iv_search:
                 if (mTvSearch.getVisibility() == View.INVISIBLE) {
-//                    mTvSearch.startAnimation(mShowAction);//开始动画
+                    mTvSearch.startAnimation(bigAnimation);
                     mTvSearch.setVisibility(View.VISIBLE);
                 } else {
-//                    mTvSearch.startAnimation(mHiddenAction);//开始动画
-                    mTvSearch.setVisibility(View.INVISIBLE);
+                    mTvSearch.startAnimation(smallAnimation);
+                    smallAnimation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            mTvSearch.setVisibility(View.INVISIBLE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
                 }
 
                 break;

@@ -1,7 +1,9 @@
 package com.jxkj.fxtc.view.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,11 +14,10 @@ import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
-import com.jxkj.fxtc.conpoment.utils.IntentUtils;
 import com.jxkj.fxtc.conpoment.utils.StringUtil;
-import com.jxkj.fxtc.conpoment.utils.ToastUtil;
-import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.PostCarData;
+import com.jxkj.fxtc.view.deme.KeyboardUtil;
+import com.jxkj.fxtc.view.deme.NumberEditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -35,7 +36,9 @@ public class AddCarActivity extends BaseActivity {
     @BindView(R.id.btn_2)
     TextView mBtn2;
     @BindView(R.id.et_license)
-    EditText mEtLincense;
+    NumberEditText mNumberEditText;
+    private EditText mEditText;
+    private KeyboardUtil keyboardUtil;
     int type = 0;//汽油车
     private String carId;
     private String carName;
@@ -45,16 +48,31 @@ public class AddCarActivity extends BaseActivity {
         return R.layout.activity_add_car;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void initViews() {
+
+        mEditText = mNumberEditText.getInvisibleEt();
+        mNumberEditText.isXny(false);
         mTvTitle.setText("添加车辆");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         carId = getIntent().getStringExtra("carId");
         carName = getIntent().getStringExtra("carName");
         if(StringUtil.isNotBlank(carId)){
-            mEtLincense.setText(carName);
+            mEditText.setText(carName);
             mTvTitle.setText("修改车辆");
         }
+
+        mEditText.setOnTouchListener((view, event) -> {
+            if (keyboardUtil == null) {
+                keyboardUtil = new KeyboardUtil(AddCarActivity.this, mEditText);
+                keyboardUtil.hideSoftInputMethod();
+                keyboardUtil.showKeyboard();
+            } else {
+                keyboardUtil.showKeyboard();
+            }
+            return false;
+        });
     }
 
     @OnClick({R.id.ll_back, R.id.btn_1, R.id.btn_2, R.id.bnt_go})
@@ -69,6 +87,10 @@ public class AddCarActivity extends BaseActivity {
                 mBtn2.setBackground(null);
                 mBtn1.setTextColor(getResources().getColor(R.color.color_ffffff));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_text_theme));
+                mNumberEditText.isXny(false);
+                if(keyboardUtil!=null){
+                    keyboardUtil.changeKeyboard(false);
+                }
                 break;
             case R.id.btn_2:
                 type = 1;
@@ -76,6 +98,10 @@ public class AddCarActivity extends BaseActivity {
                 mBtn2.setBackground(getResources().getDrawable(R.drawable.bnt_car_x));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_ffffff));
                 mBtn1.setTextColor(getResources().getColor(R.color.color_text_theme));
+                mNumberEditText.isXny(true);
+                if(keyboardUtil!=null){
+                    keyboardUtil.changeKeyboard(false);
+                }
                 break;
             case R.id.bnt_go:
                 addCar();
@@ -85,9 +111,9 @@ public class AddCarActivity extends BaseActivity {
 
 
     private void addCar() {
-        String lincense = mEtLincense.getText().toString();
-        if(StringUtil.isBlank(lincense)){
-            ToastUtils.showShort("车牌号不能为空");
+        String lincense = mEditText.getText().toString();
+        if(true){
+            ToastUtils.showShort("车牌号不能为空"+lincense);
             return;
         }
         PostCarData.PostAddCarInfo addCarInfo = new PostCarData.PostAddCarInfo();
@@ -132,5 +158,16 @@ public class AddCarActivity extends BaseActivity {
         mIntent.putExtra("carId",carId);
         mIntent.putExtra("carName",carName);
         mContext.startActivity(mIntent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (keyboardUtil.isShow()) {
+                keyboardUtil.hideKeyboard();
+            }
+            finish();
+        }
+        return false;
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.jxkj.fxtc.view.deme.NumberEditText
+        android:id="@+id/numberEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/keyboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#F8F8F8"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/selector_key"
+        android:keyTextColor="#000"
+        android:keyTextSize="14sp"
+        android:padding="5dp"
+        android:shadowColor="#FFFFFF"
+        android:shadowRadius="0.0"
+        android:visibility="gone"/>
+
+</RelativeLayout>
