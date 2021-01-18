@@ -1,7 +1,6 @@
 package com.jxkj.fxtc;
 
 
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,8 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
 import com.blankj.utilcode.util.ToastUtils;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
@@ -26,7 +23,6 @@ import com.jxkj.fxtc.view.fragment.HomeFragment_3;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -129,7 +125,7 @@ public class MainActivity extends BaseActivity {
         mTvMain2.setTextColor(getResources().getColor(R.color.main_home_no));
         mTvMain3.setTextColor(getResources().getColor(R.color.main_home_no));
 
-        tv.setTextColor(getResources().getColor(R.color.main_home_yes));
+        tv.setTextColor(getResources().getColor(R.color.color_text_theme));
         iv.setSelected(true);
     }
 
