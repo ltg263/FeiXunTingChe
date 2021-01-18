@@ -1,12 +1,13 @@
 package com.jxkj.fxtc.view.search;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,16 +15,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gyf.immersionbar.ImmersionBar;
 import com.jxkj.fxtc.R;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.IntentUtils;
+import com.jxkj.fxtc.conpoment.utils.SharedUtils;
+import com.jxkj.fxtc.entity.LotListBean;
+import com.jxkj.fxtc.view.adapter.BookingSpaceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 搜索界面
@@ -35,7 +49,7 @@ public class SearchGoodsActivity extends BaseActivity {
     @BindView(R.id.img_top_back)
     ImageView imgTopBack;
     @BindView(R.id.tv_top_title)
-    AutoCompleteTextView searchEt;
+    EditText searchEt;
     @BindView(R.id.activity_search_goods_search_tv)
     TextView mSearchTv;
     @BindView(R.id.rl_actionbar)
@@ -46,9 +60,13 @@ public class SearchGoodsActivity extends BaseActivity {
     ShoppingFlowLayout flowLayoutRm;
     @BindView(R.id.activity_search_goods_history_ll)
     LinearLayout mHistoryLl;
+    @BindView(R.id.rv_list)
+    RecyclerView mRecyclerView;
     private String searchStr = null;
     private int searchType = 0;
     public static SearchGoodsActivity activity;
+    private BookingSpaceAdapter mBookingSpaceAdapter;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_search_goods;
@@ -66,12 +84,6 @@ public class SearchGoodsActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-//        String[] data = new String[]{
-//                "admin","administrator java","android","1234"
-//        };
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                R.layout.support_simple_spinner_dropdown_item,data);
-//        searchEt.setAdapter(adapter);
         searchType = getIntent().getIntExtra("searchType",0);
         if(searchType==1){
             searchEt.setHint("搜索内容或圈子");
@@ -97,8 +109,80 @@ public class SearchGoodsActivity extends BaseActivity {
                 return false;
             }
         });
+        initRv();
     }
 
+    private void initRv() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mBookingSpaceAdapter = new BookingSpaceAdapter(null,"0");
+        mRecyclerView.setAdapter(mBookingSpaceAdapter);
+        mBookingSpaceAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+//                getActivity().finish();
+            }
+        });
+
+        searchEt.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.i("字符变换后", "afterTextChanged");
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.i("字符变换前", s + "-" + start + "-" + count + "-" + after);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.i("字符变换中", s + "-" + "-" + start + "-" + before + "-" + count);
+
+                String lng = SharedUtils.singleton().get("Longitude", "");
+                String lat = SharedUtils.singleton().get("Latitude", "");
+//                getLotList(lng, lat);
+            }
+        });
+    }
+
+
+    private void getLotList(String lng, String lat) {
+        RetrofitUtil.getInstance().apiService()
+                .getLotList(null, null, lng, lat,null)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<LotListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<LotListBean> result) {
+                        if (isDataInfoSucceed(result)) {
+                            mRecyclerView.setVisibility(View.GONE);
+                            if (result.getData().getList() != null && result.getData().getList().size() > 0) {
+
+                                mRecyclerView.setVisibility(View.VISIBLE);
+                                mBookingSpaceAdapter.setNewData(result.getData().getList());
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
     private void setHistorySearchData() {
         List<String> mHistoryList = SearchHistorySpUtil.getSearchHistory(SearchGoodsActivity.this,"goods","goodsName");
         //往容器内添加TextView数据
