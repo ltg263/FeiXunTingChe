@@ -65,7 +65,8 @@ public interface ApiService {
      */
     @POST("api/v1/user/verify/login")
     Observable<Result<LoginBean>> postLogin(@Query("mobile") String mobile,
-                                            @Query("verifyCode") String verifyCode);
+                                            @Query("verifyCode") String verifyCode,
+                                            @Query("mobileType") String mobileType);
 
 
     /**

@@ -22,6 +22,8 @@ import com.umeng.socialize.UMShareAPI;
 
 import java.util.Stack;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Administrator on 2017/8/28.
  */
@@ -44,6 +46,8 @@ public class MainApplication extends Application {
         toastUtil = ToastUtil.getInstance(mContext);
         ActivityManager.init(this);
 
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         initUMShare();
     }
     private void initUMShare() {

@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity {
         }
         show();
         RetrofitUtil.getInstance().apiService()
-                .postLogin(sjh,yzm)
+                .postLogin(sjh,yzm,"0")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result<LoginBean>>() {
