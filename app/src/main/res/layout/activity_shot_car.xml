@@ -206,7 +206,7 @@
                         android:id="@+id/tv_sfbz"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_shop_car_de2"
+                        android:drawableStart="@drawable/ic_shop_car_de4"
                         android:drawablePadding="@dimen/dimen_5dp"
                         android:text="收费标准："
                         android:textColor="@color/color_333333"
@@ -262,7 +262,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_shop_car_de4"
+                        android:drawableStart="@drawable/ic_shop_car_de2"
                         android:drawablePadding="@dimen/dimen_5dp"
                         android:text="支付标准："
                         android:textColor="@color/color_333333"
