@@ -14,8 +14,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.jxkj.fxtc.api.RetrofitUtil;
 import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
+import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.view.fragment.HomeFragment_1;
 import com.jxkj.fxtc.view.fragment.HomeFragment_2;
 import com.jxkj.fxtc.view.fragment.HomeFragment_3;
@@ -24,6 +26,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
 
@@ -74,6 +80,7 @@ public class MainActivity extends BaseActivity {
         mFragments = mHomeFragment1;
         howFragment(1, mIvMain1, mTvMain1);
         fragmentManager.beginTransaction().replace(R.id.fl_content, mFragments, "A").commitAllowingStateLoss();
+//        getVersionUpdating();
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3})
@@ -183,6 +190,37 @@ public class MainActivity extends BaseActivity {
                 fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }
+    }
+
+    private void getVersionUpdating() {
+        RetrofitUtil.getInstance().apiService()
+                .getVersionUpdating()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result result) {
+                        if (isDataInfoSucceed(result)) {
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
     /**
      * 计算距离

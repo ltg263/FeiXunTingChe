@@ -76,6 +76,12 @@ public interface ApiService {
     Observable<Result<HomeBean>> getHome();
 
     /**
+     * 获取首页
+     */
+    @GET("api/v1/home/getHome")
+    Observable<Result> getVersionUpdating();
+
+    /**
      * 修改用户个人信息
      * @return
      */

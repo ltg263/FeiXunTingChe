@@ -8,7 +8,7 @@ public class ConstValues {
     /**
      * 应用名称
      */
-    public static String APPNAME_ENGLISH = "ZhongKeYan";
+    public static String APPNAME_ENGLISH = "FeiXunTingChe";
 
     /**
      * 文件夹父路径
