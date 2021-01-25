@@ -46,8 +46,20 @@ public class WebViewActivity extends BaseActivity {
         mIvBack.setImageDrawable(getResources().getDrawable(R.mipmap.back_h));
         mTvTitle.setText("车位导航");
         setWebViewClient();
-//        mWeb.loadUrl("https://unimap.co/demo/parking/");
-        mWeb.loadUrl("https://unimap.co/demo/wengpu/");
+        switch (data.getParkingName()){
+            case "樱花公园":
+                mWeb.loadUrl("https://unimap.co/demo/sakura_park/");
+                break;
+            case "桂花城路侧":
+                mWeb.loadUrl("https://unimap.co/demo/gangdao_road/");
+                break;
+            case "翁浦公园":
+                mWeb.loadUrl("https://unimap.co/demo/wengpu/");
+                break;
+            case "岱山县政府":
+                mWeb.loadUrl("https://unimap.co/demo/daishan/");
+                break;
+        }
         mMane.setText(data.getParkingName()+ "-停车场");
         mTvDz.setText(data.getAddress());
     }
