@@ -7,14 +7,15 @@ import com.jxkj.fxtc.entity.AddChangeList;
 import com.jxkj.fxtc.entity.AppointmentBean;
 import com.jxkj.fxtc.entity.CarRecordListBean;
 import com.jxkj.fxtc.entity.DefaultCarBean;
+import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.InvoiceListBean;
+import com.jxkj.fxtc.entity.ListApkInfo;
 import com.jxkj.fxtc.entity.LotListBean;
 import com.jxkj.fxtc.entity.MessageListBean;
 import com.jxkj.fxtc.entity.MessageListBeanDe;
 import com.jxkj.fxtc.entity.OrdersDetailBean;
 import com.jxkj.fxtc.entity.OrdersListBean;
 import com.jxkj.fxtc.entity.PostCarData;
-import com.jxkj.fxtc.entity.HomeBean;
 import com.jxkj.fxtc.entity.SeatParkbudBean;
 import com.jxkj.fxtc.entity.UserBillListBean;
 import com.jxkj.fxtc.entity.UserCarListBean;
@@ -76,10 +77,10 @@ public interface ApiService {
     Observable<Result<HomeBean>> getHome();
 
     /**
-     * 获取首页
+     * 安卓版本更新检查
      */
-    @GET("api/v1/home/getHome")
-    Observable<Result> getVersionUpdating();
+    @GET("api/v1/apk/list")
+    Observable<Result<ListApkInfo>> getVersionUpdating();
 
     /**
      * 修改用户个人信息
