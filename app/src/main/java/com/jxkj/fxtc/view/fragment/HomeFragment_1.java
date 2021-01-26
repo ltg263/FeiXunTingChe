@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,6 +96,10 @@ public class HomeFragment_1 extends BaseFragment {
     TextView mTvGgck;
     @BindView(R.id.tv_dlck)
     TextView mTvDlck;
+    @BindView(R.id.iv_ggck)
+    ImageView mIvGgck;
+    @BindView(R.id.iv_dlck)
+    ImageView mIvDlck;
     private BookingSpaceAdapter mBookingSpaceAdapter;
     private Animation bigAnimation,smallAnimation;
 
@@ -227,12 +232,16 @@ public class HomeFragment_1 extends BaseFragment {
             case R.id.tv_ggck:
                 mTvGgck.setTextColor(getResources().getColor(R.color.color_4ACCE0));
                 mTvDlck.setTextColor(getResources().getColor(R.color.color_666666));
+                mIvGgck.setVisibility(View.VISIBLE);
+                mIvDlck.setVisibility(View.INVISIBLE);
                 getLotList(SharedUtils.singleton().get("Longitude", ""),
                         SharedUtils.singleton().get("Latitude", ""),"1");
                 break;
             case R.id.tv_dlck:
                 mTvGgck.setTextColor(getResources().getColor(R.color.color_666666));
                 mTvDlck.setTextColor(getResources().getColor(R.color.color_4ACCE0));
+                mIvGgck.setVisibility(View.INVISIBLE);
+                mIvDlck.setVisibility(View.VISIBLE);
                 getLotList(SharedUtils.singleton().get("Longitude", ""),
                         SharedUtils.singleton().get("Latitude", ""),"0");
                 break;
