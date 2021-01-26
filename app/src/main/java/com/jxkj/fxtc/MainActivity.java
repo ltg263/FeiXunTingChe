@@ -19,6 +19,7 @@ import com.jxkj.fxtc.app.MainApplication;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.base.Result;
 import com.jxkj.fxtc.conpoment.utils.BaseUtils;
+import com.jxkj.fxtc.conpoment.utils.HttpRequestUtils;
 import com.jxkj.fxtc.entity.ListApkInfo;
 import com.jxkj.fxtc.view.fragment.HomeFragment_1;
 import com.jxkj.fxtc.view.fragment.HomeFragment_2;
@@ -88,7 +89,17 @@ public class MainActivity extends BaseActivity {
         mFragments = mHomeFragment1;
         howFragment(1, mIvMain1, mTvMain1);
         fragmentManager.beginTransaction().replace(R.id.fl_content, mFragments, "A").commitAllowingStateLoss();
-        getVersionUpdating();
+        HttpRequestUtils.getVersionUpdating(this, new HttpRequestUtils.UploadFileInterface() {
+            @Override
+            public void succeed(String path) {
+
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
     }
 
     @OnClick({R.id.ll_main_1, R.id.ll_main_2, R.id.ll_main_3})
@@ -201,88 +212,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void getVersionUpdating() {
-        RetrofitUtil.getInstance().apiService()
-                .getVersionUpdating()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result<ListApkInfo>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Result<ListApkInfo> result) {
-                        if (isDataInfoSucceed(result)) {
-                            goUpdating(result.getData());
-                        }
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-    }
-
-    private void goUpdating(ListApkInfo data) {
-        if(data.getApkName().equals(BaseUtils.getVersionName(this))){
-           return;
-        }
-        UpdateAppUtils.init(this);
-        UpdateConfig updateConfig = new UpdateConfig();
-        updateConfig.setCheckWifi(true);
-        updateConfig.setNeedCheckMd5(false);
-        updateConfig.setNotifyImgRes(R.drawable.ic_icon_img);
-        UiConfig uiConfig = new UiConfig();
-        uiConfig.setUiType(UiType.PLENTIFUL);
-        uiConfig.setUpdateLogoImgRes(R.drawable.ic_icon_img);
-        uiConfig.setUpdateBtnBgRes(R.drawable.btn_shape_theme);
-        UpdateAppUtils
-                .getInstance()
-                .apkUrl(data.getApkUrl())
-                .updateTitle("发现新版本:V"+data.getApkName())
-                .updateContent(data.getDescription())
-                .uiConfig(uiConfig)
-                .updateConfig(updateConfig)
-                .setMd5CheckResultListener(new Md5CheckResultListener() {
-                    @Override
-                    public void onResult(boolean result) {
-
-                    }
-                })
-                .setUpdateDownloadListener(new UpdateDownloadListener() {
-                    @Override
-                    public void onError(Throwable throwable) {
-
-                    }
-
-                    @Override
-                    public void onStart() {
-
-                    }
-
-                    @Override
-                    public void onDownload(int progress) {
-
-                    }
-
-                    @Override
-                    public void onFinish() {
-
-                    }
-
-                })
-                .update();
-    }
     /**
      * 计算距离
      *

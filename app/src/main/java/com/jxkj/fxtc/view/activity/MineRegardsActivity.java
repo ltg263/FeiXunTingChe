@@ -4,9 +4,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
 import com.jxkj.fxtc.conpoment.utils.BaseUtils;
+import com.jxkj.fxtc.conpoment.utils.HttpRequestUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,6 +42,17 @@ public class MineRegardsActivity extends BaseActivity {
             case R.id.ll1:
                 break;
             case R.id.ll2:
+                HttpRequestUtils.getVersionUpdating(this, new HttpRequestUtils.UploadFileInterface() {
+                    @Override
+                    public void succeed(String path) {
+
+                    }
+
+                    @Override
+                    public void failure() {
+                        ToastUtils.showShort("当前无新版本");
+                    }
+                });
                 break;
         }
     }

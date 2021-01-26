@@ -3,6 +3,7 @@ package com.jxkj.fxtc.view.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +21,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.deepexp.zsnavi.bean.CoordinateBean;
@@ -353,7 +359,7 @@ public class HomeFragment_1 extends BaseFragment {
                     public void onNext(Result<LotListBean> result) {
                         if (isDataInfoSucceed(result)) {
                             mBookingSpaceAdapter.setNewData(result.getData().getList());
-//                            initUiD(result.getData().getList(),lng,lat);
+                            initUiD(result.getData().getList(),Double.valueOf(lng),Double.valueOf(lat),type);
                         }
 
                     }
@@ -371,6 +377,30 @@ public class HomeFragment_1 extends BaseFragment {
 
     }
 
+    private void initUiD(List<LotListBean.ListBean> infos, double lng, double lat, String type) {
+        aMap.clear();
+        //绘制适应大小
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();//存放所有点的经纬度
+        boundsBuilder.include(new LatLng(lat,lng));
+        for (int i = 0; i < infos.size(); i++) {
+            LotListBean.ListBean info = infos.get(i);
+            LatLng latLng = new LatLng(Double.valueOf(info.getLat()), Double.valueOf(info.getLng()));
+            MarkerOptions mMarkerOptions = new MarkerOptions().position(latLng);
+            if(type.equals("1")){
+                mMarkerOptions.icon(BitmapDescriptorFactory.
+                        fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_stop_logo)));
+            }else{
+                mMarkerOptions.icon(BitmapDescriptorFactory.
+                        fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_stop_logol)));
+            }
+            mMarkerOptions.period(Integer.valueOf(info.getId()));
+            aMap.addMarker(mMarkerOptions);
+            boundsBuilder.include(latLng);//把所有点都include进去（LatLng类型）
+
+        }
+
+        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), 200));//第二个参数为四周留空宽度
+    }
     private void getHome() {
         RetrofitUtil.getInstance().apiService()
                 .getHome()
