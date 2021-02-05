@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -31,6 +33,7 @@ import java.util.List;
 
 public class SplashScreenActivity extends Activity {
     private boolean isFirstIn = true;
+    private boolean isSplashScreenActivity = true;
     Banner mBanner;
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -41,11 +44,24 @@ public class SplashScreenActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splashscreen);
         mBanner = findViewById(R.id.banner);
+        TextView btn = findViewById(R.id.btn);
         isFirstIn = SharedUtils.singleton().get("isFirstIn",true);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSplashScreenActivity = false;
+                startUi();
+            }
+        });
         if(false){
             initBanner();
         }else{
-            new Handler().postDelayed(() -> startUi(), 3000);
+            new Handler().postDelayed(() -> {
+                        if(isSplashScreenActivity){
+                            startUi();
+                        }
+                    }
+                    , 3000);
         }
     }
 
