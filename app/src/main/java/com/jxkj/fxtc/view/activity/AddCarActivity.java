@@ -36,8 +36,8 @@ public class AddCarActivity extends BaseActivity {
     @BindView(R.id.btn_2)
     TextView mBtn2;
     @BindView(R.id.et_license)
-    NumberEditText mNumberEditText;
-    private EditText mEditText;
+    EditText mEditText;
+//    private EditText mEditText;
     private KeyboardUtil keyboardUtil;
     int type = 0;//汽油车
     private String carId;
@@ -52,8 +52,8 @@ public class AddCarActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-        mEditText = mNumberEditText.getInvisibleEt();
-        mNumberEditText.isXny(false);
+//        mEditText = mNumberEditText.getInvisibleEt();
+//        mNumberEditText.isXny(false);
         mTvTitle.setText("添加车辆");
         mIvBack.setImageDrawable(getResources().getDrawable(R.drawable.icon_back_h));
         carId = getIntent().getStringExtra("carId");
@@ -63,16 +63,16 @@ public class AddCarActivity extends BaseActivity {
             mTvTitle.setText("修改车辆");
         }
 
-        mEditText.setOnTouchListener((view, event) -> {
-            if (keyboardUtil == null) {
-                keyboardUtil = new KeyboardUtil(AddCarActivity.this, mEditText);
-                keyboardUtil.hideSoftInputMethod();
-                keyboardUtil.showKeyboard();
-            } else {
-                keyboardUtil.showKeyboard();
-            }
-            return false;
-        });
+//        mEditText.setOnTouchListener((view, event) -> {
+//            if (keyboardUtil == null) {
+//                keyboardUtil = new KeyboardUtil(AddCarActivity.this, mEditText);
+//                keyboardUtil.hideSoftInputMethod();
+//                keyboardUtil.showKeyboard();
+//            } else {
+//                keyboardUtil.showKeyboard();
+//            }
+//            return false;
+//        });
     }
 
     @OnClick({R.id.ll_back, R.id.btn_1, R.id.btn_2, R.id.bnt_go})
@@ -87,10 +87,10 @@ public class AddCarActivity extends BaseActivity {
                 mBtn2.setBackground(null);
                 mBtn1.setTextColor(getResources().getColor(R.color.color_ffffff));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_text_theme));
-                mNumberEditText.isXny(false);
-                if(keyboardUtil!=null){
-                    keyboardUtil.changeKeyboard(false);
-                }
+//                mNumberEditText.isXny(false);
+//                if(keyboardUtil!=null){
+//                    keyboardUtil.changeKeyboard(false);
+//                }
                 break;
             case R.id.btn_2:
                 type = 1;
@@ -98,10 +98,10 @@ public class AddCarActivity extends BaseActivity {
                 mBtn2.setBackground(getResources().getDrawable(R.drawable.bnt_car_x));
                 mBtn2.setTextColor(getResources().getColor(R.color.color_ffffff));
                 mBtn1.setTextColor(getResources().getColor(R.color.color_text_theme));
-                mNumberEditText.isXny(true);
-                if(keyboardUtil!=null){
-                    keyboardUtil.changeKeyboard(false);
-                }
+//                mNumberEditText.isXny(true);
+//                if(keyboardUtil!=null){
+//                    keyboardUtil.changeKeyboard(false);
+//                }
                 break;
             case R.id.bnt_go:
                 addCar();
@@ -160,14 +160,14 @@ public class AddCarActivity extends BaseActivity {
         mContext.startActivity(mIntent);
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (keyboardUtil.isShow()) {
-                keyboardUtil.hideKeyboard();
-            }
-            finish();
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (keyboardUtil.isShow()) {
+//                keyboardUtil.hideKeyboard();
+//            }
+//            finish();
+//        }
+//        return false;
+//    }
 }

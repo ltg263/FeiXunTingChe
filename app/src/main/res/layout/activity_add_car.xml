@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="新能源"
-            android:textColor="#0199FC"
+            android:textColor="@color/color_text_theme"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -45,12 +45,22 @@
         android:textSize="14sp" />
 
     <com.jxkj.fxtc.view.deme.NumberEditText
-        android:id="@+id/et_license"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_30dp"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/dp_10" />
-
+    <EditText
+        android:id="@+id/et_license"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_30dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@null"
+        android:hint="请输入您的车牌号"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/color_333333"
+        android:textColorHint="@color/color_999999" />
 
     <Button
         android:id="@+id/bnt_go"
