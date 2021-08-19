@@ -29,6 +29,8 @@ import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.blankj.utilcode.util.ToastUtils;
+import com.centmap.sdk.CentMapType;
+import com.centmap.sdk.CentMapView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.deepexp.zsnavi.bean.CoordinateBean;
 import com.deepexp.zsnavi.callback.ILocationCallback;
@@ -187,6 +189,8 @@ public class HomeFragment_1 extends BaseFragment {
                 IntentUtils.getInstence().intent(getActivity(), BookingStopCarActivity.class);
                 break;
             case R.id.btn_home_4:
+//                CentMapView centMapView= new CentMapView(CentMapType.ONEMAP);
+//                centMapView.startActivity(getContext());
                 ToastUtils.showShort("努力开发中...");
                 break;
             case R.id.btn_home_5:

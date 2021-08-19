@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.centmap.sdk.CentMapType;
+import com.centmap.sdk.CentMapView;
 import com.deepexp.zsnavi.bean.CoordinateBean;
 import com.deepexp.zsnavi.core.ZsnaviManager;
 import com.deepexp.zsnavi.enums.NaviWay;
@@ -103,9 +105,13 @@ public class SeekCarActivity extends BaseActivity {
                 break;
             case R.id.bnt:
                 if(parkingData!=null){
-                    ZsnaviMapUtils.openNavi(this,parkingData.getParkingName(),
-                            NaviWay.Walk,Double.valueOf(parkingData.getLat()), Double.valueOf(parkingData.getLng()),
-                            parkingData.getMapCode(),parkingData.getPoiName());
+//                    ZsnaviMapUtils.openNavi(this,parkingData.getParkingName(),
+//                            NaviWay.Walk,Double.valueOf(parkingData.getLat()), Double.valueOf(parkingData.getLng()),
+//                            parkingData.getMapCode(),parkingData.getPoiName());
+                    CentMapView centMapView= new CentMapView(CentMapType.CARFINDING);
+                    String parkingNumber="B08-15";
+                    centMapView.setParkingNumber(parkingNumber);
+                    centMapView.startActivity(SeekCarActivity.this);
                 }
                 break;
         }

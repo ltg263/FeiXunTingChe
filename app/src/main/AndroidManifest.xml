@@ -105,6 +105,7 @@
         <activity android:name=".view.deme.KeyboardActivity"/>
         <activity android:name=".MainActivity"
             android:launchMode="singleTask" />
+        <activity  android:name="com.centmap.sdk.CentMapView"/>
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"

@@ -23,6 +23,8 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.centmap.sdk.CentMapType;
+import com.centmap.sdk.CentMapView;
 import com.deepexp.zsnavi.enums.NaviWay;
 import com.jxkj.fxtc.R;
 import com.jxkj.fxtc.base.BaseActivity;
@@ -101,15 +103,24 @@ public class ShotCarDeActivity extends BaseActivity implements LocationSource {
         bnt_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,data.getParkingName(),
-                        NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
-                        data.getMapCode(),data.getPoiName());
+//                ZsnaviMapUtils.openNavi(ShotCarDeActivity.this,data.getParkingName(),
+//                        NaviWay.Drive,Double.valueOf(data.getLat()), Double.valueOf(data.getLng()),
+//                        data.getMapCode(),data.getPoiName());
+
+                CentMapView centMapView= new CentMapView(CentMapType.ONEMAP);
+                int mapId=9999;
+                centMapView.setMapId(mapId);
+                centMapView.startActivity(ShotCarDeActivity.this);
             }
         });
         bnt_go1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.getInstence().intent(ShotCarDeActivity.this, WebViewActivity.class,"data",data);
+                CentMapView centMapView= new CentMapView(CentMapType.CARFINDING);
+                String parkingNumber="B08-15";
+                centMapView.setParkingNumber(parkingNumber);
+                centMapView.startActivity(ShotCarDeActivity.this);
+//                IntentUtils.getInstence().intent(ShotCarDeActivity.this, WebViewActivity.class,"data",data);
             }
         });
     }

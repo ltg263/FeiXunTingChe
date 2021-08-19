@@ -4,7 +4,7 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.jxkj.fxtc"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 12
         versionName "1.1.1"
@@ -28,23 +28,18 @@ android {
         }
     }
     signingConfigs {
-//        debug {
-//            keyAlias 'rentalmall'            // 签名别名
-//            keyPassword 'android'       // 别名对应的密码
-//            storeFile file('D:\JianXuan\FeiXunTingChe\fxtc.jks')  // 正式签名文件位置
-//            storePassword 'android'     // 签名密码
-//        }
 //        config {                       // 签名配置的名字，可以随意起，比如myconfig等
-//            keyAlias 'rentalmall'            // 签名别名
-//            keyPassword 'android'       // 别名对应的密码
+//            keyAlias 'fxtc'            // 签名别名
+//            keyPassword '123456'       // 别名对应的密码
 ////            storeFile file('F:/rentalmall.jks')  // 正式签名文件位置
 //            storeFile file('D:\JianXuan\FeiXunTingChe\fxtc.jks')  // 正式签名文件位置
-//            storePassword 'android'     // 签名密码
+//            storePassword '123456'     // 签名密码
 //        }
     }
-//    MD5:  C1:F2:70:C1:ED:1A:D0:CB:48:5E:A1:A7:A7:3E:83:F9
-//    SHA1: B6:12:23:CD:D1:85:35:9E:B8:44:30:2A:27:B8:7F:CE:B8:8A:EA:5F
-//    SHA256: 1B:65:3A:A8:B3:44:D6:E4:46:09:D2:40:B8:6B:FF:F1:3A:A6:B2:51:85:C6:2F:53:05:4A:47:56:E1:2C:1B:8D
+
+    // MD5:  A1:F4:9D:01:F2:D8:36:D4:D2:3B:AC:CB:22:1B:17:D1
+    // SHA1: 54:AE:C5:D0:C5:2B:B8:D8:1A:B9:5F:2F:8E:6F:41:FA:2B:26:11:4D
+    // SHA256: 0D:93:F0:50:9C:94:64:76:E7:89:22:BA:5D:98:0D:24:6A:DC:20:55:38:4A:00:CC:03:A6:0C:2E:A4:82:63:47
 
     buildTypes {
         release {
@@ -90,6 +85,8 @@ android {
         pickFirst 'lib/armeabi-v7a/librsjni_androidx.so'
         pickFirst 'lib/x86/librsjni_androidx.so'
         pickFirst 'lib/arm64-v8a/librsjni_androidx.so'
+        pickFirst 'lib/arm64-v8a/libneonuijni.so'
+        pickFirst 'lib/armeabi-v7a/libneonuijni.so'
     }
     productFlavors {//
     }
@@ -227,6 +224,7 @@ dependencies {
     implementation files('libs/windvane-min-8.0.3.2.3.jar')
     implementation(name: 'rpsdk-3.3.0.1', ext: 'aar')
     implementation(name: 'oss-android-sdk-2.9.2', ext: 'aar')
+    implementation(name: 'centmap', ext: 'aar')
     implementation(name: 'SecurityBodySDK-external-release-5.4.109-preInstall', ext: 'aar')
     implementation(name: 'SecurityGuardSDK-external-release-5.4.187-preInstall', ext: 'aar')
     implementation files('libs/SocialSDK_WeiXin_Full.jar')
@@ -237,7 +235,6 @@ dependencies {
     implementation files('libs/umeng_social_net.jar')
     implementation files('libs/umeng_social_shareboard.jar')
     implementation files('libs/umeng_social_tool.jar')
-    implementation files('libs/AMap3DMap_7.7.0_AMapNavi_7.7.0_AMapSearch_7.7.0_AMapLocation_5.2.0_20201102.jar')
     implementation 'com.github.chrisbanes.photoview:library:1.2.4'
     implementation 'jp.wasabeef:blurry:3.0.0'
     implementation 'com.github.addappcn:android-pickers:1.0.3'
